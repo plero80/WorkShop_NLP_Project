@@ -2,6 +2,8 @@
 
 - [EXPERIMENTS.md](EXPERIMENTS.md): notebook, source, settings, and result folder
   for each experiment.
+- [EXPERIMENT_DATA_COUNTS.md](EXPERIMENT_DATA_COUNTS.md): prompt allocations,
+  answer counts, kNN memory sizes, seeds, and training/evaluation budgets.
 - [RESULTS.md](RESULTS.md): direct links to saved reports and tables.
 - [SAVED_RUNS.md](SAVED_RUNS.md): recorded completion states and source-hash checks.
 - [gsm8k/README.md](gsm8k/README.md): new GSM8K experiment, shared PPO integration, and run commands.

@@ -18,6 +18,8 @@ its generated outputs are kept locally.
 
 Start with [EXPERIMENTS.md](docs/EXPERIMENTS.md), or open the saved
 [cluster explorer](results/exploration/analysis_6ee2efa375535c11/cluster_explorer.html).
+See [EXPERIMENT_DATA_COUNTS.md](docs/EXPERIMENT_DATA_COUNTS.md) for each experiment's
+prompt counts, kNN memory, seeds, and training/evaluation budget.
 
 ## Running the code
 

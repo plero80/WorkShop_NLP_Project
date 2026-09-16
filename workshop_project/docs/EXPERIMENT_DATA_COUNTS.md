@@ -250,6 +250,37 @@ Sources: [default settings](../configs/knn_distillation/settings.json),
 [saved cohort counts](../results/distillation/study_c18793a5593485e3/data/complete.json),
 [parent memory lock](../data/prerequisites/memory_refresh/study_e7a7994106548cb9/memories/seed_42/locked_reward.json).
 
+### New M2 ridge-reward PPO comparison (GPU run pending)
+
+The [matched continuation](hh_ridge_ppo/README.md) reuses this completed study's
+proxy and kNN arms and adds ridge for seeds **42, 43, 44**. The existing trainer,
+update-300 parents, optimizer/RNG states, training schedule and final prompts
+are checked before control reuse. Ridge fits **10,038 actual gap labels per
+seed**, using precisely the same M2 rows as kNN.
+
+| Stage | Per seed | Across three seeds |
+|---|---:|---:|
+| Ridge validation | 400 prompts / 800 saved answers | 2,400 additional judge scores; prompts shared |
+| Offline predictor evaluation | 400 other prompts / 800 saved answers | 2,400 existing judge scores reused; proxy features recovered |
+| New ridge PPO | 100 updates / 3,200 new answers | 300 updates / 9,600 new answers |
+| Ridge monitoring at 350 and 400 | 512 prompts twice | 3,072 newly judged answers |
+| Ridge final evaluation | 512 prompts | 1,536 newly judged answers |
+| Existing proxy/kNN final controls | 512 answers per arm | 3,072 saved answers; no repeated PPO or judge scoring |
+
+There are **7,008 new judge-scored answers** in the planned complete run:
+2,400 validation + 3,072 monitoring + 1,536 final. PPO itself calls no judge.
+The M2 fitting labels are reused. Across seeds, the common original 7,990 rows
+plus 2,048 refresh additions per seed represent 14,134 label rows, counting
+the original rows once and each seed's additions separately. Historical shared
+normalization/calibration labels are additional costs.
+Validation labels are an extra ridge-selection budget, not extra fitting rows.
+
+The nine saved second-refresh prediction/feature sets (18,432 answers) are
+also available for transfer evaluation without repeating their training. The
+runner writes separate gap-prediction and policy-quality tables, individual
+seeds and means, paired intervals, all underlying predictions, and a 120-pair
+blinded human-review pack. Human ratings and the new GPU results remain pending.
+
 ## 4. Exploration: what do the saved embeddings and gaps look like?
 
 Saved analysis: `analysis_6ee2efa375535c11`, from the second-refresh explorer.

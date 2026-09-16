@@ -8,6 +8,8 @@
 - [experiments/](experiments/): YAML launch presets for the new experiment CLI.
 - [experiments/hh-offline.yaml](experiments/hh-offline.yaml): saved-data HH-RLHF
   ridge/kNN comparison and memory-budget ablation, run with `hh_offline.py`.
+- [experiments/hh-ridge-ppo.yaml](experiments/hh-ridge-ppo.yaml): matched M2
+  ridge-reward continuation for three seeds, run with `hh_ridge_ppo.py`.
 
 Exploration settings are embedded in its notebooks. Retained settings are
 unchanged. Source guards are under

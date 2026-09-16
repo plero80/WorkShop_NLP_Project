@@ -23,6 +23,18 @@ prompt counts, kNN memory, seeds, and training/evaluation budget.
 
 ## Running the code
 
+Run the new matched HH-RLHF M2 ridge PPO arm on the RTX PRO 6000:
+
+```bash
+python hh_ridge_ppo.py audit
+python hh_ridge_ppo.py run --dry-run
+python hh_ridge_ppo.py run
+```
+
+This adds one reward arm for seeds 42/43/44 and reuses the verified proxy/kNN
+controls. Saved data/checkpoints and the matching CUDA environment are required;
+see the [run guide](docs/hh_ridge_ppo/README.md). GPU training is pending.
+
 Run the new HH-RLHF ridge baseline and memory-size ablation on saved data:
 
 ```bash

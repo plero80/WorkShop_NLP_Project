@@ -1,0 +1,6 @@
+# Match the saved controls' model/optimizer runtime. Install CUDA torch separately
+# as described in docs/hh_ridge_ppo/README.md; do not replace a working CUDA build.
+-r requirements-hh-offline.txt
+-r configs/environment/requirements.txt
+transformers==5.17.0
+peft==0.20.0

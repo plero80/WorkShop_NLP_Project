@@ -1,18 +1,318 @@
 {
   "schema_version": 1,
-  "description": "New GSM8K integration, YAML CLI and HH-RLHF offline comparisons; separate from immutable original file map.",
+  "description": "New GSM8K integration, YAML CLI, HH-RLHF offline comparisons and matched M2 ridge PPO; separate from immutable original file map.",
   "files": [
     {
-      "original": "EXPERIMENT_CLI.md",
-      "organized": "docs/EXPERIMENT_CLI.md",
-      "bytes": 7184,
-      "sha256": "631cb7306fdd0f661fa11b95c783d90323c0f8366c11296964029b1386c74452"
+      "original": "README.md",
+      "organized": "README.md",
+      "bytes": 4290,
+      "sha256": "b7daa306f3136528283e86b08944aaa5c487d492f266abd90f9d80b9cddad385"
     },
     {
-      "original": "RUN_GSM8K_PPO.ipynb",
-      "organized": "notebooks/gsm8k/RUN_GSM8K_PPO.ipynb",
-      "bytes": 3192,
-      "sha256": "30bc7f1bd088c3dfc3c9d8b87f26ed3306a7d274c96cf1f4ca787e52747feb0f"
+      "original": "code/README.md",
+      "organized": "code/README.md",
+      "bytes": 1614,
+      "sha256": "1dde8de1192cd4550547aa886788b501c8de4bd324c7e3ec4a27432b40408458"
+    },
+    {
+      "original": "experiment_cli/__init__.py",
+      "organized": "code/experiments/experiment_cli/__init__.py",
+      "bytes": 73,
+      "sha256": "54c59b04697b2c3545802889cc0cb206ca9e53d436bcdda20c8ab082d281712b"
+    },
+    {
+      "original": "experiment_cli/__main__.py",
+      "organized": "code/experiments/experiment_cli/__main__.py",
+      "bytes": 48,
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "original": "experiment_cli/cli.py",
+      "organized": "code/experiments/experiment_cli/cli.py",
+      "bytes": 10976,
+      "sha256": "b6d111d84009e8bb27a43ec01bb015a5b0f3c51cbd8ab724920ed596e5780f71"
+    },
+    {
+      "original": "gsm8k_experiment/__init__.py",
+      "organized": "code/experiments/gsm8k_experiment/__init__.py",
+      "bytes": 89,
+      "sha256": "14769900c24f46573185edc684328d55d0e93f29f6a3e7da74024125781c8e53"
+    },
+    {
+      "original": "gsm8k_experiment/answers.py",
+      "organized": "code/experiments/gsm8k_experiment/answers.py",
+      "bytes": 4141,
+      "sha256": "50f317d765e18c1bf871cfe8e9358d03c685f62333e71b29e1cb008e82249281"
+    },
+    {
+      "original": "gsm8k_experiment/assets.py",
+      "organized": "code/experiments/gsm8k_experiment/assets.py",
+      "bytes": 4433,
+      "sha256": "c75bf4139d2c38f630edf86cd4bd560cb27b0c5d2413a0841199b276fecdf583"
+    },
+    {
+      "original": "gsm8k_experiment/common.py",
+      "organized": "code/experiments/gsm8k_experiment/common.py",
+      "bytes": 8472,
+      "sha256": "38c0ff6bec32172093e78c831dab4b9740887a715c09148077cde9dbadb889d9"
+    },
+    {
+      "original": "gsm8k_experiment/data.py",
+      "organized": "code/experiments/gsm8k_experiment/data.py",
+      "bytes": 3444,
+      "sha256": "80389913a80c532dfa4cc2ada9de9b7eb38548687b804cc44b6ddadd3c3d90a2"
+    },
+    {
+      "original": "gsm8k_experiment/export.py",
+      "organized": "code/experiments/gsm8k_experiment/export.py",
+      "bytes": 3556,
+      "sha256": "4add2ec876bc6f0d179b3d15c2aeaf45431ac7d6ffb12b187d58f805ebcf3c1c"
+    },
+    {
+      "original": "gsm8k_experiment/grading.py",
+      "organized": "code/experiments/gsm8k_experiment/grading.py",
+      "bytes": 2377,
+      "sha256": "730afe610b535b92da60915daeb0e7b96d0287bd364beeb2637efa39507771bc"
+    },
+    {
+      "original": "gsm8k_experiment/memory.py",
+      "organized": "code/experiments/gsm8k_experiment/memory.py",
+      "bytes": 6395,
+      "sha256": "6b3322c52fe403d1d377cd46c3e65f96ed0e98d49d6f884def9bae7e193d68f0"
+    },
+    {
+      "original": "gsm8k_experiment/metrics.py",
+      "organized": "code/experiments/gsm8k_experiment/metrics.py",
+      "bytes": 4599,
+      "sha256": "3a2c8fafb4f0c40b20fb52c3f37d7738093d63090333aba8c3e283d0789942c7"
+    },
+    {
+      "original": "gsm8k_experiment/models.py",
+      "organized": "code/experiments/gsm8k_experiment/models.py",
+      "bytes": 20467,
+      "sha256": "16588f0b03f589a4ce05a9dec942ea866cd9d08e87d262e7c972ba14f41a898d"
+    },
+    {
+      "original": "gsm8k_experiment/numeric.py",
+      "organized": "code/experiments/gsm8k_experiment/numeric.py",
+      "bytes": 24324,
+      "sha256": "615d45cb606804c866030a776e3b4ef6e69cb41357b1a784f2049bd273e2d722"
+    },
+    {
+      "original": "gsm8k_experiment/ppo.py",
+      "organized": "code/experiments/gsm8k_experiment/ppo.py",
+      "bytes": 6718,
+      "sha256": "bf9e9ee4c22175fa41b9ec6bad68cfafaf14e6b362067895cf1c6792f680ffa9"
+    },
+    {
+      "original": "gsm8k_experiment/recovery.py",
+      "organized": "code/experiments/gsm8k_experiment/recovery.py",
+      "bytes": 1563,
+      "sha256": "c04710e4547b11801c1a16f8cd0d1cbafb594d601e5db3148dcf11f41657cf06"
+    },
+    {
+      "original": "gsm8k_experiment/report.py",
+      "organized": "code/experiments/gsm8k_experiment/report.py",
+      "bytes": 14538,
+      "sha256": "a54a2621edf48de153441c57508ab94c8d0ae053c07f37b8f18f04ee75bd70bd"
+    },
+    {
+      "original": "gsm8k_experiment/run.py",
+      "organized": "code/experiments/gsm8k_experiment/run.py",
+      "bytes": 33861,
+      "sha256": "61d4fae6db85715071c955fa5c479eba758c68312f316aaeff7e04da9a82c3ed"
+    },
+    {
+      "original": "gsm8k_experiment/shared.py",
+      "organized": "code/experiments/gsm8k_experiment/shared.py",
+      "bytes": 2584,
+      "sha256": "e30b814e2a1dad48a2d6fcbfa79d12515a1493cd18fabd7ecda860cb76928669"
+    },
+    {
+      "original": "gsm8k_experiment/status.py",
+      "organized": "code/experiments/gsm8k_experiment/status.py",
+      "bytes": 1883,
+      "sha256": "45f871de435279b96f3814919648fd4d6c66912fca9c2206f19f8e82649edaf7"
+    },
+    {
+      "original": "gsm8k_experiment/suite.py",
+      "organized": "code/experiments/gsm8k_experiment/suite.py",
+      "bytes": 6582,
+      "sha256": "6b7282836d005d831ecedbe7599a344240f0c8aec9c3e0652deebc8fa42531e4"
+    },
+    {
+      "original": "gsm8k_experiment/teacher_memory.py",
+      "organized": "code/experiments/gsm8k_experiment/teacher_memory.py",
+      "bytes": 10256,
+      "sha256": "a2b246be4413646d0797ca183f2c5da457604539ff560e91d0c4699636e0a619"
+    },
+    {
+      "original": "gsm8k_experiment/validation.py",
+      "organized": "code/experiments/gsm8k_experiment/validation.py",
+      "bytes": 22708,
+      "sha256": "28ce501fac32c13612878f0abe0d1f2e2f3e73a7fa046a7c86efcbc929abc50b"
+    },
+    {
+      "original": "hh_offline/__init__.py",
+      "organized": "code/experiments/hh_offline/__init__.py",
+      "bytes": 80,
+      "sha256": "31b81fec50785f1b1b0f5eec25a8e44e7fd499f1735bfa710413b0587ef25e45"
+    },
+    {
+      "original": "hh_offline/data.py",
+      "organized": "code/experiments/hh_offline/data.py",
+      "bytes": 4832,
+      "sha256": "c1f845422c384bf9ece2cd3f7a657042af576cfafe18fac33b31d00857685a3a"
+    },
+    {
+      "original": "hh_offline/metrics.py",
+      "organized": "code/experiments/hh_offline/metrics.py",
+      "bytes": 3281,
+      "sha256": "067fe1951ca045113fa77ba700e38a31c4968a1674f38a099714f58a72513b23"
+    },
+    {
+      "original": "hh_offline/report.py",
+      "organized": "code/experiments/hh_offline/report.py",
+      "bytes": 10683,
+      "sha256": "958ed4f42b3d3e4c17486e7f5421cbcf6b8d01e21a0d2ba91e0c9d04ce27aec6"
+    },
+    {
+      "original": "hh_offline/run.py",
+      "organized": "code/experiments/hh_offline/run.py",
+      "bytes": 16451,
+      "sha256": "edb1f966e996126bbcd02babbcafc2556b453130af01dc5402ed049736ab3137"
+    },
+    {
+      "original": "hh_ridge_ppo/__init__.py",
+      "organized": "code/experiments/hh_ridge_ppo/__init__.py",
+      "bytes": 81,
+      "sha256": "2de78370273f0f1b2f468537f7c79af124b908e05927bee0f083a5cd0214a162"
+    },
+    {
+      "original": "hh_ridge_ppo/features.py",
+      "organized": "code/experiments/hh_ridge_ppo/features.py",
+      "bytes": 4986,
+      "sha256": "df42b8bc01a3ce1e8ecf63d974195e38b80e3a7579eafd0061c551de745923b7"
+    },
+    {
+      "original": "hh_ridge_ppo/protocol.py",
+      "organized": "code/experiments/hh_ridge_ppo/protocol.py",
+      "bytes": 15387,
+      "sha256": "37740bdb2720068e299b85195c94773007ac1d277c8bbf60a65a2a47b0141ea2"
+    },
+    {
+      "original": "hh_ridge_ppo/reports.py",
+      "organized": "code/experiments/hh_ridge_ppo/reports.py",
+      "bytes": 14346,
+      "sha256": "e47b2b07254de6f9e13fc6c70b82632287e18d5823728e1e2d2e219d361a5ed4"
+    },
+    {
+      "original": "hh_ridge_ppo/reward.py",
+      "organized": "code/experiments/hh_ridge_ppo/reward.py",
+      "bytes": 2566,
+      "sha256": "b60035883ce741ad449570808eb7166e6063538c1022044b067c68c37f73d265"
+    },
+    {
+      "original": "hh_ridge_ppo/run.py",
+      "organized": "code/experiments/hh_ridge_ppo/run.py",
+      "bytes": 15659,
+      "sha256": "c3fa414ced685704ffbf8ee0928b2bc8bf0dc9af8bf0a4a6d8c21a0a21054115"
+    },
+    {
+      "original": "tests/experiment_cli/test_cli.py",
+      "organized": "code/tests/experiment_cli/test_cli.py",
+      "bytes": 6797,
+      "sha256": "f4a6fe6c9d5b2a3ee86e402c486b4b76a8e6e3e5f30bae79882d768a74192a5d"
+    },
+    {
+      "original": "tests/gsm8k/test_core.py",
+      "organized": "code/tests/gsm8k/test_core.py",
+      "bytes": 5284,
+      "sha256": "c37710b010da5a86db026646cf75c3da51ba9517c6d25687a36786c291885140"
+    },
+    {
+      "original": "tests/gsm8k/test_grading_recovery.py",
+      "organized": "code/tests/gsm8k/test_grading_recovery.py",
+      "bytes": 2429,
+      "sha256": "0ed0afe4ba770541287055b055491234c372c7ae9251765c1f410ae50710be10"
+    },
+    {
+      "original": "tests/gsm8k/test_score_format.py",
+      "organized": "code/tests/gsm8k/test_score_format.py",
+      "bytes": 8127,
+      "sha256": "91916914d65265519682bcabd65a50e453a30b61f9566df271ec330e71b594af"
+    },
+    {
+      "original": "tests/gsm8k/test_shared_integration.py",
+      "organized": "code/tests/gsm8k/test_shared_integration.py",
+      "bytes": 2861,
+      "sha256": "4ff1ccde7d1dfa4ac283471b102e1e47411768e7dc5b06cce44f6c7414719fb0"
+    },
+    {
+      "original": "tests/gsm8k/test_suite_runner.py",
+      "organized": "code/tests/gsm8k/test_suite_runner.py",
+      "bytes": 3596,
+      "sha256": "375521c58f844694fb1921599f2edc87d2234478188c8c8acbd7229fe70ceb46"
+    },
+    {
+      "original": "tests/gsm8k/test_teacher_memory.py",
+      "organized": "code/tests/gsm8k/test_teacher_memory.py",
+      "bytes": 5808,
+      "sha256": "bae81e6687dcfecaa52bd69ed93f3a4f5a98b0b541ea367d482fcee061979909"
+    },
+    {
+      "original": "tests/gsm8k/test_tiny_models.py",
+      "organized": "code/tests/gsm8k/test_tiny_models.py",
+      "bytes": 20071,
+      "sha256": "96c8ffca055f0d6a897ae41f7395dd78c8a56cbc4e5ca82a97cc103301958bfc"
+    },
+    {
+      "original": "tests/gsm8k/test_ungraded.py",
+      "organized": "code/tests/gsm8k/test_ungraded.py",
+      "bytes": 11667,
+      "sha256": "e84e20375fb2d05a29da23cd704d9aa8191567c8b89eb47f777d1341b0c28a2c"
+    },
+    {
+      "original": "tests/gsm8k/test_validation.py",
+      "organized": "code/tests/gsm8k/test_validation.py",
+      "bytes": 9322,
+      "sha256": "7f7fab6fc99fa681523cc40bcbd5df8b715b22e943d8b8e845c553511e4c2d31"
+    },
+    {
+      "original": "tests/hh_offline/test_offline.py",
+      "organized": "code/tests/hh_offline/test_offline.py",
+      "bytes": 8588,
+      "sha256": "b3e8a6c41e9c4a090fc3aa9a1ae94e5ae917e2fdf11108859d1128ed004a652b"
+    },
+    {
+      "original": "tests/hh_ridge_ppo/test_ridge_ppo.py",
+      "organized": "code/tests/hh_ridge_ppo/test_ridge_ppo.py",
+      "bytes": 17813,
+      "sha256": "8d756e81473b513782f09353dde3a6d325f2332d9a13e693066a4384bb7d2b99"
+    },
+    {
+      "original": "configs/README.md",
+      "organized": "configs/README.md",
+      "bytes": 1021,
+      "sha256": "4378224aa38d6e825e91749fe2fa6725e5cc390d2333792a9f148412993a798c"
+    },
+    {
+      "original": "experiment_cli/presets/gsm8k-b200.yaml",
+      "organized": "configs/experiments/gsm8k-b200.yaml",
+      "bytes": 493,
+      "sha256": "5323b2d196c7f5321592f2ea49bbe9058ebc48ceb938db0ccfaa5ecbd30ab4e5"
+    },
+    {
+      "original": "experiment_cli/presets/gsm8k-three-seeds.yaml",
+      "organized": "configs/experiments/gsm8k-three-seeds.yaml",
+      "bytes": 167,
+      "sha256": "9558aef362304eccd5f7457811d6ac02adacbd0616ff0000d2a4608dbf8f1029"
+    },
+    {
+      "original": "experiment_cli/presets/gsm8k.yaml",
+      "organized": "configs/experiments/gsm8k.yaml",
+      "bytes": 361,
+      "sha256": "b9edce7ec942d00a73fb3e5f90b6ea08e78427e898ecc8e818b19c6a51217d55"
     },
     {
       "original": "configs/experiments/hh-offline.yaml",
@@ -21,10 +321,82 @@
       "sha256": "795502b8b0c5d420689b9782d884e321b041fefb21ed35baabb590ac12342404"
     },
     {
+      "original": "configs/experiments/hh-ridge-ppo.yaml",
+      "organized": "configs/experiments/hh-ridge-ppo.yaml",
+      "bytes": 374,
+      "sha256": "b990ef95855b426025ed684bea4064bdadd992cdf56b18fa5d38dac8840b3cc1"
+    },
+    {
+      "original": "experiment_cli/requirements.txt",
+      "organized": "configs/experiments/requirements.txt",
+      "bytes": 57,
+      "sha256": "da2e5f7ee87e173a354d633d1e663ec8fc8f6b75fa922534814e1f866dfeca63"
+    },
+    {
+      "original": "gsm8k_experiment/configs/format_pilot.json",
+      "organized": "configs/gsm8k/format_pilot.json",
+      "bytes": 2843,
+      "sha256": "a9be6316cc404686dd9d938c6b38d81a6c6c51886de4577d1ec2f115608c75cd"
+    },
+    {
+      "original": "gsm8k_experiment/requirements.txt",
+      "organized": "configs/gsm8k/requirements.txt",
+      "bytes": 40,
+      "sha256": "4b180746dc56dbd0e28ee277bb628a2d1c44022b93ac6ba2309352a32580fce3"
+    },
+    {
+      "original": "gsm8k_experiment/settings.json",
+      "organized": "configs/gsm8k/settings.json",
+      "bytes": 2841,
+      "sha256": "db63ad065a6a4928525f69b2dfae63f0557005dc0798aa62ad3e245285aa59cd"
+    },
+    {
+      "original": "gsm8k_experiment/shared_sources.json",
+      "organized": "configs/gsm8k/shared_sources.json",
+      "bytes": 1334,
+      "sha256": "3c86f1f79cdfeb80dec8c19ae7b2ecac794eb70c06d5ddecb9ca670563c49db8"
+    },
+    {
+      "original": "gsm8k_experiment/configs/with_optional_arms.json",
+      "organized": "configs/gsm8k/with_optional_arms.json",
+      "bytes": 2876,
+      "sha256": "9c9a0b7c0fae7241b138464c3507cff2df880a68a2e3098baf73c8746333977d"
+    },
+    {
+      "original": "EXPERIMENT_CLI.md",
+      "organized": "docs/EXPERIMENT_CLI.md",
+      "bytes": 7184,
+      "sha256": "631cb7306fdd0f661fa11b95c783d90323c0f8366c11296964029b1386c74452"
+    },
+    {
+      "original": "docs/EXPERIMENT_DATA_COUNTS.md",
+      "organized": "docs/EXPERIMENT_DATA_COUNTS.md",
+      "bytes": 28910,
+      "sha256": "3c0afe5c334232786f84dd7664d0f97677b29ae75e2e4377b4cf5d0c5cfe4508"
+    },
+    {
+      "original": "docs/README.md",
+      "organized": "docs/README.md",
+      "bytes": 1378,
+      "sha256": "b41ca231e7d8d20a0eb15a86181b6bbc9a974d8fbfd39d1ae16060eff646365b"
+    },
+    {
       "original": "docs/gsm8k/B200_REWARD_BUG_AUDIT.md",
       "organized": "docs/gsm8k/B200_REWARD_BUG_AUDIT.md",
       "bytes": 8534,
       "sha256": "b222a7a62d5be6e03b5772e78d4bd8d628683db290b594a9f4f366b1f43139aa"
+    },
+    {
+      "original": "gsm8k_experiment/README.md",
+      "organized": "docs/gsm8k/README.md",
+      "bytes": 9289,
+      "sha256": "9846078f165c9ec143e83e02be58abb8bc0ead35dde89443a3649aeb527b6605"
+    },
+    {
+      "original": "gsm8k_experiment/VALIDATION.md",
+      "organized": "docs/gsm8k/VALIDATION.md",
+      "bytes": 7684,
+      "sha256": "53aff763f5d9af8c6d4077893255d2e6336687f6a20e8b1f299f6629b957e549"
     },
     {
       "original": "docs/gsm8k/b200_seed42/reward_audit_verification.json",
@@ -327,208 +699,46 @@
       "sha256": "9460105344b36e041f6bbbd2cf9fa13d45549e1b98a409fe92222f308fb470e6"
     },
     {
-      "original": "experiment_cli/__init__.py",
-      "organized": "code/experiments/experiment_cli/__init__.py",
-      "bytes": 73,
-      "sha256": "54c59b04697b2c3545802889cc0cb206ca9e53d436bcdda20c8ab082d281712b"
+      "original": "docs/hh_ridge_ppo/README.md",
+      "organized": "docs/hh_ridge_ppo/README.md",
+      "bytes": 9205,
+      "sha256": "e48ab48d777e12ccee8f51ccb7757e9b23398a9b33d742a045303c452c2987b8"
     },
     {
-      "original": "experiment_cli/__main__.py",
-      "organized": "code/experiments/experiment_cli/__main__.py",
-      "bytes": 48,
-      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+      "original": "docs/hh_ridge_ppo/verified_controls/policy_by_seed.csv",
+      "organized": "docs/hh_ridge_ppo/verified_controls/policy_by_seed.csv",
+      "bytes": 803,
+      "sha256": "e7e389ce1d520c608fc83cf4d819634253a6a5c9cc53405044bc47c789b99cf0"
     },
     {
-      "original": "experiment_cli/cli.py",
-      "organized": "code/experiments/experiment_cli/cli.py",
-      "bytes": 10976,
-      "sha256": "b6d111d84009e8bb27a43ec01bb015a5b0f3c51cbd8ab724920ed596e5780f71"
+      "original": "docs/hh_ridge_ppo/verified_controls/policy_paired_answers.csv",
+      "organized": "docs/hh_ridge_ppo/verified_controls/policy_paired_answers.csv",
+      "bytes": 128126,
+      "sha256": "5435076f12d72cd2e818cb29220ac363244f31483d4a9a4df9a9fbc85b30daa8"
     },
     {
-      "original": "experiment_cli/presets/gsm8k-b200.yaml",
-      "organized": "configs/experiments/gsm8k-b200.yaml",
-      "bytes": 493,
-      "sha256": "5323b2d196c7f5321592f2ea49bbe9058ebc48ceb938db0ccfaa5ecbd30ab4e5"
+      "original": "docs/hh_ridge_ppo/verified_controls/policy_paired_intervals.json",
+      "organized": "docs/hh_ridge_ppo/verified_controls/policy_paired_intervals.json",
+      "bytes": 5675,
+      "sha256": "634c8162e77209670e4451d6f93cdafc3227756c78d9b1834facafbf5e0251ce"
     },
     {
-      "original": "experiment_cli/presets/gsm8k-three-seeds.yaml",
-      "organized": "configs/experiments/gsm8k-three-seeds.yaml",
-      "bytes": 167,
-      "sha256": "9558aef362304eccd5f7457811d6ac02adacbd0616ff0000d2a4608dbf8f1029"
+      "original": "docs/hh_ridge_ppo/verified_controls/policy_report.md",
+      "organized": "docs/hh_ridge_ppo/verified_controls/policy_report.md",
+      "bytes": 1537,
+      "sha256": "ce6fb35025d23fe6febdbee3bcc46dbbd141abe2ba1d5514d369f45dc0a895c8"
     },
     {
-      "original": "experiment_cli/presets/gsm8k.yaml",
-      "organized": "configs/experiments/gsm8k.yaml",
-      "bytes": 361,
-      "sha256": "b9edce7ec942d00a73fb3e5f90b6ea08e78427e898ecc8e818b19c6a51217d55"
+      "original": "docs/hh_ridge_ppo/verified_controls/policy_seed_summary.csv",
+      "organized": "docs/hh_ridge_ppo/verified_controls/policy_seed_summary.csv",
+      "bytes": 966,
+      "sha256": "98af53f36afa0c01d8f22455ea41bebcc8b1c3548ac31035d5903d934a4cfa5e"
     },
     {
-      "original": "experiment_cli/requirements.txt",
-      "organized": "configs/experiments/requirements.txt",
-      "bytes": 57,
-      "sha256": "da2e5f7ee87e173a354d633d1e663ec8fc8f6b75fa922534814e1f866dfeca63"
-    },
-    {
-      "original": "gsm8k_experiment/README.md",
-      "organized": "docs/gsm8k/README.md",
-      "bytes": 9289,
-      "sha256": "9846078f165c9ec143e83e02be58abb8bc0ead35dde89443a3649aeb527b6605"
-    },
-    {
-      "original": "gsm8k_experiment/VALIDATION.md",
-      "organized": "docs/gsm8k/VALIDATION.md",
-      "bytes": 7684,
-      "sha256": "53aff763f5d9af8c6d4077893255d2e6336687f6a20e8b1f299f6629b957e549"
-    },
-    {
-      "original": "gsm8k_experiment/__init__.py",
-      "organized": "code/experiments/gsm8k_experiment/__init__.py",
-      "bytes": 89,
-      "sha256": "14769900c24f46573185edc684328d55d0e93f29f6a3e7da74024125781c8e53"
-    },
-    {
-      "original": "gsm8k_experiment/answers.py",
-      "organized": "code/experiments/gsm8k_experiment/answers.py",
-      "bytes": 4141,
-      "sha256": "50f317d765e18c1bf871cfe8e9358d03c685f62333e71b29e1cb008e82249281"
-    },
-    {
-      "original": "gsm8k_experiment/assets.py",
-      "organized": "code/experiments/gsm8k_experiment/assets.py",
-      "bytes": 4433,
-      "sha256": "c75bf4139d2c38f630edf86cd4bd560cb27b0c5d2413a0841199b276fecdf583"
-    },
-    {
-      "original": "gsm8k_experiment/common.py",
-      "organized": "code/experiments/gsm8k_experiment/common.py",
-      "bytes": 8472,
-      "sha256": "38c0ff6bec32172093e78c831dab4b9740887a715c09148077cde9dbadb889d9"
-    },
-    {
-      "original": "gsm8k_experiment/configs/format_pilot.json",
-      "organized": "configs/gsm8k/format_pilot.json",
-      "bytes": 2843,
-      "sha256": "a9be6316cc404686dd9d938c6b38d81a6c6c51886de4577d1ec2f115608c75cd"
-    },
-    {
-      "original": "gsm8k_experiment/configs/with_optional_arms.json",
-      "organized": "configs/gsm8k/with_optional_arms.json",
-      "bytes": 2876,
-      "sha256": "9c9a0b7c0fae7241b138464c3507cff2df880a68a2e3098baf73c8746333977d"
-    },
-    {
-      "original": "gsm8k_experiment/data.py",
-      "organized": "code/experiments/gsm8k_experiment/data.py",
-      "bytes": 3444,
-      "sha256": "80389913a80c532dfa4cc2ada9de9b7eb38548687b804cc44b6ddadd3c3d90a2"
-    },
-    {
-      "original": "gsm8k_experiment/export.py",
-      "organized": "code/experiments/gsm8k_experiment/export.py",
-      "bytes": 3556,
-      "sha256": "4add2ec876bc6f0d179b3d15c2aeaf45431ac7d6ffb12b187d58f805ebcf3c1c"
-    },
-    {
-      "original": "gsm8k_experiment/grading.py",
-      "organized": "code/experiments/gsm8k_experiment/grading.py",
-      "bytes": 2377,
-      "sha256": "730afe610b535b92da60915daeb0e7b96d0287bd364beeb2637efa39507771bc"
-    },
-    {
-      "original": "gsm8k_experiment/memory.py",
-      "organized": "code/experiments/gsm8k_experiment/memory.py",
-      "bytes": 6395,
-      "sha256": "6b3322c52fe403d1d377cd46c3e65f96ed0e98d49d6f884def9bae7e193d68f0"
-    },
-    {
-      "original": "gsm8k_experiment/metrics.py",
-      "organized": "code/experiments/gsm8k_experiment/metrics.py",
-      "bytes": 4599,
-      "sha256": "3a2c8fafb4f0c40b20fb52c3f37d7738093d63090333aba8c3e283d0789942c7"
-    },
-    {
-      "original": "gsm8k_experiment/models.py",
-      "organized": "code/experiments/gsm8k_experiment/models.py",
-      "bytes": 20467,
-      "sha256": "16588f0b03f589a4ce05a9dec942ea866cd9d08e87d262e7c972ba14f41a898d"
-    },
-    {
-      "original": "gsm8k_experiment/numeric.py",
-      "organized": "code/experiments/gsm8k_experiment/numeric.py",
-      "bytes": 24324,
-      "sha256": "615d45cb606804c866030a776e3b4ef6e69cb41357b1a784f2049bd273e2d722"
-    },
-    {
-      "original": "gsm8k_experiment/ppo.py",
-      "organized": "code/experiments/gsm8k_experiment/ppo.py",
-      "bytes": 6718,
-      "sha256": "bf9e9ee4c22175fa41b9ec6bad68cfafaf14e6b362067895cf1c6792f680ffa9"
-    },
-    {
-      "original": "gsm8k_experiment/recovery.py",
-      "organized": "code/experiments/gsm8k_experiment/recovery.py",
-      "bytes": 1563,
-      "sha256": "c04710e4547b11801c1a16f8cd0d1cbafb594d601e5db3148dcf11f41657cf06"
-    },
-    {
-      "original": "gsm8k_experiment/report.py",
-      "organized": "code/experiments/gsm8k_experiment/report.py",
-      "bytes": 14538,
-      "sha256": "a54a2621edf48de153441c57508ab94c8d0ae053c07f37b8f18f04ee75bd70bd"
-    },
-    {
-      "original": "gsm8k_experiment/requirements.txt",
-      "organized": "configs/gsm8k/requirements.txt",
-      "bytes": 40,
-      "sha256": "4b180746dc56dbd0e28ee277bb628a2d1c44022b93ac6ba2309352a32580fce3"
-    },
-    {
-      "original": "gsm8k_experiment/run.py",
-      "organized": "code/experiments/gsm8k_experiment/run.py",
-      "bytes": 33861,
-      "sha256": "61d4fae6db85715071c955fa5c479eba758c68312f316aaeff7e04da9a82c3ed"
-    },
-    {
-      "original": "gsm8k_experiment/settings.json",
-      "organized": "configs/gsm8k/settings.json",
-      "bytes": 2841,
-      "sha256": "db63ad065a6a4928525f69b2dfae63f0557005dc0798aa62ad3e245285aa59cd"
-    },
-    {
-      "original": "gsm8k_experiment/shared.py",
-      "organized": "code/experiments/gsm8k_experiment/shared.py",
-      "bytes": 2584,
-      "sha256": "e30b814e2a1dad48a2d6fcbfa79d12515a1493cd18fabd7ecda860cb76928669"
-    },
-    {
-      "original": "gsm8k_experiment/shared_sources.json",
-      "organized": "configs/gsm8k/shared_sources.json",
-      "bytes": 1334,
-      "sha256": "3c86f1f79cdfeb80dec8c19ae7b2ecac794eb70c06d5ddecb9ca670563c49db8"
-    },
-    {
-      "original": "gsm8k_experiment/status.py",
-      "organized": "code/experiments/gsm8k_experiment/status.py",
-      "bytes": 1883,
-      "sha256": "45f871de435279b96f3814919648fd4d6c66912fca9c2206f19f8e82649edaf7"
-    },
-    {
-      "original": "gsm8k_experiment/suite.py",
-      "organized": "code/experiments/gsm8k_experiment/suite.py",
-      "bytes": 6582,
-      "sha256": "6b7282836d005d831ecedbe7599a344240f0c8aec9c3e0652deebc8fa42531e4"
-    },
-    {
-      "original": "gsm8k_experiment/teacher_memory.py",
-      "organized": "code/experiments/gsm8k_experiment/teacher_memory.py",
-      "bytes": 10256,
-      "sha256": "a2b246be4413646d0797ca183f2c5da457604539ff560e91d0c4699636e0a619"
-    },
-    {
-      "original": "gsm8k_experiment/validation.py",
-      "organized": "code/experiments/gsm8k_experiment/validation.py",
-      "bytes": 22708,
-      "sha256": "28ce501fac32c13612878f0abe0d1f2e2f3e73a7fa046a7c86efcbc929abc50b"
+      "original": "docs/hh_ridge_ppo/verified_controls/source_audit.json",
+      "organized": "docs/hh_ridge_ppo/verified_controls/source_audit.json",
+      "bytes": 21046,
+      "sha256": "6f3afc3dc7b9cdf4dfb83b6353b67d29df0fd69aa41070cfbcfe813b84ae3a3e"
     },
     {
       "original": "hh_offline.py",
@@ -537,40 +747,22 @@
       "sha256": "3e00c1b51a7de96ceb36792109a44a1d5e52cb0c9ead6a26aa1fa315f4be6a7f"
     },
     {
-      "original": "hh_offline/__init__.py",
-      "organized": "code/experiments/hh_offline/__init__.py",
-      "bytes": 80,
-      "sha256": "31b81fec50785f1b1b0f5eec25a8e44e7fd499f1735bfa710413b0587ef25e45"
-    },
-    {
-      "original": "hh_offline/data.py",
-      "organized": "code/experiments/hh_offline/data.py",
-      "bytes": 4832,
-      "sha256": "c1f845422c384bf9ece2cd3f7a657042af576cfafe18fac33b31d00857685a3a"
-    },
-    {
-      "original": "hh_offline/metrics.py",
-      "organized": "code/experiments/hh_offline/metrics.py",
-      "bytes": 3281,
-      "sha256": "067fe1951ca045113fa77ba700e38a31c4968a1674f38a099714f58a72513b23"
-    },
-    {
-      "original": "hh_offline/report.py",
-      "organized": "code/experiments/hh_offline/report.py",
-      "bytes": 10683,
-      "sha256": "958ed4f42b3d3e4c17486e7f5421cbcf6b8d01e21a0d2ba91e0c9d04ce27aec6"
-    },
-    {
-      "original": "hh_offline/run.py",
-      "organized": "code/experiments/hh_offline/run.py",
-      "bytes": 16451,
-      "sha256": "edb1f966e996126bbcd02babbcafc2556b453130af01dc5402ed049736ab3137"
+      "original": "hh_ridge_ppo.py",
+      "organized": "hh_ridge_ppo.py",
+      "bytes": 350,
+      "sha256": "ce6bd41273a7ae73740eab8592b263ce279121b0460075e1efdc4e3988a78500"
     },
     {
       "original": "notebooks/followup/HH_OFFLINE_BASELINES.ipynb",
       "organized": "notebooks/followup/HH_OFFLINE_BASELINES.ipynb",
       "bytes": 3198,
       "sha256": "1e4fdb04dd5f11f801c58c6c883d1d07e39363cf2bacdef98fb7e22a8f59d27e"
+    },
+    {
+      "original": "RUN_GSM8K_PPO.ipynb",
+      "organized": "notebooks/gsm8k/RUN_GSM8K_PPO.ipynb",
+      "bytes": 3192,
+      "sha256": "30bc7f1bd088c3dfc3c9d8b87f26ed3306a7d274c96cf1f4ca787e52747feb0f"
     },
     {
       "original": "reproducibility/audit_gsm8k_rewards.py",
@@ -585,70 +777,10 @@
       "sha256": "73867e0560bfb6f23086f13ca5e3727a0e0f21179fcab75e6b64274f44d1b54b"
     },
     {
-      "original": "tests/experiment_cli/test_cli.py",
-      "organized": "code/tests/experiment_cli/test_cli.py",
-      "bytes": 6797,
-      "sha256": "f4a6fe6c9d5b2a3ee86e402c486b4b76a8e6e3e5f30bae79882d768a74192a5d"
-    },
-    {
-      "original": "tests/gsm8k/test_core.py",
-      "organized": "code/tests/gsm8k/test_core.py",
-      "bytes": 5284,
-      "sha256": "c37710b010da5a86db026646cf75c3da51ba9517c6d25687a36786c291885140"
-    },
-    {
-      "original": "tests/gsm8k/test_grading_recovery.py",
-      "organized": "code/tests/gsm8k/test_grading_recovery.py",
-      "bytes": 2429,
-      "sha256": "0ed0afe4ba770541287055b055491234c372c7ae9251765c1f410ae50710be10"
-    },
-    {
-      "original": "tests/gsm8k/test_score_format.py",
-      "organized": "code/tests/gsm8k/test_score_format.py",
-      "bytes": 8127,
-      "sha256": "91916914d65265519682bcabd65a50e453a30b61f9566df271ec330e71b594af"
-    },
-    {
-      "original": "tests/gsm8k/test_shared_integration.py",
-      "organized": "code/tests/gsm8k/test_shared_integration.py",
-      "bytes": 2861,
-      "sha256": "4ff1ccde7d1dfa4ac283471b102e1e47411768e7dc5b06cce44f6c7414719fb0"
-    },
-    {
-      "original": "tests/gsm8k/test_suite_runner.py",
-      "organized": "code/tests/gsm8k/test_suite_runner.py",
-      "bytes": 3596,
-      "sha256": "375521c58f844694fb1921599f2edc87d2234478188c8c8acbd7229fe70ceb46"
-    },
-    {
-      "original": "tests/gsm8k/test_teacher_memory.py",
-      "organized": "code/tests/gsm8k/test_teacher_memory.py",
-      "bytes": 5808,
-      "sha256": "bae81e6687dcfecaa52bd69ed93f3a4f5a98b0b541ea367d482fcee061979909"
-    },
-    {
-      "original": "tests/gsm8k/test_tiny_models.py",
-      "organized": "code/tests/gsm8k/test_tiny_models.py",
-      "bytes": 20071,
-      "sha256": "96c8ffca055f0d6a897ae41f7395dd78c8a56cbc4e5ca82a97cc103301958bfc"
-    },
-    {
-      "original": "tests/gsm8k/test_ungraded.py",
-      "organized": "code/tests/gsm8k/test_ungraded.py",
-      "bytes": 11667,
-      "sha256": "e84e20375fb2d05a29da23cd704d9aa8191567c8b89eb47f777d1341b0c28a2c"
-    },
-    {
-      "original": "tests/gsm8k/test_validation.py",
-      "organized": "code/tests/gsm8k/test_validation.py",
-      "bytes": 9322,
-      "sha256": "7f7fab6fc99fa681523cc40bcbd5df8b715b22e943d8b8e845c553511e4c2d31"
-    },
-    {
-      "original": "tests/hh_offline/test_offline.py",
-      "organized": "code/tests/hh_offline/test_offline.py",
-      "bytes": 8588,
-      "sha256": "b3e8a6c41e9c4a090fc3aa9a1ae94e5ae917e2fdf11108859d1128ed004a652b"
+      "original": "requirements-hh-ridge-ppo.txt",
+      "organized": "requirements-hh-ridge-ppo.txt",
+      "bytes": 272,
+      "sha256": "7b0ccfcf50e7a6fd5ca7f1c54bed1f85f7d9853bd3d07869f049ee8293931a09"
     }
   ]
 }

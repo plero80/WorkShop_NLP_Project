@@ -1,0 +1,265 @@
+{
+  "records": [
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "42",
+      "metric": "judge_delta",
+      "mean": 0.004290164718488566,
+      "low": -0.033165515038242235,
+      "high": 0.041490484712344226,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "42",
+      "metric": "high_gap_delta",
+      "mean": 0.001953125,
+      "low": -0.015625,
+      "high": 0.021484375,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "42",
+      "metric": "length_delta",
+      "mean": -15.080078125,
+      "low": -20.142724609375,
+      "high": -10.264697265625005,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "42",
+      "metric": "completion_delta",
+      "mean": 0.046875,
+      "low": 0.017578125,
+      "high": 0.076171875,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "42",
+      "metric": "refusal_diagnostic_delta",
+      "mean": 0.060546875,
+      "low": 0.0390625,
+      "high": 0.083984375,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "43",
+      "metric": "judge_delta",
+      "mean": 0.009089031440633947,
+      "low": -0.03141621401027671,
+      "high": 0.0501839124192207,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "43",
+      "metric": "high_gap_delta",
+      "mean": 0.00390625,
+      "low": -0.015625,
+      "high": 0.021484375,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "43",
+      "metric": "length_delta",
+      "mean": -25.115234375,
+      "low": -31.034228515625,
+      "high": -19.21875,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "43",
+      "metric": "completion_delta",
+      "mean": 0.076171875,
+      "low": 0.04296875,
+      "high": 0.111328125,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "43",
+      "metric": "refusal_diagnostic_delta",
+      "mean": 0.06640625,
+      "low": 0.04296875,
+      "high": 0.091796875,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "44",
+      "metric": "judge_delta",
+      "mean": -0.03318224251592003,
+      "low": -0.07523964131738306,
+      "high": 0.0065395504404878605,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "44",
+      "metric": "high_gap_delta",
+      "mean": -0.0078125,
+      "low": -0.02734375,
+      "high": 0.013671875,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "44",
+      "metric": "length_delta",
+      "mean": -9.009765625,
+      "low": -14.30546875,
+      "high": -3.8183105468750003,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "44",
+      "metric": "completion_delta",
+      "mean": 0.03125,
+      "low": -0.001953125,
+      "high": 0.064453125,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "44",
+      "metric": "refusal_diagnostic_delta",
+      "mean": 0.060546875,
+      "low": 0.037109375,
+      "high": 0.087890625,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "seed_mean",
+      "metric": "judge_delta",
+      "mean": -0.006601015452265845,
+      "low": -0.03409152240898819,
+      "high": 0.022731152625151903,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "seed_mean",
+      "metric": "high_gap_delta",
+      "mean": -0.000651041666666667,
+      "low": -0.013020833333333327,
+      "high": 0.011067708333333332,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "seed_mean",
+      "metric": "length_delta",
+      "mean": -16.401692708333332,
+      "low": -20.008056640625,
+      "high": -12.622672526041686,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "seed_mean",
+      "metric": "completion_delta",
+      "mean": 0.051432291666666664,
+      "low": 0.029947916666666675,
+      "high": 0.07228190104166661,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    {
+      "comparison": "knn_minus_proxy",
+      "scope": "seed_mean",
+      "metric": "refusal_diagnostic_delta",
+      "mean": 0.06249999999999999,
+      "low": 0.04361979166666666,
+      "high": 0.08203124999999999,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    }
+  ],
+  "scope": "Paired prompt bootstrap conditional on these three trained seeds; seed-mean intervals average seeds within prompt first. No multiplicity adjustment."
+}

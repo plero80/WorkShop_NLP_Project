@@ -3,7 +3,7 @@
 | Directory | Purpose |
 |---|---|
 | [core/](core/) | Shared reward, kNN, policy optimization, evaluation, and launch code |
-| [experiments/](experiments/) | Best-of-N, kNN distillation, HH offline baselines, GSM8K using shared PPO, and its YAML CLI |
+| [experiments/](experiments/) | Best-of-N, kNN distillation, HH offline baselines and ridge PPO, GSM8K using shared PPO, and its YAML CLI |
 | [tests/](tests/) | Original tests and GSM8K integration tests |
 | [templates/](templates/) | Original human-review HTML template |
 
@@ -19,6 +19,8 @@
 | `launch.py`, `setup_environment.py`, `RESUME_KNN_DISTILLATION.py` | Original setup and operational scripts |
 
 The shared core and retained experiments are exact copies arranged for reading.
+The new `hh_ridge_ppo` adds an actual-gap ridge reward route and uses the existing
+distillation continuation/evaluator and `PPOTrainer`; it does not implement PPO again.
 The new `gsm8k_experiment` adds dataset/scoring adapters and calls the shared
 `PPOActor`, `PPOTrainer`, GAE, and cosine search. Use the [runtime restoration
 instructions](../README.md#running-the-code) before running them, because their

@@ -1,0 +1,663 @@
+{
+  "source_archive": {
+    "filename": "gsm8k_outputs.zip",
+    "bytes": 305042263,
+    "sha256": "c3b05d0ca5911daf7a3d77b67d34889c274154281c3973db36644def7baecdba",
+    "members": 3551,
+    "crc_verified": true,
+    "prefix": "gsm8k_outputs/b200/"
+  },
+  "run_fingerprint": "dd521bd88f6e3451369b17cb94572ea29a108f386fcd17b61159afd45dc23c37",
+  "source_fingerprint": "c29faaa41991310a535810f453867075eb0d3c8718edf6ccc4cbdb665f1675e9",
+  "source_amendments": [
+    "ungraded_review_v1"
+  ],
+  "runtime": {
+    "gpu": "NVIDIA B200",
+    "free_gib": 177.5435791015625,
+    "total_gib": 178.34405517578125,
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8"
+  },
+  "seed": 42,
+  "data_seed": 42,
+  "config_matches_current_defaults": true,
+  "split_counts": {
+    "calibration": 128,
+    "memory": 512,
+    "selection": 128,
+    "monitor": 128,
+    "refresh": 512,
+    "ppo": 5000,
+    "final": 1319
+  },
+  "unused_source_training_questions": 1065,
+  "preparation_coverage": {
+    "calibration": {
+      "total": 256,
+      "valid_pairs": 256,
+      "excluded": 0
+    },
+    "memory": {
+      "total": 1024,
+      "valid_pairs": 1024,
+      "excluded": 0
+    },
+    "selection": {
+      "total": 256,
+      "valid_pairs": 256,
+      "excluded": 0
+    }
+  },
+  "memory": {
+    "rows_each": 1024,
+    "unique_questions": 512,
+    "embedding_dimension": 1536,
+    "k": 32,
+    "temperature": 0.05,
+    "matched_embeddings_and_question_ids_verified": true,
+    "teacher30b_missing_memory_labels": 0
+  },
+  "training": {
+    "proxy": {
+      "attempts": 400,
+      "successful_updates": 400,
+      "skipped_updates": 0,
+      "rollout_answers": 6400,
+      "unique_questions": 3200,
+      "excluded_training_answers": 0,
+      "training_seconds_sum": 1765.2058450571494,
+      "grading_seconds_sum": 99.27195367449895
+    },
+    "judge": {
+      "attempts": 400,
+      "successful_updates": 400,
+      "skipped_updates": 0,
+      "rollout_answers": 6400,
+      "unique_questions": 3200,
+      "excluded_training_answers": 0,
+      "training_seconds_sum": 3289.4628270480316,
+      "grading_seconds_sum": 666.1019392730668
+    },
+    "knn_static": {
+      "attempts": 400,
+      "successful_updates": 400,
+      "skipped_updates": 0,
+      "rollout_answers": 6400,
+      "unique_questions": 3200,
+      "excluded_training_answers": 0,
+      "training_seconds_sum": 2487.176782892435,
+      "grading_seconds_sum": 112.00781716906931
+    },
+    "knn_static_30b": {
+      "attempts": 400,
+      "successful_updates": 400,
+      "skipped_updates": 0,
+      "rollout_answers": 6400,
+      "unique_questions": 3200,
+      "excluded_training_answers": 0,
+      "training_seconds_sum": 2643.2097926861607,
+      "grading_seconds_sum": 109.908755189972
+    }
+  },
+  "monitor": {
+    "checkpoints": 65,
+    "answers": 8320,
+    "missing_proxy_grades": 2,
+    "missing_judge_grades": 0
+  },
+  "final": {
+    "base": {
+      "numeric_accuracy": 0.28582259287338896,
+      "numeric_matches": 377,
+      "numeric_unresolved": 30,
+      "numeric_unresolved_rate": 0.022744503411675512,
+      "numeric_mismatches": 912,
+      "n": 1319,
+      "n_proxy_scored": 1319,
+      "n_judge_scored": 1319,
+      "n_pair_scored": 1319,
+      "n_gap_scored": 1319,
+      "n_unscored": 0,
+      "accuracy": 0.28278999241849884,
+      "format_valid_rate": 0.9620924943138741,
+      "mean_proxy_score": 4.382107657316149,
+      "mean_judge_score": 2.8506444275966643,
+      "mean_gap": -0.0829915032087321,
+      "mean_predicted_gap": 0.08588752326067647,
+      "gap_mse": 1.2945586306767654,
+      "gap_mae": 0.8793893784969204,
+      "zero_gap_baseline_mse": 1.50234825055103,
+      "proxy_judge_pearson": 0.28414492634183647,
+      "high_gap_rate": 0.0,
+      "gap_threshold": 1.9198088541157206,
+      "high_gap_auroc": null,
+      "tp": 0,
+      "fp": 0,
+      "tn": 1319,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "mean_response_tokens": 105.35557240333586,
+      "length_cap_rate": 0.015163002274450341,
+      "arm": "base",
+      "update": 0,
+      "cohort": "final",
+      "decoding": "greedy",
+      "memory_examples": 1024,
+      "numeric_protocol": "gsm8k_numeric_recheck_v1",
+      "diagnostic_teacher": "judge",
+      "diagnostic_memory_teacher": "judge",
+      "strict_correct": 373,
+      "format_valid_count": 1269,
+      "length_capped_count": 20
+    },
+    "proxy": {
+      "numeric_accuracy": 0.21152388172858225,
+      "numeric_matches": 279,
+      "numeric_unresolved": 17,
+      "numeric_unresolved_rate": 0.01288855193328279,
+      "numeric_mismatches": 1023,
+      "n": 1319,
+      "n_proxy_scored": 1319,
+      "n_judge_scored": 1319,
+      "n_pair_scored": 1319,
+      "n_gap_scored": 1319,
+      "n_unscored": 0,
+      "accuracy": 0.21152388172858225,
+      "format_valid_rate": 0.9863532979529946,
+      "mean_proxy_score": 4.45185746777862,
+      "mean_judge_score": 2.5435936315390446,
+      "mean_gap": 0.2127804612292685,
+      "mean_predicted_gap": 0.19066423626928686,
+      "gap_mse": 1.2615563607804074,
+      "gap_mae": 0.8921945388025531,
+      "zero_gap_baseline_mse": 1.527660545760102,
+      "proxy_judge_pearson": 0.2352128361006663,
+      "high_gap_rate": 0.0,
+      "gap_threshold": 1.9198088541157206,
+      "high_gap_auroc": null,
+      "tp": 0,
+      "fp": 0,
+      "tn": 1319,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "mean_response_tokens": 72.34420015163002,
+      "length_cap_rate": 0.0075815011372251705,
+      "arm": "proxy",
+      "update": 400,
+      "cohort": "final",
+      "decoding": "greedy",
+      "memory_examples": 1024,
+      "numeric_protocol": "gsm8k_numeric_recheck_v1",
+      "diagnostic_teacher": "judge",
+      "diagnostic_memory_teacher": "judge",
+      "strict_correct": 279,
+      "format_valid_count": 1301,
+      "length_capped_count": 10
+    },
+    "judge": {
+      "numeric_accuracy": 0.4541319181197877,
+      "numeric_matches": 599,
+      "numeric_unresolved": 32,
+      "numeric_unresolved_rate": 0.024260803639120546,
+      "numeric_mismatches": 688,
+      "n": 1319,
+      "n_proxy_scored": 1319,
+      "n_judge_scored": 1319,
+      "n_pair_scored": 1319,
+      "n_gap_scored": 1319,
+      "n_unscored": 0,
+      "accuracy": 0.4397270659590599,
+      "format_valid_rate": 0.9507202426080363,
+      "mean_proxy_score": 4.434420015163003,
+      "mean_judge_score": 3.5344958301743747,
+      "mean_gap": -0.5102663634306328,
+      "mean_predicted_gap": -0.376284063366539,
+      "gap_mse": 1.0021210162392238,
+      "gap_mae": 0.8018086381443836,
+      "zero_gap_baseline_mse": 1.3454678132858287,
+      "proxy_judge_pearson": 0.22863155057472692,
+      "high_gap_rate": 0.0,
+      "gap_threshold": 1.9198088541157206,
+      "high_gap_auroc": null,
+      "tp": 0,
+      "fp": 0,
+      "tn": 1319,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "mean_response_tokens": 255.92797573919637,
+      "length_cap_rate": 0.014404852160727824,
+      "arm": "judge",
+      "update": 400,
+      "cohort": "final",
+      "decoding": "greedy",
+      "memory_examples": 1024,
+      "numeric_protocol": "gsm8k_numeric_recheck_v1",
+      "diagnostic_teacher": "judge",
+      "diagnostic_memory_teacher": "judge",
+      "strict_correct": 580,
+      "format_valid_count": 1254,
+      "length_capped_count": 19
+    },
+    "knn_static": {
+      "numeric_accuracy": 0.4382107657316149,
+      "numeric_matches": 578,
+      "numeric_unresolved": 11,
+      "numeric_unresolved_rate": 0.008339651250947688,
+      "numeric_mismatches": 730,
+      "n": 1319,
+      "n_proxy_scored": 1319,
+      "n_judge_scored": 1319,
+      "n_pair_scored": 1319,
+      "n_gap_scored": 1319,
+      "n_unscored": 0,
+      "accuracy": 0.4382107657316149,
+      "format_valid_rate": 0.9916603487490523,
+      "mean_proxy_score": 4.508718726307809,
+      "mean_judge_score": 3.4154662623199394,
+      "mean_gap": -0.3429325270302663,
+      "mean_predicted_gap": -0.19330209596230846,
+      "gap_mse": 1.0550270782878233,
+      "gap_mae": 0.7854709250399381,
+      "zero_gap_baseline_mse": 1.3372470169000292,
+      "proxy_judge_pearson": 0.28160599870930036,
+      "high_gap_rate": 0.0,
+      "gap_threshold": 1.9198088541157206,
+      "high_gap_auroc": null,
+      "tp": 0,
+      "fp": 0,
+      "tn": 1319,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "mean_response_tokens": 173.9522365428355,
+      "length_cap_rate": 0.003032600454890068,
+      "arm": "knn_static",
+      "update": 400,
+      "cohort": "final",
+      "decoding": "greedy",
+      "memory_examples": 1024,
+      "numeric_protocol": "gsm8k_numeric_recheck_v1",
+      "diagnostic_teacher": "judge",
+      "diagnostic_memory_teacher": "judge",
+      "strict_correct": 578,
+      "format_valid_count": 1308,
+      "length_capped_count": 4
+    },
+    "knn_static_30b": {
+      "numeric_accuracy": 0.45034116755117515,
+      "numeric_matches": 594,
+      "numeric_unresolved": 50,
+      "numeric_unresolved_rate": 0.03790750568612585,
+      "numeric_mismatches": 675,
+      "n": 1319,
+      "n_proxy_scored": 1319,
+      "n_judge_scored": 1319,
+      "n_pair_scored": 1319,
+      "n_gap_scored": 1319,
+      "n_unscored": 0,
+      "accuracy": 0.42608036391205456,
+      "format_valid_rate": 0.9203942380591357,
+      "mean_proxy_score": 4.490523123578469,
+      "mean_judge_score": 3.5079605761940864,
+      "mean_gap": -0.42889112462482376,
+      "mean_predicted_gap": -0.36182014915634614,
+      "gap_mse": 1.0274445197835878,
+      "gap_mae": 0.7978379556364174,
+      "zero_gap_baseline_mse": 1.3042874379448808,
+      "proxy_judge_pearson": 0.26893707219861107,
+      "high_gap_rate": 0.0,
+      "gap_threshold": 1.9198088541157206,
+      "high_gap_auroc": null,
+      "tp": 0,
+      "fp": 0,
+      "tn": 1319,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "mean_response_tokens": 252.5322213798332,
+      "length_cap_rate": 0.01819560272934041,
+      "arm": "knn_static_30b",
+      "update": 400,
+      "cohort": "final",
+      "decoding": "greedy",
+      "memory_examples": 1024,
+      "numeric_protocol": "gsm8k_numeric_recheck_v1",
+      "diagnostic_teacher": "judge",
+      "diagnostic_memory_teacher": "judge",
+      "strict_correct": 562,
+      "format_valid_count": 1214,
+      "length_capped_count": 24
+    }
+  },
+  "saved_final_comparisons": {
+    "final/judge_minus_proxy": {
+      "metric": "correct",
+      "accuracy_difference": 0.22820318423047764,
+      "ci95": [
+        0.19787717968157695,
+        0.2585291887793783
+      ],
+      "n": 1319,
+      "left_only_correct": 394,
+      "right_only_correct": 93,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/judge_minus_proxy/numeric": {
+      "metric": "numeric_match",
+      "accuracy_difference": 0.24260803639120546,
+      "ci95": [
+        0.21228203184230476,
+        0.27293404094010615
+      ],
+      "n": 1319,
+      "left_only_correct": 404,
+      "right_only_correct": 84,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/knn_static_minus_proxy": {
+      "metric": "correct",
+      "accuracy_difference": 0.2266868840030326,
+      "ci95": [
+        0.19711902956785443,
+        0.2562547384382108
+      ],
+      "n": 1319,
+      "left_only_correct": 365,
+      "right_only_correct": 66,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/knn_static_minus_proxy/numeric": {
+      "metric": "numeric_match",
+      "accuracy_difference": 0.2266868840030326,
+      "ci95": [
+        0.19711902956785443,
+        0.2562547384382108
+      ],
+      "n": 1319,
+      "left_only_correct": 365,
+      "right_only_correct": 66,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/knn_static_30b_minus_proxy": {
+      "metric": "correct",
+      "accuracy_difference": 0.21455648218347234,
+      "ci95": [
+        0.18574677786201668,
+        0.244882486732373
+      ],
+      "n": 1319,
+      "left_only_correct": 371,
+      "right_only_correct": 88,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/knn_static_30b_minus_proxy/numeric": {
+      "metric": "numeric_match",
+      "accuracy_difference": 0.23881728582259287,
+      "ci95": [
+        0.21076573161485973,
+        0.26838514025777105
+      ],
+      "n": 1319,
+      "left_only_correct": 389,
+      "right_only_correct": 74,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/knn_static_30b_minus_knn_static": {
+      "metric": "correct",
+      "accuracy_difference": -0.012130401819560273,
+      "ci95": [
+        -0.03790750568612585,
+        0.013646702047005308
+      ],
+      "n": 1319,
+      "left_only_correct": 146,
+      "right_only_correct": 162,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "final/knn_static_30b_minus_knn_static/numeric": {
+      "metric": "numeric_match",
+      "accuracy_difference": 0.012130401819560273,
+      "ci95": [
+        -0.013646702047005308,
+        0.03866565579984837
+      ],
+      "n": 1319,
+      "left_only_correct": 152,
+      "right_only_correct": 136,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    }
+  },
+  "additional_exploratory_comparisons": {
+    "knn_static_minus_base/correct": {
+      "metric": "correct",
+      "accuracy_difference": 0.155420773313116,
+      "ci95": [
+        0.1288855193328279,
+        0.18347232752084913
+      ],
+      "n": 1319,
+      "left_only_correct": 276,
+      "right_only_correct": 71,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "knn_static_minus_base/numeric_match": {
+      "metric": "numeric_match",
+      "accuracy_difference": 0.15238817285822592,
+      "ci95": [
+        0.12661106899166036,
+        0.17970053070507952
+      ],
+      "n": 1319,
+      "left_only_correct": 272,
+      "right_only_correct": 71,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "proxy_minus_base/correct": {
+      "metric": "correct",
+      "accuracy_difference": -0.0712661106899166,
+      "ci95": [
+        -0.09476876421531463,
+        -0.047763457164518575
+      ],
+      "n": 1319,
+      "left_only_correct": 80,
+      "right_only_correct": 174,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "proxy_minus_base/numeric_match": {
+      "metric": "numeric_match",
+      "accuracy_difference": -0.07429871114480667,
+      "ci95": [
+        -0.0978013646702047,
+        -0.05079605761940864
+      ],
+      "n": 1319,
+      "left_only_correct": 77,
+      "right_only_correct": 175,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "knn_static_minus_judge/correct": {
+      "metric": "correct",
+      "accuracy_difference": -0.001516300227445034,
+      "ci95": [
+        -0.030326004548900682,
+        0.028051554207733132
+      ],
+      "n": 1319,
+      "left_only_correct": 176,
+      "right_only_correct": 178,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    },
+    "knn_static_minus_judge/numeric_match": {
+      "metric": "numeric_match",
+      "accuracy_difference": -0.01592115238817286,
+      "ci95": [
+        -0.04397270659590599,
+        0.012130401819560273
+      ],
+      "n": 1319,
+      "left_only_correct": 160,
+      "right_only_correct": 181,
+      "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+    }
+  },
+  "grading_budget": [
+    {
+      "stage": "teacher30b/calibration",
+      "model_role": "judge30b",
+      "requested_examples": "256.0",
+      "cache_hits": "0.0",
+      "forward_started_examples": "256.0",
+      "input_tokens": "114640.0",
+      "output_tokens": "8628.0",
+      "seconds": "80.81268903100863",
+      "invalid_scores": "0.0",
+      "forward_completed_examples": "256.0",
+      "retry_examples": "0.0",
+      "score_format_recovered_examples": "",
+      "unscored_examples": ""
+    },
+    {
+      "stage": "teacher30b/memory",
+      "model_role": "judge30b",
+      "requested_examples": "1024.0",
+      "cache_hits": "0.0",
+      "forward_started_examples": "1024.0",
+      "input_tokens": "470167.0",
+      "output_tokens": "34005.0",
+      "seconds": "311.0506873606937",
+      "invalid_scores": "0.0",
+      "forward_completed_examples": "1024.0",
+      "retry_examples": "0.0",
+      "score_format_recovered_examples": "",
+      "unscored_examples": ""
+    },
+    {
+      "stage": "teacher30b/selection",
+      "model_role": "judge30b",
+      "requested_examples": "256.0",
+      "cache_hits": "0.0",
+      "forward_started_examples": "256.0",
+      "input_tokens": "123361.0",
+      "output_tokens": "8468.0",
+      "seconds": "75.04991417110432",
+      "invalid_scores": "0.0",
+      "forward_completed_examples": "256.0",
+      "retry_examples": "0.0",
+      "score_format_recovered_examples": "",
+      "unscored_examples": ""
+    },
+    {
+      "stage": "training/judge",
+      "model_role": "judge",
+      "requested_examples": "6400.0",
+      "cache_hits": "0.0",
+      "forward_started_examples": "6401.0",
+      "input_tokens": "3710795.0",
+      "output_tokens": "207685.0",
+      "seconds": "656.531902201008",
+      "invalid_scores": "1.0",
+      "forward_completed_examples": "6401.0",
+      "retry_examples": "1.0",
+      "score_format_recovered_examples": "",
+      "unscored_examples": ""
+    },
+    {
+      "stage": "training/knn_static",
+      "model_role": "proxy",
+      "requested_examples": "6400.0",
+      "cache_hits": "340.0",
+      "forward_started_examples": "6060.0",
+      "input_tokens": "3344898.0",
+      "output_tokens": "79027.0",
+      "seconds": "97.24034607526846",
+      "invalid_scores": "0.0",
+      "forward_completed_examples": "6060.0",
+      "retry_examples": "0.0",
+      "score_format_recovered_examples": "",
+      "unscored_examples": ""
+    },
+    {
+      "stage": "training/knn_static_30b",
+      "model_role": "proxy",
+      "requested_examples": "6400.0",
+      "cache_hits": "765.0",
+      "forward_started_examples": "5636.0",
+      "input_tokens": "3255524.0",
+      "output_tokens": "73820.0",
+      "seconds": "96.2889054735424",
+      "invalid_scores": "2.0",
+      "forward_completed_examples": "5636.0",
+      "retry_examples": "1.0",
+      "score_format_recovered_examples": "1.0",
+      "unscored_examples": ""
+    },
+    {
+      "stage": "training/proxy",
+      "model_role": "proxy",
+      "requested_examples": "6400.0",
+      "cache_hits": "0.0",
+      "forward_started_examples": "6401.0",
+      "input_tokens": "2854142.0",
+      "output_tokens": "83226.0",
+      "seconds": "92.08116213441826",
+      "invalid_scores": "1.0",
+      "forward_completed_examples": "6401.0",
+      "retry_examples": "1.0",
+      "score_format_recovered_examples": "",
+      "unscored_examples": ""
+    }
+  ],
+  "ungraded_review_cases": [
+    {
+      "case_id": "8758e6b4de60833cbe380aa24e78dc00e627ca17251f5936ad2494fb6eb38f24",
+      "role": "proxy",
+      "question_id": "0e7d138ef424bdb97ca601354f5164be96a49700e6c7abb38bb6828b3aa16ab4",
+      "stage": "monitor/knn_static/150",
+      "attempt_count": 5,
+      "status": "unscored"
+    },
+    {
+      "case_id": "3a4efca1379b6064b3ef90d0e7e9c94d7f6708c0e1bd31e7830633127b82c6e2",
+      "role": "proxy",
+      "question_id": "40bbe6c887592b374e45a6b0d5d02e9e218f4b5d6fb40b3673c1dcc9bf3afceb",
+      "stage": "monitor/knn_static/350",
+      "attempt_count": 5,
+      "status": "unscored"
+    }
+  ],
+  "diagnostic_limitations": {
+    "high_gap_threshold": 1.9198088541157206,
+    "maximum_possible_normalized_gap": 1.9198088541157206,
+    "comparison": "gap > threshold",
+    "threshold_equals_score_ceiling": true,
+    "all_final_high_gap_rates_zero": true
+  },
+  "verification": {
+    "cohorts_disjoint": true,
+    "matched_training_schedules": true,
+    "rollout_records_counted": 25600,
+    "final_answers_reparsed": 6595,
+    "final_metric_sets_recomputed": 5,
+    "saved_final_paired_intervals_recomputed": 8,
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 42,
+    "models_or_training_launched": false,
+    "implementation_sha256": {
+      "answers.py": "50f317d765e18c1bf871cfe8e9358d03c685f62333e71b29e1cb008e82249281",
+      "numeric.py": "615d45cb606804c866030a776e3b4ef6e69cb41357b1a784f2049bd273e2d722",
+      "metrics.py": "3a2c8fafb4f0c40b20fb52c3f37d7738093d63090333aba8c3e283d0789942c7"
+    },
+    "analysis_source_commit": "a671f88a7459283c35512043e48ae99348e15ddf",
+    "checkpoint_payloads_deserialized": false
+  }
+}

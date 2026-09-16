@@ -6,7 +6,7 @@
 | Exploration | [exploration](../notebooks/exploration/) | Analysis code embedded in the notebooks | Notebook configuration cells | [exploration](../results/exploration/) |
 | kNN distillation | [distillation](../notebooks/distillation/) | [knn_distillation](../code/experiments/knn_distillation/) | [settings.json](../configs/knn_distillation/settings.json) | [distillation](../results/distillation/) |
 | Follow-up | [followup](../notebooks/followup/) | [core](../code/core/) | [config.json](../configs/config.json) | [followup](../results/followup/) |
-| GSM8K | [gsm8k](../notebooks/gsm8k/) | [gsm8k_experiment](../code/experiments/gsm8k_experiment/) using shared core PPO | [settings.json](../configs/gsm8k/settings.json) | Runpod outputs stored separately; [guide](gsm8k/README.md) |
+| GSM8K | [gsm8k](../notebooks/gsm8k/) | [gsm8k_experiment](../code/experiments/gsm8k_experiment/) using shared core PPO | [settings.json](../configs/gsm8k/settings.json) | [Completed B200 seed-42 analysis](gsm8k/B200_RESULTS_ANALYSIS.md) |
 
 See [EXPERIMENT_DATA_COUNTS.md](EXPERIMENT_DATA_COUNTS.md) for prompt allocations,
 memory sizes, seeds, and training/evaluation counts for every retained family.

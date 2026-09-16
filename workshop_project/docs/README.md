@@ -7,6 +7,8 @@
 - [RESULTS.md](RESULTS.md): direct links to saved reports and tables.
 - [SAVED_RUNS.md](SAVED_RUNS.md): recorded completion states and source-hash checks.
 - [gsm8k/README.md](gsm8k/README.md): new GSM8K experiment, shared PPO integration, and run commands.
+- [gsm8k/B200_RESULTS_ANALYSIS.md](gsm8k/B200_RESULTS_ANALYSIS.md): verified results
+  from the completed seed-42 run, comparisons, and diagnostic limitations.
 - [EXPERIMENT_CLI.md](EXPERIMENT_CLI.md): YAML presets and common notebook/terminal commands.
 - [original/](original/): original project documentation, copied unchanged.
 

@@ -3,8 +3,9 @@
 This reference covers all five retained experiment families: follow-up,
 Best-of-N, kNN distillation, cluster exploration, and GSM8K. Counts were checked
 against the project configurations, execution code, and available saved artifacts
-on 2026-09-16. Historical counts describe the saved runs; GSM8K counts describe
-the current B200 configuration, not a live inspection of the Runpod process.
+on 2026-09-16. Historical counts describe the saved runs. GSM8K includes both
+the configured budget and verified counts from the uploaded completed B200
+archive; the live Runpod process was not accessed.
 
 ## How to read the numbers
 
@@ -30,7 +31,7 @@ the current B200 configuration, not a live inspection of the Runpod process.
 | Best-of-N | 512 development prompts × 32 answers × 2 fixed generators; another 512 confirmation prompts reserved | 4,096 rows, reused unchanged | 31 | Generator checkpoints from seed 42; development completed |
 | kNN distillation | 2,400 student-training prompts; 400 validation; 400 offline; 512 final in the completed run | 10,038 frozen rows per seed | 31 | 42, 43, 44 in the completed run |
 | Cluster exploration | No new generated answers; 31,030 saved example rows in the saved second-refresh explorer | 7,990 original rows for clustering and neighbor reference | 31; **20 clusters** separately | Analysis seed 42; overlays include policy seeds 42–44 |
-| GSM8K B200 | 5,000-question PPO pool; 800 questions used by the pilot or 3,200 by the full run per arm | Up to 1,024 rows from 512 questions × 2 answers | 32 | Default seed 42; three-seed recipe also available |
+| GSM8K B200 | 5,000-question PPO pool; 3,200 used per arm in the completed full run | 1,024 verified rows from 512 questions × 2 answers in each matched memory | 32 | Completed seed 42; three-seed recipe is a separate option |
 
 ## Shared inputs for the HH experiments
 
@@ -259,11 +260,42 @@ Sources: [exploration notebooks](../notebooks/exploration/),
 [geometry counts](../results/exploration/analysis_6ee2efa375535c11/geometry_summary.json),
 [saved member table](../results/exploration/analysis_6ee2efa375535c11/cluster_members.csv).
 
-## 5. GSM8K: current B200 experiment
+## 5. GSM8K B200 experiment
 
 These numbers come from `settings.json` plus the `gsm8k-b200` YAML recipe.
 The YAML changes processing batch sizes, not the dataset cohort counts.
 The default is **one seed: 42**, with data-split seed 42.
+
+### Verified completed run from the uploaded archive
+
+The uploaded `gsm8k_outputs.zip` contains a **completed full run**, matching
+these settings. The counts below were checked against saved splits, memory
+arrays, training statistics, rollout rows, and evaluation answers:
+
+| Item | Actual saved count |
+|---|---:|
+| Seeds completed | 1: seed 42 |
+| Reward arms completed | All 4 default arms |
+| Successful PPO updates | 400 per arm; 1,600 across arms |
+| Skipped updates / excluded training answers | 0 / 0 |
+| PPO questions used | 3,200 distinct per arm; the same schedule across arms |
+| PPO answers | 6,400 per arm; 25,600 across arms |
+| 4B- and 30B-labeled memories | 1,024 rows each, covering the same 512 questions |
+| Calibration / memory / selection answers with valid preparation grades | 256 / 1,024 / 256; no preparation exclusions |
+| Monitor evaluations / answer slots | 65 / 8,320, reusing the same 128 questions |
+| Final policies / answer slots | 5 / 6,595, reusing the same 1,319 questions |
+| Permanently ungraded scorer cases | 2, both in intermediate monitoring |
+| Missing final-test grades | 0 |
+| Unused questions in the reserved PPO pool | 1,800 |
+| Training-source questions outside all reserved cohorts | 1,065 |
+
+The two monitoring cases were at updates 150 and 350 of `knn_static`.
+They entered the review queue without interrupting training. They did not
+remove any final-test questions. No optional refresh or oracle arm was run.
+See the [results analysis](gsm8k/B200_RESULTS_ANALYSIS.md) and
+[verified counts](gsm8k/b200_seed42/verified_summary.json) for evidence and results.
+The following sections explain how these counts arise and what other profiles
+would request.
 
 ### Question allocation
 
@@ -369,7 +401,8 @@ For an actual Runpod result, use that output folder's `config.json`,
 `data/splits.json`, `prepared/grading_coverage.json`, preparation completion
 records, and per-arm training records to report realized counts. Those saved
 records take precedence if the run was launched with overrides or an older
-configuration. Local inspection here did not read the live GPU output folder.
+configuration. For the uploaded seed-42 archive, the realized counts were
+verified as shown above; this is an archive audit, not a live GPU inspection.
 
 Sources: [base settings](../configs/gsm8k/settings.json),
 [B200 recipe](../configs/experiments/gsm8k-b200.yaml),

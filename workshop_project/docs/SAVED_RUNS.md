@@ -9,6 +9,7 @@ Recorded status describes saved artifacts, not a live process check. Source hash
 | [knn_distillation_outputs/study_93c278980369efa3/manifest.json](../results/distillation/study_93c278980369efa3/manifest.json) | study_93c278980369efa3: failed | 15/15 match |
 | [knn_distillation_outputs/study_c18793a5593485e3/manifest.json](../results/distillation/study_c18793a5593485e3/manifest.json) | study_c18793a5593485e3: complete | 15/15 match |
 | [best_of_n_outputs/study_40100cfcb78f1920/manifest.json](../results/best_of_n/study_40100cfcb78f1920/manifest.json) | study_40100cfcb78f1920: complete | 18/18 match |
+| [GSM8K B200 archive manifest](../results/gsm8k/b200/manifest.json) | Full stage complete; seed 42; 400 successful updates per arm | Recorded source fingerprint retained; [archive/metric audit](gsm8k/B200_RESULTS_ANALYSIS.md#provenance-and-checks) |
 
 The two earlier distillation studies have failed status. The completed distillation, Best-of-N development, and follow-up runs remain available. Cluster exploration is a separate descriptive analysis in [results/exploration/](../results/exploration/).
 

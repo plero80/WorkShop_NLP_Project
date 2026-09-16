@@ -1,5 +1,10 @@
 # GSM8K B200: exploratory high-gap thresholds
 
+The subsequent integrated [validation report](b200_seed42/validation/report.md)
+reproduces these selected upper-tail cutoffs and adds MSE, RMSE, MAE, R2,
+correlations and confusion-matrix metrics. See the [validation guide](VALIDATION.md)
+for the reusable CLI and automatic validation in new runs.
+
 For the **4B high-gap diagnostic**, the best tested upper-tail definition on
 the selection set is **`gap > 1.2097379800099946`**, the calibration 90th
 percentile: **AUROC 0.731**, with a question-bootstrap 95% interval of

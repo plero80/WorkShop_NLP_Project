@@ -78,7 +78,14 @@ def main(argv=None):
     except (ValueError, OSError) as error:
         print(f"Error: {error}", file=sys.stderr)
         return 2
-    if layout["root"] == LEGACY and not any(a in ("--dry-run", "--help", "-h") for a in args):
+    if args and args[0] == "validate":
+        # Historical runs keep their training source; CPU validation always uses
+        # the current project implementation while reading the resolved old output.
+        env = os.environ.copy()
+        env["PYTHONPATH"] = os.pathsep.join([str(PROJECT / "code/experiments"),
+                                           str(PROJECT / "code/core"), env.get("PYTHONPATH", "")])
+        layout = {**layout, "env": env}
+    elif layout["root"] == LEGACY and not any(a in ("--dry-run", "--help", "-h") for a in args):
         print(f"Using existing run at {LEGACY}; its code and checkpoints stay in place.", flush=True)
     return cli.main(args, layout=layout)
 

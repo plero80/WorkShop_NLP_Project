@@ -119,6 +119,8 @@ def finite(values, name):
 
 def load_config(path):
     c = read_json(path)
+    from .validation import options as validation_options
+    validation_options(c)
     if c["generation"]["temperature"] != 1.0:
         raise ValueError("The shared PPO engine requires generation.temperature = 1.0.")
     d, p, g, s, k = (c[x] for x in ("dataset", "ppo", "generation", "scoring", "knn"))

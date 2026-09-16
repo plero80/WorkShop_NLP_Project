@@ -298,6 +298,10 @@ The later [threshold analysis](gsm8k/B200_THRESHOLD_ANALYSIS.md) reuses the
 256 calibration and 256 selection answers, then evaluates the fixed diagnostic
 cutoff on the existing 6,595 final answers. It generates no additional answers
 and leaves these experiment counts unchanged.
+The integrated [validation step](gsm8k/VALIDATION.md) uses that same selection
+cohort to freeze diagnostic cutoffs before final scoring in new runs. It adds
+no training, calibration, memory or evaluation questions; selection metrics
+remain tuning diagnostics rather than an additional independent test set.
 The following sections explain how these counts arise and what other profiles
 would request.
 

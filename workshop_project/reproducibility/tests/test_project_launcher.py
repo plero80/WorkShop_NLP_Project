@@ -113,3 +113,26 @@ def test_launch_passes_native_import_paths_to_subprocess(legacy, tmp_path, monke
     assert str(PROJECT / 'code/core') in options['env']['PYTHONPATH'].split(os.pathsep)
     assert command[3] == 'gsm8k_experiment.run'
     assert not legacy.exists()
+
+
+def test_validation_reads_legacy_output_using_current_analysis_without_config_writes(legacy, monkeypatch):
+    output = make_legacy(legacy)
+    before = {p: p.read_bytes() for p in legacy.rglob('*') if p.is_file()}
+    cli = launcher.load_cli()
+    calls = []
+    monkeypatch.setattr(cli.subprocess, 'call', lambda cmd, **kw: calls.append((cmd, kw)) or 0)
+    monkeypatch.setattr(cli, 'materialize', lambda plan: pytest.fail('Validation must not write a run configuration'))
+    monkeypatch.setattr(launcher, 'load_cli', lambda: cli)
+    assert launcher.main(['validate', 'gsm8k-b200']) == 0
+    cmd, kw = calls[0]
+    assert cmd[3:] == ['gsm8k_experiment.validation', '--output', str(output)]
+    assert str(PROJECT / 'code/experiments') in kw['env']['PYTHONPATH'].split(os.pathsep)
+    assert all(p.read_bytes() == data for p, data in before.items())
+
+
+def test_validation_module_is_cpu_only(legacy):
+    layout = launcher.select_layout(launcher.load_cli(), ['run', 'gsm8k-b200'])
+    subprocess.run([sys.executable, '-c',
+                    'import sys; import gsm8k_experiment.validation; '
+                    'assert "torch" not in sys.modules; assert "transformers" not in sys.modules'],
+                   cwd=PROJECT, env=layout['env'], check=True)

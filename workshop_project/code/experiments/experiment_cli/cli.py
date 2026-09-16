@@ -158,6 +158,11 @@ def command(plan, action, destination=None):
     if action == "export":
         target = Path(destination).expanduser().resolve() if destination else Path(plan["output"] + ".zip")
         return prefix + ["gsm8k_experiment.export"] + output + ["--destination", str(target)]
+    if action == "validate":
+        args = prefix + ["gsm8k_experiment.validation"] + output
+        if destination:
+            args += ["--destination", str(Path(destination).expanduser().resolve())]
+        return args
     module = "gsm8k_experiment.suite" if plan["seeds"] is not None else "gsm8k_experiment.run"
     args = prefix + [module, "--config", plan["config"], "--stage", plan["stage"]] + output
     if plan["seeds"] is not None:
@@ -186,7 +191,7 @@ def materialize(plan):
 def main(argv=None, *, layout=None, prepare_runtime=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="action", required=True)
-    for action in ("show", "run", "status", "export"):
+    for action in ("show", "run", "status", "export", "validate"):
         child = sub.add_parser(action)
         child.add_argument("recipe", help="Preset name (gsm8k, gsm8k-three-seeds) or YAML file")
         child.add_argument("--output", help="Output directory; relative paths use the selected project root")
@@ -197,9 +202,13 @@ def main(argv=None, *, layout=None, prepare_runtime=None):
             child.add_argument("--dry-run", action="store_true", help="Print resolved settings and command without writing files or starting a runner")
         if action == "export":
             child.add_argument("--destination", help="New ZIP path")
+        if action == "validate":
+            child.add_argument("--destination", help="Separate validation report directory; defaults to the run's validation directory")
     args = parser.parse_args(argv)
     try:
         plan = resolve(args.recipe, getattr(args, "stage", None), args.output, getattr(args, "set", ()), layout=layout)
+        if args.action == "validate" and plan["seeds"] is not None:
+            raise ValueError("Validate one saved seed at a time: use gsm8k-b200 --output PATH_TO_SEED.")
         cmd = command(plan, "run" if args.action == "show" else args.action, getattr(args, "destination", None))
         if args.action == "show" or getattr(args, "dry_run", False):
             print(json.dumps({k: v for k, v in plan.items() if k != "config_text"} | {"command": cmd}, indent=2))

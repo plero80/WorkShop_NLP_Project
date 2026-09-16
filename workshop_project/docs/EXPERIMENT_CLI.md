@@ -44,11 +44,16 @@ python gsm8k.py run gsm8k --stage full
 python gsm8k.py status gsm8k
 python gsm8k.py export gsm8k
 
+# CPU validation of saved gap predictions; no generation or PPO.
+python gsm8k.py validate gsm8k-b200
+
 # Sequential seeds 42, 43, 44, each with isolated outputs.
 python gsm8k.py run gsm8k-three-seeds
 ```
 
 Commands run in the foreground and return the underlying runner's exit code.
+The [validation guide](gsm8k/VALIDATION.md) explains selection-locked cutoffs,
+regression metrics, and validation of an existing run with `--output PATH`.
 For a Runpod terminal session that can disconnect:
 
 ```bash

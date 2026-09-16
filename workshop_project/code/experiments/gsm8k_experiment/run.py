@@ -495,6 +495,8 @@ def main(argv=None):
                         torch.cuda.empty_cache()
                 if strong_context is not None:
                     initial_memory = shared_base_memory(output, initial_memory)
+            from .validation import validate_saved_run
+            validate_saved_run(output, include_final=False, config=config)
             recover_cached_monitors(policy, split["cohorts"]["monitor"], proxy, judge, norm,
                                     initial_memory, output, arms, config)
             evaluate(policy, split["cohorts"]["monitor"], proxy, judge, norm, initial_memory, output, "base", 0, "monitor")

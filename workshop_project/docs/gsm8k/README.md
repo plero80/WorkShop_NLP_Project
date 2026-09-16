@@ -13,8 +13,15 @@ responses, and proxy embeddings, changing the teacher labels. Optional settings
 add refreshed memory and an exact-answer oracle. Evaluation includes numeric
 answer accuracy, judge scores, saved responses, paired comparisons, and reports.
 
-No GSM8K training results are included. Integration tests use tiny randomly
-initialized local models; they establish code behavior, not math performance.
+The completed B200 seed-42 results are summarized in the
+[verified analysis](B200_RESULTS_ANALYSIS.md). Integration tests use tiny randomly
+initialized local models; those tests establish code behavior, not math performance.
+
+New runs automatically perform [gap-predictor validation](VALIDATION.md),
+freezing diagnostic cutoffs on selection data and reporting AUROC, AP, MSE,
+RMSE, MAE, R2, correlations, and review precision/recall. To calculate these
+from a completed run without GPU inference, use
+`python gsm8k.py validate gsm8k-b200` from `workshop_project/`.
 
 ## Deliberate changes from the ZIP
 

@@ -50,6 +50,8 @@ def call_budgets(output):
 def make_report(output, target=None, arms=None):
     output = Path(output)
     config = read_json(output / 'config.json')
+    from .validation import validate_saved_run, VERSION as VALIDATION_VERSION
+    validate_saved_run(output, config=config)
     marker = read_json(output / 'final_protocol.json') if (output / 'final_protocol.json').exists() else None
     if arms is None:
         arms = marker['arms'] if marker else [a for a in config['arms'] if (output / 'arms' / a / 'completed.json').exists()]
@@ -104,7 +106,11 @@ def make_report(output, target=None, arms=None):
              'The numeric extraction protocol is frozen before this suite runs. It was developed after inspecting the earlier experiment, '
              'so this suite is a follow-up on a previously inspected benchmark, not a fresh untouched benchmark test.', '',
              f"Common completion penalties: {config.get('completion_reward', {})}. Zero means the original task reward is retained.", '']
-    lines += ['## Grading coverage and review', '',
+    lines += ['## Gap-predictor validation', '',
+              f'[Validated thresholds, AUROC, MSE and R2](validation/{VALIDATION_VERSION}/report.md). '
+              'Selection chooses diagnostic cutoffs; final responses use those frozen cutoffs. '
+              'Continuous regression metrics do not depend on a cutoff. The historical metrics below retain their original definition.', '',
+              '## Grading coverage and review', '',
               f"Ungraded scorer/answer cases: **{len(review)}**. Inspect [review files](review/README.md) "
               "or `ungraded_examples.csv` for questions, references, candidate answers and failed grader replies.", '',
               'Missing grades are excluded from reward fitting and PPO. Every evaluation answer remains in the accuracy denominator. '

@@ -1,0 +1,67 @@
+{
+  "identity": {
+    "selection_identity": "0d92e69d0148812affca0bd973465753a222cd8ed44aba6e4886ae794e2d1acf",
+    "response_sha256": "40ca89f9c3458f9a1a16678c007a3b43d1b8fbd176be700cce4f406561c0321d"
+  },
+  "teacher": "judge",
+  "policy": "judge",
+  "step": 400,
+  "source": "evaluations/final/judge/step_000400/responses.jsonl",
+  "metrics": {
+    "n": 1319,
+    "n_scored": 1319,
+    "n_unscored": 0,
+    "questions_scored": 1319,
+    "gap_mse": 1.0021210162392238,
+    "gap_rmse": 1.0010599463764513,
+    "gap_mae": 0.8018086381443836,
+    "gap_r2": 0.0764679175384484,
+    "gap_pearson": 0.30528045528045905,
+    "gap_spearman": 0.3366285787017698,
+    "zero_gap_baseline_mse": 1.3454678132858287,
+    "evaluation_mean_baseline_mse": 1.085096051637106,
+    "r2_note": "1 - SSE/SST against this cohort's mean; undefined for constant targets or fewer than two pairs",
+    "calibration_mean_baseline_mse": 1.3454678132858287,
+    "corrected_judge_n": 1319,
+    "corrected_judge_mse": 1.0021210162392238,
+    "corrected_judge_r2": -0.06128710953467609,
+    "high_gap_count": 15,
+    "high_gap_rate": 0.011372251705837756,
+    "high_gap_auroc": 0.6671267893660532,
+    "high_gap_average_precision": 0.031899866922102976,
+    "classification_status": "available",
+    "tp": 2,
+    "fp": 75,
+    "tn": 1229,
+    "fn": 13,
+    "precision": 0.025974025974025976,
+    "recall": 0.13333333333333333,
+    "specificity": 0.9424846625766872,
+    "f1": 0.043478260869565216,
+    "balanced_accuracy": 0.5379089979550102,
+    "flagged_fraction": 0.058377558756633814
+  },
+  "intervals": {
+    "gap_mse": {
+      "ci95": [
+        0.9318087871025776,
+        1.0740092908463277
+      ],
+      "valid_resamples": 2000
+    },
+    "gap_r2": {
+      "ci95": [
+        0.04300597374720248,
+        0.10924746874975196
+      ],
+      "valid_resamples": 2000
+    },
+    "high_gap_auroc": {
+      "ci95": [
+        0.49425323790176173,
+        0.8124756721848678
+      ],
+      "valid_resamples": 2000
+    }
+  }
+}

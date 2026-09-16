@@ -171,6 +171,15 @@ upper-tail diagnostic, `gap > 1.2097379800099946` (Q90) gives selection AUROC
 at the original Q95 gives the same labels. This reanalysis is separate from
 the frozen run metrics and does not alter training or accuracy results.
 
+The integrated [validation report](b200_seed42/validation/report.md) also
+measures continuous prediction quality. On selection, the 4B predictor has
+gap MSE **1.2621** and gap R2 **0.0953**; the 30B predictor has gap MSE
+**1.1942** and gap R2 **0.0883**, against their respective teacher targets.
+On the 4B-memory policy's final answers, the common 4B predictor has gap MSE
+**1.0550** and gap R2 **0.1350**. Gap regression is modest despite useful
+high-gap ranking. Corrected-judge R2 is a different target and is negative in
+these evaluations; both definitions are retained in the report.
+
 ## Provenance and checks
 
 Source archive: `gsm8k_outputs.zip`, 305,042,263 bytes, 3,551 entries.
@@ -191,8 +200,9 @@ final metric sets and all eight saved final paired intervals were reproduced.
 
 The [audit JSON](b200_seed42/verified_summary.json) records these checks, the
 source/verification fingerprints, exact counts, and both saved and additional
-comparisons. [Run settings](b200_seed42/run_config.json) match the current default
-settings. The run used the earlier recorded source revision with its
+comparisons. [Run settings](b200_seed42/run_config.json) retain the completed run's
+exact configuration; the newly added diagnostic validation settings were absent
+from that run. The run used the earlier recorded source revision with its
 `ungraded_review_v1` amendment; it is not relabeled as a run of the later
 project-layout revision.
 

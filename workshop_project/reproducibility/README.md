@@ -24,6 +24,12 @@ restore to the paths expected by the retained code.
 The retained notebook groups are Best-of-N, exploration, distillation, and follow-up.
 GSM8K is a new addition using the unchanged shared PPO engine.
 
+For GSM8K, use `python gsm8k.py run gsm8k-b200` from `workshop_project/`.
+The project launcher prepares only the necessary runtime files at `../run/gsm8k`
+and reuses an existing runtime. It never overwrites changed scientific code or
+saved outputs. `setup` prints the dependency command; `--dry-run` creates no files.
+The general restore command above remains available for the retained experiments.
+
 `additions.json` records the new GSM8K and YAML CLI files separately from the original byte
 preservation map. Both `verify` and `restore` check both maps and reject path
 collisions. `organize` reconstructs only the immutable original layer.

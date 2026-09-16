@@ -4,7 +4,7 @@ The active project contains **Best-of-N, exploration, kNN distillation,
 follow-up, and GSM8K**. The four retained families preserve their original source,
 notebook, settings, and scientific-result bytes. The new
 [GSM8K integration](docs/gsm8k/README.md) uses the existing shared PPO and kNN code;
-it has no GPU training results yet.
+its generated outputs are kept locally.
 
 | Folder | Contents |
 |---|---|
@@ -21,11 +21,22 @@ Start with [EXPERIMENTS.md](docs/EXPERIMENTS.md), or open the saved
 
 ## Running the code
 
-GSM8K now supports [YAML recipes and a CLI](docs/EXPERIMENT_CLI.md): after
-restoring below, use `python -m experiment_cli run gsm8k`. The notebook calls
-the same command.
+Run GSM8K from this folder using [YAML recipes and the CLI](docs/EXPERIMENT_CLI.md):
 
-The notebooks and Python files use the original runtime paths. From
+```bash
+python gsm8k.py run gsm8k-b200 --dry-run
+python gsm8k.py run gsm8k-b200
+# Continue a completed pilot to 400 total attempts per arm:
+python gsm8k.py run gsm8k-b200 --stage full
+```
+
+The launcher prepares one runtime at `../run/gsm8k` when needed and reuses it on
+later invocations. Existing Runpod outputs and checkpoints remain in
+`../run/gsm8k/gsm8k_outputs/b200`. Dry runs create no files and start no experiment.
+For initial dependency installation, run `python gsm8k.py setup` and use the
+installation command it prints in your CUDA Python environment.
+
+The other retained experiments and notebooks use their original runtime paths. From
 `workshop_project/`, restore them into a new directory:
 
 ```text

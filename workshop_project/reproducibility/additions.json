@@ -5,8 +5,8 @@
     {
       "original": "EXPERIMENT_CLI.md",
       "organized": "docs/EXPERIMENT_CLI.md",
-      "bytes": 6345,
-      "sha256": "985206aec798ade89e15bcf99b7a4ba56ac95332e60eeee6794e9b5f8cda47e5"
+      "bytes": 6632,
+      "sha256": "48aa418161bdf35da095c4e18fff4798b76ffe2cd5629a8e3b73a787af0d82ec"
     },
     {
       "original": "RUN_GSM8K_PPO.ipynb",
@@ -29,8 +29,8 @@
     {
       "original": "experiment_cli/cli.py",
       "organized": "code/experiments/experiment_cli/cli.py",
-      "bytes": 9875,
-      "sha256": "203894d3c0cecce01fede9dc23405e65c5b2a68e791324be64c88002405f1dd1"
+      "bytes": 10271,
+      "sha256": "36763f9cfcbc7c03112608fb9ef06c9656999440418386c1080be68c6ec14d7c"
     },
     {
       "original": "experiment_cli/presets/gsm8k-b200.yaml",
@@ -59,8 +59,8 @@
     {
       "original": "gsm8k_experiment/README.md",
       "organized": "docs/gsm8k/README.md",
-      "bytes": 7780,
-      "sha256": "4b0db16f1be817793ae6283b08d625482de6796c6ca43f048772751d860c0c98"
+      "bytes": 8629,
+      "sha256": "3e84e035cfa93e45addab79977ce4f9c44f35b7a663f1e8b42e40eb0d05e57ab"
     },
     {
       "original": "gsm8k_experiment/__init__.py",

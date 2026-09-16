@@ -34,7 +34,28 @@ cohorts, calibration, memory selection, matched 30B teacher, and numeric checker
 are retained. This is an adapted experiment, so its results should not be
 described as an exact rerun of the standalone ZIP.
 
-## Run from a restored project
+## Run from workshop_project
+
+From `workshop_project/`, use the project launcher:
+
+```bash
+python gsm8k.py run gsm8k-b200 --dry-run
+python gsm8k.py run gsm8k-b200
+python gsm8k.py run gsm8k-b200 --stage full
+python gsm8k.py status gsm8k-b200
+python gsm8k.py export gsm8k-b200
+```
+
+It prepares the required files in `../run/gsm8k` automatically and reuses an existing
+runtime. The full-stage command continues existing checkpoints to the full target.
+It uses the same resolved configuration and output path as launching inside that
+runtime. Source or checkpoint identities are not amended by this launcher.
+
+For a fresh environment, `python gsm8k.py setup` prepares only the required code
+and configuration and prints the requirements installation command. Install those
+dependencies using the existing CUDA Python environment. Setup starts no training.
+
+## Direct runtime commands
 
 For YAML presets, dry runs, and shorter commands, use the
 [experiment CLI](../EXPERIMENT_CLI.md). For example, `python -m experiment_cli run

@@ -21,7 +21,7 @@ def yaml_value(text):
     try:
         import yaml
     except ImportError as error:
-        raise ValueError("Install CLI dependencies: python -m pip install -r experiment_cli/requirements.txt") from error
+        raise ValueError('Install the YAML dependency: python -m pip install "PyYAML>=6.0.3,<7"') from error
 
     class UniqueLoader(yaml.SafeLoader):
         pass
@@ -77,19 +77,20 @@ def check_type(old, value, name):
         raise ValueError(f"{name} expects {type(old).__name__}, got {type(value).__name__}. Use 1.0e-5 for YAML scientific notation.")
 
 
-def recipe_path(name):
+def recipe_path(name, presets=None):
     path = Path(name).expanduser()
     if path.is_file():
         return path.resolve()
     if path.name == name and path.suffix == "":
-        preset = PACKAGE / "presets" / f"{name}.yaml"
+        preset = (Path(presets) if presets is not None else PACKAGE / "presets") / f"{name}.yaml"
         if preset.is_file():
             return preset
     raise ValueError(f"Recipe not found: {name}")
 
 
-def resolve(name, stage=None, output=None, overrides=()):
-    source = recipe_path(name)
+def resolve(name, stage=None, output=None, overrides=(), layout=None):
+    root = Path(layout["root"]) if layout is not None else ROOT
+    source = recipe_path(name, layout["presets"] if layout is not None else None)
     recipe = yaml_value(source.read_text(encoding="utf-8"))
     if not isinstance(recipe, dict):
         raise ValueError("The recipe must be a YAML mapping.")
@@ -108,7 +109,7 @@ def resolve(name, stage=None, output=None, overrides=()):
         raise ValueError("output must be a nonempty path string.")
     destination = Path(configured_output).expanduser()
     if not destination.is_absolute():
-        destination = ROOT / destination
+        destination = root / destination
     seeds = recipe.get("seeds")
     if seeds is not None:
         if (not isinstance(seeds, list) or not seeds or any(type(s) is not int or not 0 <= s < 2**32 for s in seeds)
@@ -116,7 +117,7 @@ def resolve(name, stage=None, output=None, overrides=()):
             raise ValueError("seeds must be a nonempty list of distinct integers in [0, 2**32).")
         if stage == "report":
             raise ValueError("For a suite, use status/export; report is a single-run stage.")
-    default = ROOT / "gsm8k_experiment/settings.json"
+    default = Path(layout["settings"]) if layout is not None else root / "gsm8k_experiment/settings.json"
     if not default.is_file():
         raise ValueError("Run this CLI from a restored project; see the runtime restore instructions.")
     base = json.loads(default.read_text(encoding="utf-8"))
@@ -143,7 +144,7 @@ def resolve(name, stage=None, output=None, overrides=()):
     if ppo["minibatch_size"] > ppo["prompts_per_update"] * ppo["responses_per_prompt"]:
         raise ValueError("PPO minibatch exceeds rollout size.")
     encoded = json.dumps(settings, sort_keys=True, indent=2, allow_nan=False) + "\n"
-    config = ROOT / ".experiment_cli/configs" / (hashlib.sha256(encoded.encode()).hexdigest() + ".json")
+    config = root / ".experiment_cli/configs" / (hashlib.sha256(encoded.encode()).hexdigest() + ".json")
     return {"recipe": str(source), "experiment": "gsm8k", "stage": stage,
             "output": str(destination.resolve()), "seeds": seeds,
             "config": str(config), "settings": settings, "config_text": encoded}
@@ -182,7 +183,7 @@ def materialize(plan):
             os.unlink(temporary)
 
 
-def main(argv=None):
+def main(argv=None, *, layout=None, prepare_runtime=None):
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("show", "run", "status", "export"):
@@ -198,15 +199,17 @@ def main(argv=None):
             child.add_argument("--destination", help="New ZIP path")
     args = parser.parse_args(argv)
     try:
-        plan = resolve(args.recipe, getattr(args, "stage", None), args.output, getattr(args, "set", ()))
+        plan = resolve(args.recipe, getattr(args, "stage", None), args.output, getattr(args, "set", ()), layout=layout)
         cmd = command(plan, "run" if args.action == "show" else args.action, getattr(args, "destination", None))
         if args.action == "show" or getattr(args, "dry_run", False):
             print(json.dumps({k: v for k, v in plan.items() if k != "config_text"} | {"command": cmd}, indent=2))
             return 0
+        if prepare_runtime is not None:
+            prepare_runtime()
         if args.action == "run":
             materialize(plan)
             print(f"{plan['experiment']} / {plan['stage']} -> {plan['output']}", flush=True)
-        return subprocess.call(cmd, cwd=ROOT)
+        return subprocess.call(cmd, cwd=Path(layout["root"]) if layout is not None else ROOT)
     except (ValueError, OSError) as error:
         parser.error(str(error))
 

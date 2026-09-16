@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "project_launcher_tests": 8,
+  "existing_cli_tests": 27,
+  "gsm8k_source_and_shared_core_unchanged": true,
+  "full_stage_config_matches_existing_runtime": true,
+  "dry_run_creates_no_runtime": true,
+  "checkpoint_preservation_tested": true,
+  "gpu_training_launched": false,
+  "temporary_test_folders_removed": [
+    "run/ungraded-tests",
+    "run/ungraded-restored"
+  ]
+}

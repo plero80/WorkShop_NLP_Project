@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "gsm8k_tests": 107,
+  "experiment_cli_tests": 27,
+  "project_launcher_tests": 10,
+  "submission_tests": 3,
+  "historical_repair_and_upgrade_tests": 20,
+  "total_tests": 167,
+  "execution_layout": "workshop_project/code directly, with no runtime source copy",
+  "shared_core_unchanged": true,
+  "existing_run_routing_preserves_original_code_and_checkpoints": true,
+  "source_only_and_completed_result_packaging_tested": true,
+  "gpu_training_run": false,
+  "live_runpod_process_accessed_or_modified": false
+}

@@ -13,8 +13,11 @@ from pathlib import Path
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CONFIG = Path(__file__).with_name("settings.json")
+_PACKAGE = Path(__file__).resolve().parent
+_PROJECT = _PACKAGE.parents[2] if len(_PACKAGE.parents) > 2 else _PACKAGE.parent
+ORGANIZED = (_PROJECT / "code/experiments/gsm8k_experiment").resolve() == _PACKAGE
+ROOT = _PROJECT if ORGANIZED else _PACKAGE.parent
+DEFAULT_CONFIG = ROOT / "configs/gsm8k/settings.json" if ORGANIZED else _PACKAGE / "settings.json"
 OUTPUT_ROOT = ROOT / "gsm8k_outputs"
 
 

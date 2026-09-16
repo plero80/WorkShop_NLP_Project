@@ -25,9 +25,9 @@ The retained notebook groups are Best-of-N, exploration, distillation, and follo
 GSM8K is a new addition using the unchanged shared PPO engine.
 
 For GSM8K, use `python gsm8k.py run gsm8k-b200` from `workshop_project/`.
-The project launcher prepares only the necessary runtime files at `../run/gsm8k`
-and reuses an existing runtime. It never overwrites changed scientific code or
-saved outputs. `setup` prints the dependency command; `--dry-run` creates no files.
+New runs import `code/core` and `code/experiments` directly and save only outputs.
+An existing run in `../run/gsm8k` keeps its original runtime and saved state.
+`setup` prints the dependency command; `--dry-run` creates no files.
 The general restore command above remains available for the retained experiments.
 
 `additions.json` records the new GSM8K and YAML CLI files separately from the original byte
@@ -50,6 +50,10 @@ reported inline-grade formatting failure. `repair_gsm8k_inline_score.py` perform
 the audited pre-training recovery described in the [GSM8K guide](../docs/gsm8k/README.md).
 `inline_score_validation.json` and its logs record the parser and recovery tests.
 The previous full snapshot and submission ZIPs remain in `../../original_project/`.
+
+Historical repairs now read pinned, checksum-verified source files from Git history.
+They do not keep a second set of Python source files in this project. A Git checkout
+with the relevant commits is required only for those historical repair utilities.
 
 Saved run identities and source guards have not been rewritten. Extra root
 scripts can still affect a new follow-up run's identity, as described in the

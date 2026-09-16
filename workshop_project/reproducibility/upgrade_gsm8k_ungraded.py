@@ -13,7 +13,7 @@ import sys
 import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from repair_gsm8k_inline_score import PROJECT, atomic_bytes, atomic_json, digest, file_hash, lock, read
+from repair_gsm8k_inline_score import PROJECT, atomic_bytes, atomic_json, digest, file_hash, lock, read, patch_source
 
 
 def upgrade(runtime, output):
@@ -21,13 +21,12 @@ def upgrade(runtime, output):
     output.relative_to(runtime)
     patch = read(PROJECT / "reproducibility/gsm8k_ungraded_patch.json")
     package = runtime / "gsm8k_experiment"
-    source = PROJECT / "code/experiments/gsm8k_experiment"
     if not (output / "manifest.json").exists():
         raise ValueError("No existing experiment manifest. Restore a new runtime for a new experiment.")
     with lock(output):
         # Validate everything before replacing runtime sources or checkpoints.
-        if {p.name: file_hash(p) for p in source.glob("*.py")} != patch["after"]:
-            raise ValueError("Checkout sources differ from the reviewed upgrade.")
+        payloads = {name: patch_source(name, sha, "f4ad4f5ecf059cea0c80729a2ac92ab05fc4dd0c")
+                    for name, sha in patch["after"].items()}
         for name, expected in patch["shared_sources"].items():
             if file_hash(runtime / name) != expected:
                 raise ValueError(f"Shared core changed: {name}")
@@ -138,7 +137,7 @@ def upgrade(runtime, output):
             atomic_json(path.with_suffix(".sha256.json"), {"engine": patch["engine"], "sha256": entry["after_sha256"]})
             del data, stream, payload
         for name in patch["after"]:
-            atomic_bytes(package / name, (source / name).read_bytes())
+            atomic_bytes(package / name, payloads[name])
         atomic_json(manifest_path, updated)
         audit["status"] = "complete"
         atomic_json(audit_path, audit)

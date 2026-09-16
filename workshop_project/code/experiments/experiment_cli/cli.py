@@ -189,7 +189,7 @@ def main(argv=None, *, layout=None, prepare_runtime=None):
     for action in ("show", "run", "status", "export"):
         child = sub.add_parser(action)
         child.add_argument("recipe", help="Preset name (gsm8k, gsm8k-three-seeds) or YAML file")
-        child.add_argument("--output", help="Output directory; relative paths use the restored project root")
+        child.add_argument("--output", help="Output directory; relative paths use the selected project root")
         if action in ("run", "show"):
             child.add_argument("--stage", choices=STAGES)
             child.add_argument("--set", action="append", default=[], metavar="KEY=VALUE", help="Override a nested setting; repeatable")
@@ -209,7 +209,10 @@ def main(argv=None, *, layout=None, prepare_runtime=None):
         if args.action == "run":
             materialize(plan)
             print(f"{plan['experiment']} / {plan['stage']} -> {plan['output']}", flush=True)
-        return subprocess.call(cmd, cwd=Path(layout["root"]) if layout is not None else ROOT)
+        options = {"cwd": Path(layout["root"]) if layout is not None else ROOT}
+        if layout is not None and "env" in layout:
+            options["env"] = layout["env"]
+        return subprocess.call(cmd, **options)
     except (ValueError, OSError) as error:
         parser.error(str(error))
 

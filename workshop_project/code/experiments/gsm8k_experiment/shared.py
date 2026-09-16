@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import torch
+from .common import DEFAULT_CONFIG
 
 ENGINE_ID = "reward_gap_knn.shared_ppo.gsm8k.v1"
 
@@ -10,7 +11,7 @@ ENGINE_ID = "reward_gap_knn.shared_ppo.gsm8k.v1"
 def shared_sources():
     import ppo_engine
     root = Path(ppo_engine.__file__).resolve().parent
-    expected = json.loads(Path(__file__).with_name("shared_sources.json").read_text())
+    expected = json.loads(DEFAULT_CONFIG.with_name("shared_sources.json").read_text())
     actual = {name: hashlib.sha256((root / name).read_bytes()).hexdigest() for name in expected}
     if actual != expected:
         raise ValueError("Shared core source hashes changed; review and version the GSM8K integration before running.")

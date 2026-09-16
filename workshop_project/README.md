@@ -30,11 +30,18 @@ python gsm8k.py run gsm8k-b200
 python gsm8k.py run gsm8k-b200 --stage full
 ```
 
-The launcher prepares one runtime at `../run/gsm8k` when needed and reuses it on
-later invocations. Existing Runpod outputs and checkpoints remain in
-`../run/gsm8k/gsm8k_outputs/b200`. Dry runs create no files and start no experiment.
-For initial dependency installation, run `python gsm8k.py setup` and use the
-installation command it prints in your CUDA Python environment.
+The launcher imports this project's `code/core` and `code/experiments` directly.
+New outputs are saved in `gsm8k_outputs/`; no runtime source copy is created.
+Install dependencies with `python -m pip install -r requirements-gsm8k.txt` in your
+CUDA Python environment. Dry runs create no files and start no experiment.
+
+An existing Runpod experiment in `../run/gsm8k` keeps using that original runtime
+and its saved checkpoints. The launcher recognizes its outputs and routes resume,
+status and export commands there. Leave a currently active run alone until it finishes.
+Use an absolute `--output` to select a run if both layouts contain that run name.
+
+For submission, use [submission.py](submission.py) to package the source once and
+optionally include completed results. See [SUBMISSION.md](docs/SUBMISSION.md).
 
 The other retained experiments and notebooks use their original runtime paths. From
 `workshop_project/`, restore them into a new directory:

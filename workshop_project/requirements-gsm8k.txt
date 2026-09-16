@@ -1,0 +1,3 @@
+-r configs/environment/requirements.txt
+datasets>=4.2,<5
+PyYAML>=6.0.3,<7

@@ -12,10 +12,19 @@ from experiment_cli import cli
 def runtime(tmp_path, monkeypatch):
     # Copy only defaults; tests never instantiate models or launch training.
     original = cli.ROOT / 'gsm8k_experiment/settings.json'
+    presets = cli.PACKAGE / 'presets'
+    if not original.is_file():
+        project = Path(__file__).resolve().parents[3]
+        original = project / 'configs/gsm8k/settings.json'
+        presets = project / 'configs/experiments'
     folder = tmp_path / 'runtime'
     (folder / 'gsm8k_experiment').mkdir(parents=True)
     (folder / 'gsm8k_experiment/settings.json').write_bytes(original.read_bytes())
+    (folder / 'experiment_cli/presets').mkdir(parents=True)
+    for path in presets.glob('*.yaml'):
+        (folder / 'experiment_cli/presets' / path.name).write_bytes(path.read_bytes())
     monkeypatch.setattr(cli, 'ROOT', folder)
+    monkeypatch.setattr(cli, 'PACKAGE', folder / 'experiment_cli')
     return folder
 
 
@@ -137,8 +146,13 @@ def test_inspection_commands_do_not_materialize_configs(runtime, monkeypatch, ac
     assert not (runtime / '.experiment_cli').exists()
 
 
-def test_module_entry_point_in_actual_restored_runtime():
-    result = subprocess.run([sys.executable, '-m', 'experiment_cli', 'run', 'gsm8k', '--dry-run'],
-                            cwd=cli.ROOT, capture_output=True, text=True)
+def test_entry_point_for_current_project_layout():
+    if (cli.ROOT / 'gsm8k_experiment/settings.json').is_file():
+        command, cwd = [sys.executable, '-m', 'experiment_cli'], cli.ROOT
+    else:
+        cwd = Path(__file__).resolve().parents[3]
+        command = [sys.executable, str(cwd / 'gsm8k.py')]
+    result = subprocess.run([*command, 'run', 'gsm8k', '--dry-run'],
+                            cwd=cwd, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
     assert json.loads(result.stdout)['experiment'] == 'gsm8k'

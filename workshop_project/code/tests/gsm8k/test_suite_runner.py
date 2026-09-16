@@ -5,7 +5,7 @@ import zipfile
 from pathlib import Path
 import pytest
 from gsm8k_experiment import suite
-from gsm8k_experiment.common import ROOT, atomic_json, load_config, read_json
+from gsm8k_experiment.common import ROOT, ORGANIZED, atomic_json, load_config, read_json
 from gsm8k_experiment.export import export_results
 
 
@@ -53,6 +53,12 @@ def test_export_contains_new_memories_and_excludes_weights(tmp_path):
     with zipfile.ZipFile(archive) as z:
         names=set(z.namelist())
         assert 'outcomes/seed_42/prepared_30b/memory_initial.npz' in names
-        assert 'code/gsm8k_experiment/teacher_memory.py' in names
+        prefix = 'code/code/experiments/' if ORGANIZED else 'code/'
+        assert prefix + 'gsm8k_experiment/teacher_memory.py' in names
+        assert sum(n.endswith('/ppo_engine.py') for n in names) == 1
+        if ORGANIZED:
+            assert 'code/gsm8k.py' in names
+            assert 'code/configs/gsm8k/settings.json' in names
+            assert 'code/configs/experiments/gsm8k-b200.yaml' in names
         assert not any(x.endswith('.pt') for x in names)
     with pytest.raises(ValueError,match='already exists'):export_results(output,archive)

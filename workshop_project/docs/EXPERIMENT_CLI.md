@@ -10,22 +10,25 @@ keep their existing entry points; the YAML CLI does not wrap them yet.
 
 ## Setup
 
-From the repository root, enter the project folder and prepare the runtime:
+From the repository root, enter the project folder and install dependencies:
 
 ```text
 cd workshop_project
-python gsm8k.py setup
-python -m pip install -r ../run/gsm8k/experiment_cli/requirements.txt
+python -m pip install -r requirements-gsm8k.txt
 ```
 
 This installs the YAML dependency as well as the existing experiment requirements.
-Run the commands below from `workshop_project/`, including on Runpod. The launcher
-uses `../run/gsm8k` for execution and outputs, reusing existing checkpoints. It
-automatically prepares the runtime for a first run. Setup is useful before installing
-dependencies. Use the CUDA PyTorch environment described in the GSM8K run guide.
+Run the commands below from `workshop_project/`, including on Runpod. New runs
+import the source directly from `code/core` and `code/experiments`, with outputs
+in `gsm8k_outputs/`. No duplicate runtime is created. Use the CUDA PyTorch
+environment described in the GSM8K run guide.
+
+An existing run under `../run/gsm8k` keeps using its original runtime. The launcher
+detects its saved output and routes resume/status/export commands there. Leave an
+active Runpod process running until it finishes; do not replace its files.
 
 Inside an already restored `run/gsm8k/`, the original `python -m experiment_cli`
-commands also remain supported. Both launchers resolve identical run settings.
+commands also remain supported. Existing checkpoints continue to use their original source and run settings.
 
 ## Everyday commands
 
@@ -71,8 +74,7 @@ From `workshop_project/` on the pod, preserve the template's CUDA PyTorch:
 ```bash
 python -m venv --system-site-packages .venv
 source .venv/bin/activate
-python gsm8k.py setup
-python -m pip install -r ../run/gsm8k/experiment_cli/requirements.txt
+python -m pip install -r requirements-gsm8k.txt
 export HF_HOME=/workspace/hf-cache
 
 # Check the installed GPU build before downloading the experiment models.
@@ -95,7 +97,7 @@ python gsm8k.py status gsm8k-b200
 ```
 
 The preset makes the existing BF16, SDPA, and batch settings explicit, with outputs
-in `../run/gsm8k/gsm8k_outputs/b200` from the project folder. It retains the same scientific settings and shared PPO
+in `gsm8k_outputs/b200` for new project runs. Existing restored runs keep their original output path. It retains the same scientific settings and shared PPO
 engine. This is a starting preset, not a measured B200 optimization or a GPU-tested
 memory-fit guarantee. Use the pilot to assess memory use and throughput before
 changing batch sizes; choose a new output directory if changing settings.
@@ -134,8 +136,9 @@ python gsm8k.py run my-run.yaml --output gsm8k_outputs/trial-2 --set ppo.learnin
 ```
 
 Setting paths are relative to `settings`, so use `ppo.learning_rate`, not
-`settings.ppo.learning_rate`. Relative output paths always use the restored
-runtime root (`../run/gsm8k`), independent of the working directory or notebook. A custom YAML
+`settings.ppo.learning_rate`. Relative output paths use `workshop_project/` for new runs. If a requested run already
+exists under `../run/gsm8k`, it is resumed there. Use an absolute `--output` if
+both locations have the same run name. A custom YAML
 filename is relative to the invoking working directory. `export --destination`
 also accepts a path relative to that working directory.
 
@@ -143,7 +146,8 @@ For a suite, add `seeds: [42, 43, 44]`; these override the individual training
 seed. `settings.data_seed` controls the shared data partition. Keep a separate
 output directory for each single-run or suite protocol.
 
-Resolved JSON files are stored by content hash in the runtime's `.experiment_cli/configs/`.
+Resolved JSON files are stored by content hash in `.experiment_cli/configs/` under
+the selected project or historical runtime root.
 Pilot and full use the same configuration identity. Changing scientific settings
 changes the resolved configuration; the existing runner rejects incompatible
 resume attempts in an old output directory. Stage and output are launch options,

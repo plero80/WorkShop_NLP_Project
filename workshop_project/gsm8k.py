@@ -1,91 +1,86 @@
-"""Run GSM8K from workshop_project, reusing the existing Runpod runtime and outputs.
+"""Launch GSM8K directly from project source, without making code copies.
 
     python gsm8k.py run gsm8k-b200 --dry-run
     python gsm8k.py run gsm8k-b200 --stage full
 
-`setup` prepares the runtime and prints the dependency installation command.
-No experiment starts during setup, show or a dry run.
+Existing runs in ../run/gsm8k keep using their original runtime and checkpoints.
+New runs use code/core and code/experiments, with outputs in gsm8k_outputs/.
 """
 from __future__ import annotations
 
+import argparse
 import importlib.util
-import json
+import os
 from pathlib import Path
 import sys
-import tempfile
 
 PROJECT = Path(__file__).resolve().parent
-RUNTIME = PROJECT.parent / "run" / "gsm8k"
+LEGACY = PROJECT.parent / "run" / "gsm8k"
 
 
-def load_module(name, path):
-    spec = importlib.util.spec_from_file_location(name, path)
+def load_cli():
+    spec = importlib.util.spec_from_file_location("project_cli", PROJECT / "code/experiments/experiment_cli/cli.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
-def runtime_files():
-    """Only the shared core, GSM8K, CLI and their configuration are required."""
-    shared = json.loads((PROJECT / "configs/gsm8k/shared_sources.json").read_text(encoding="utf-8"))
-    records = []
-    for name in ("file_map.json", "additions.json"):
-        records.extend(json.loads((PROJECT / "reproducibility" / name).read_text(encoding="utf-8"))["files"])
-    rows = [r for r in records if r["original"] in {*shared, "requirements.txt"}
-            or r["original"].startswith(("gsm8k_experiment/", "experiment_cli/"))]
-    if len({r["original"] for r in rows}) != len(rows):
-        raise ValueError("Duplicate GSM8K runtime paths in the file maps.")
-    return rows
+def has_run(output):
+    folder = Path(output)
+    return any((folder / name).is_file() for name in ("manifest.json", "suite_protocol.json", "config.json"))
 
 
-def ensure_runtime():
-    manager = load_module("gsm8k_restore", PROJECT / "reproducibility/manage.py")
-    rows = runtime_files()
-    for row in rows:
-        source = manager.safe(PROJECT, row["organized"])
-        if not source.is_file() or manager.digest(source) != row["sha256"]:
-            raise ValueError(f"Project file does not match its manifest: {row['organized']}")
-    if RUNTIME.exists():
-        # Checkpoint identity covers these files. Never replace them underneath a run.
-        for row in rows:
-            if row["original"].startswith("experiment_cli/"):
-                continue  # This launcher uses the CLI from workshop_project.
-            path = manager.safe(RUNTIME, row["original"])
-            if not path.is_file() or manager.digest(path) != row["sha256"]:
-                raise ValueError(
-                    f"Existing runtime differs at {row['original']}. Nothing was overwritten. "
-                    "Use the documented GSM8K source upgrade before resuming this older runtime.")
-        expected = {Path(r["original"]).name for r in rows
-                    if Path(r["original"]).parent.as_posix() == "gsm8k_experiment" and r["original"].endswith(".py")}
-        if {p.name for p in (RUNTIME / "gsm8k_experiment").glob("*.py")} != expected:
-            raise ValueError("Unexpected GSM8K source files in the existing runtime. Nothing was overwritten.")
-        return
-    RUNTIME.parent.mkdir(parents=True, exist_ok=True)
-    # Publish a complete runtime at once; interrupted setup leaves no half-built destination.
-    with tempfile.TemporaryDirectory(prefix=".gsm8k-setup-", dir=RUNTIME.parent) as temporary:
-        staged = Path(temporary) / "runtime"
-        staged.mkdir()
-        for row in rows:
-            manager.copy_checked(manager.safe(PROJECT, row["organized"]), manager.safe(staged, row["original"]), row)
-        staged.rename(RUNTIME)
-    print(f"Prepared GSM8K runtime: {RUNTIME}", flush=True)
+def invocation(args):
+    """Extract routing options; the existing CLI validates all user arguments."""
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("action", nargs="?")
+    parser.add_argument("recipe", nargs="?")
+    parser.add_argument("--output")
+    parser.add_argument("--stage")
+    parser.add_argument("--set", action="append", default=[])
+    parsed, _ = parser.parse_known_args(args)
+    return parsed
+
+
+def select_layout(cli, args):
+    options = invocation(args)
+    native = {"root": PROJECT, "settings": PROJECT / "configs/gsm8k/settings.json",
+              "presets": PROJECT / "configs/experiments"}
+    if options.recipe and not any(a in ("--help", "-h") for a in args):
+        plan = cli.resolve(options.recipe, options.stage, options.output, options.set, layout=native)
+        if (LEGACY / "gsm8k_experiment/settings.json").is_file():
+            legacy = {"root": LEGACY, "settings": LEGACY / "gsm8k_experiment/settings.json",
+                      "presets": PROJECT / "configs/experiments"}
+            previous = cli.resolve(options.recipe, options.stage, options.output, options.set, layout=legacy)
+            old_output = Path(previous["output"])
+            if old_output.is_relative_to(LEGACY.resolve()) and has_run(old_output):
+                if Path(plan["output"]) != old_output and has_run(plan["output"]):
+                    raise ValueError("Both project and legacy runs exist. Choose one with an absolute --output path.")
+                return legacy
+    env = os.environ.copy()
+    paths = [str(PROJECT / "code/experiments"), str(PROJECT / "code/core")]
+    if env.get("PYTHONPATH"):
+        paths.append(env["PYTHONPATH"])
+    env["PYTHONPATH"] = os.pathsep.join(paths)
+    native["env"] = env
+    return native
 
 
 def main(argv=None):
     args = list(sys.argv[1:] if argv is None else argv)
     if args == ["setup"]:
-        try:
-            ensure_runtime()
-        except (ValueError, OSError) as error:
-            print(f"Error: {error}", file=sys.stderr)
-            return 2
-        print("Install dependencies in your existing CUDA environment:")
-        print(f'python -m pip install -r "{RUNTIME / "experiment_cli/requirements.txt"}"')
+        print("GSM8K runs directly from workshop_project/code; no runtime copy is created.")
+        print(f'python -m pip install -r "{PROJECT / "requirements-gsm8k.txt"}"')
         return 0
-    cli = load_module("gsm8k_project_cli", PROJECT / "code/experiments/experiment_cli/cli.py")
-    layout = {"root": RUNTIME, "settings": PROJECT / "configs/gsm8k/settings.json",
-              "presets": PROJECT / "configs/experiments"}
-    return cli.main(args, layout=layout, prepare_runtime=ensure_runtime)
+    cli = load_cli()
+    try:
+        layout = select_layout(cli, args)
+    except (ValueError, OSError) as error:
+        print(f"Error: {error}", file=sys.stderr)
+        return 2
+    if layout["root"] == LEGACY and not any(a in ("--dry-run", "--help", "-h") for a in args):
+        print(f"Using existing run at {LEGACY}; its code and checkpoints stay in place.", flush=True)
+    return cli.main(args, layout=layout)
 
 
 if __name__ == "__main__":

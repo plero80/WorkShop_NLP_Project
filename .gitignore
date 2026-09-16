@@ -14,6 +14,8 @@ venv/
 .ipynb_checkpoints/
 .experiment_cli/
 /gsm8k_outputs/
+/workshop_project/gsm8k_outputs/
+/submission*.zip
 /important_outcomes_gsm8k.zip
 
 # Large scientific outputs remain local in their clearly labeled directories.

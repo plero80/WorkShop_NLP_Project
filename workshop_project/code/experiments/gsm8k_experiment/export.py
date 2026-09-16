@@ -6,7 +6,7 @@ import argparse
 from pathlib import Path
 import zipfile
 
-from .common import ROOT
+from .common import ROOT, ORGANIZED
 from .shared import shared_sources
 
 
@@ -20,8 +20,19 @@ def export_results(output, destination):
     temp = destination.with_name(destination.name + '.tmp')
     try:
         with zipfile.ZipFile(temp, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
-            for path in sorted([*Path(__file__).parent.rglob('*'), ROOT / 'requirements.txt',
-                                *[ROOT / name for name in shared_sources()]]):
+            pinned = shared_sources()
+            if ORGANIZED:
+                sources = [ROOT / 'gsm8k.py', ROOT / 'requirements-gsm8k.txt',
+                           ROOT / 'configs/environment/requirements.txt',
+                           *[ROOT / 'code/core' / name for name in pinned],
+                           *(ROOT / 'code/experiments/gsm8k_experiment').rglob('*'),
+                           *(ROOT / 'code/experiments/experiment_cli').rglob('*'),
+                           *(ROOT / 'configs/gsm8k').rglob('*'),
+                           *(ROOT / 'configs/experiments').rglob('*')]
+            else:
+                sources = [*Path(__file__).parent.rglob('*'), ROOT / 'requirements.txt',
+                           *[ROOT / name for name in pinned]]
+            for path in sorted(set(sources)):
                 if not path.is_file():
                     continue
                 rel = path.relative_to(ROOT)
@@ -29,7 +40,7 @@ def export_results(output, destination):
                     continue
                 if path.name == 'runtime_environment.json':
                     continue
-                if path.suffix in ('.py', '.json', '.md', '.txt', '.sh', '.ipynb') or path.name == '.gitignore':
+                if path.suffix in ('.py', '.json', '.md', '.txt', '.sh', '.ipynb', '.yaml', '.yml') or path.name == '.gitignore':
                     archive.write(path, Path('code') / rel)
             for path in sorted(output.rglob('*')):
                 if not path.is_file() or path in (destination, temp):

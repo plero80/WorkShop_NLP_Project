@@ -46,24 +46,25 @@ python gsm8k.py status gsm8k-b200
 python gsm8k.py export gsm8k-b200
 ```
 
-It prepares the required files in `../run/gsm8k` automatically and reuses an existing
-runtime. The full-stage command continues existing checkpoints to the full target.
-It uses the same resolved configuration and output path as launching inside that
-runtime. Source or checkpoint identities are not amended by this launcher.
+New experiments execute directly from `code/core` and `code/experiments`, with
+outputs in `gsm8k_outputs/`. Install dependencies with
+`python -m pip install -r requirements-gsm8k.txt`. `setup` only prints that command.
 
-For a fresh environment, `python gsm8k.py setup` prepares only the required code
-and configuration and prints the requirements installation command. Install those
-dependencies using the existing CUDA Python environment. Setup starts no training.
+Existing experiments in `../run/gsm8k` continue with their original code and
+checkpoints. The launcher automatically selects that runtime when its requested
+output already exists. It never rewrites a manifest or moves a running experiment.
+Leave an active Runpod process running; no restart is needed for this layout change.
+The full-stage command is for resuming a stopped run or extending a finished pilot.
 
-## Direct runtime commands
+## Historical restored-runtime commands
 
 For YAML presets, dry runs, and shorter commands, use the
 [experiment CLI](../EXPERIMENT_CLI.md). For example, `python -m experiment_cli run
 gsm8k` runs the pilot and `python -m experiment_cli run gsm8k --stage full`
 continues it. The GSM8K notebook uses this same CLI.
 
-From the repository root, create a fresh runtime containing shared code plus this
-experiment (existing saved studies are unnecessary for GSM8K):
+The following older workflow remains supported for reproducibility. New GSM8K runs
+should use the project launcher above, which creates no code copies:
 
 ```text
 python workshop_project/reproducibility/manage.py restore --code-only --destination run/gsm8k
@@ -161,7 +162,9 @@ repeating a completed upgrade is a no-op. Checkpoint engine and identity checks 
 
 This is a recorded change to missing-grade handling, not an unchanged scientific
 protocol. The original `repair_gsm8k_inline_score.py` remains available for the specific
-historical pre-training parser repair, with its original patch payload preserved.
+historical pre-training parser repair. Historical repair files are read from their
+pinned Git commits and checksum-verified, rather than stored as duplicate Python files.
+These repair utilities therefore require a Git checkout with the original history.
 
 For a different output, pass `--output gsm8k_outputs/NAME` (relative to the runtime).
 Newly restored runtimes already include nonblocking grading. Review records for the

@@ -13,6 +13,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import tempfile
 import time
 
@@ -29,6 +30,25 @@ def digest(value):
 
 def file_hash(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def patch_source(name, expected_hash, commit):
+    """Read a pinned historical file from Git when current source has advanced."""
+    current = PROJECT / "code/experiments/gsm8k_experiment" / name
+    if current.is_file():
+        data = current.read_bytes()
+        if hashlib.sha256(data).hexdigest() == expected_hash:
+            return data
+    try:
+        data = subprocess.check_output([
+            "git", "-C", str(PROJECT.parent), "-c", "safe.directory=" + PROJECT.parent.as_posix(),
+            "show", f"{commit}:workshop_project/code/experiments/gsm8k_experiment/{name}"],
+            stderr=subprocess.PIPE)
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise ValueError("Historical repair needs a Git checkout with its original commit history.") from error
+    if hashlib.sha256(data).hexdigest() != expected_hash:
+        raise ValueError(f"Historical repair source checksum mismatch: {name}")
+    return data
 
 
 def atomic_bytes(path, data):
@@ -97,10 +117,7 @@ def repair(runtime, output):
             raise ValueError("Shared source pins changed.")
         replacements = {}
         for name in patch["changed_files"]:
-            source = PROJECT / "reproducibility/patch_payloads/grading_inline_score_v1" / name
-            if file_hash(source) != patch["after"][name]:
-                raise ValueError(f"Checkout patch source differs: {name}")
-            replacements[name] = source.read_bytes()
+            replacements[name] = patch_source(name, patch["after"][name], "eba5a05dcc1d604a5b65acbb3abc07c2e275fae1")
         manifest_path = output / "manifest.json"
         manifest = read(manifest_path)
         if digest(manifest["identity"]) != manifest["fingerprint"]:

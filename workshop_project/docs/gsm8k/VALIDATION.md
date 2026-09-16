@@ -25,10 +25,11 @@ For the imported seed-42 data in this repository, from the repository root:
 ```bash
 python workshop_project/gsm8k.py validate gsm8k-b200 \
   --output results/gsm8k/b200 \
-  --destination workshop_project/docs/gsm8k/b200_seed42/validation
+  --destination workshop_project/docs/gsm8k/b200_seed42/validation_v2
 ```
 
-The default destination is `<run>/validation/gap_validation_v1/`. Outputs are
+The default destination is `<run>/validation/gap_validation_v2/`. Version 2 adds
+reward/correctness AUROCs; previous v1 reports remain preserved. Outputs are
 `report.md`, `metrics.csv`, `summary.json`, teacher-specific selection locks,
 label-cutoff and prediction-cutoff candidate tables, and final diagnostic JSONs.
 Existing selection locks are reused only when input hashes, analysis source,
@@ -43,6 +44,7 @@ separately with its output path and the single-seed recipe.
 | High-gap **label cutoff** | Maximum selection AUROC among supported upper-tail definitions derived from calibration |
 | **Prediction cutoff** for reviewing answers | Maximum selection balanced accuracy by default, with the label definition held fixed; F1 is also supported |
 | AUROC / average precision (AP) | Continuous predicted gap ranked against the selected binary labels |
+| Reward/correctness AUROC | Proxy and corrected reward (`proxy_z - predicted_gap`) ranked against strict answer correctness on identical answers; numeric matching is also reported separately |
 | Gap MSE / RMSE / MAE | Continuous predicted gap compared with the observed normalized proxy-minus-judge gap |
 | Gap R² | `1 - sum((gap - prediction)^2) / sum((gap - mean(gap))^2)` |
 | Corrected-judge R² | The same R² formula, comparing `proxy_z - predicted_gap` with `judge_z` |
@@ -55,6 +57,16 @@ does not change continuous predictions. The existing `knn.k_grid` and
 same nonconstant target cohort that also maximizes R². The B200 default fixes
 k = 32 and temperature = 0.05. This validation step evaluates that saved
 predictor and does not refit it or alter PPO rewards.
+
+Reward/correctness AUROC has its own target and no selected cutoff. It can be
+strong even when high-gap AUROC or gap R2 is modest: a small correction can
+separate correct and incorrect answers tied by the proxy. These metrics are
+reported together to prevent that distinction from being lost. They do not
+replace each other or measure the fraction of questions answered correctly.
+See the [saved-run reward audit](B200_REWARD_BUG_AUDIT.md) for the reproduced
+scores, training reward checks and pairwise examples. Correctness comparisons
+count missing/nonfinite rewards and unavailable verification labels; an absent
+judge grade does not remove an otherwise usable proxy/corrected comparison.
 
 R² is not squared Pearson correlation. It can be negative when predictions
 have higher squared error than the evaluated cohort's mean. The report also

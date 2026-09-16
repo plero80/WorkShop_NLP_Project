@@ -15,6 +15,108 @@
       "sha256": "30bc7f1bd088c3dfc3c9d8b87f26ed3306a7d274c96cf1f4ca787e52747feb0f"
     },
     {
+      "original": "docs/gsm8k/B200_REWARD_BUG_AUDIT.md",
+      "organized": "docs/gsm8k/B200_REWARD_BUG_AUDIT.md",
+      "bytes": 8534,
+      "sha256": "b222a7a62d5be6e03b5772e78d4bd8d628683db290b594a9f4f366b1f43139aa"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/reward_audit_verification.json",
+      "organized": "docs/gsm8k/b200_seed42/reward_audit_verification.json",
+      "bytes": 203,
+      "sha256": "dfb8eeaabeda5cb44730e9912410d08ae0f6528355142bcba535c3d11764265d"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/reward_bug_audit.json",
+      "organized": "docs/gsm8k/b200_seed42/reward_bug_audit.json",
+      "bytes": 13090,
+      "sha256": "d24705240b4d5310b323aa983af6a13674937bc544b7c4f737ec3d64952615fd"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge30b_decision_candidates.csv",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge30b_decision_candidates.csv",
+      "bytes": 35624,
+      "sha256": "1143d8e86258acd60e8ea0e46d8815d75da67d1fe15fc79382b00fbdfb9d8c31"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge30b_label_candidates.csv",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge30b_label_candidates.csv",
+      "bytes": 1995,
+      "sha256": "6368fb43a0315a15059f10594d309818619db674d79a81c9bc2b7631ae221969"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge30b_selection.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge30b_selection.json",
+      "bytes": 113055,
+      "sha256": "010b3ca2064433228dd137d06a79d9eee56d8f70ef6a2f35bf0b59c6793e7867"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_base_step_000000.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_base_step_000000.json",
+      "bytes": 2684,
+      "sha256": "24cfe40940486615a9af8d4f0f6eb433d5d3683380dc4be14436344744f8d69f"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_decision_candidates.csv",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_decision_candidates.csv",
+      "bytes": 33827,
+      "sha256": "87dcd9f891ef3c28d90bef3e3401a20674cdb542cf1f070bdad472f9ee692833"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_judge_step_000400.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_judge_step_000400.json",
+      "bytes": 2705,
+      "sha256": "81b0395c8ce1703f3a49bd2d08250d33d9c820f465cb06bb27af2ac16d6eab91"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_knn_static_30b_step_000400.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_knn_static_30b_step_000400.json",
+      "bytes": 2709,
+      "sha256": "bfc6d3d623bc1a144a701fa08c8deb4b62a4285e2b679bdaf3bb1006fcd9d4ad"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_knn_static_step_000400.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_knn_static_step_000400.json",
+      "bytes": 2704,
+      "sha256": "9cd922251adf098f0768a3fa3023ca344c38759107e9e6a8622812eb1afc246c"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_label_candidates.csv",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_label_candidates.csv",
+      "bytes": 2187,
+      "sha256": "5d71508aa0fee9074cfce8a7ae68d34cb0e2ea5a5805055b8f097551b9cf75e5"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_proxy_step_000400.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_proxy_step_000400.json",
+      "bytes": 2696,
+      "sha256": "571466126b2e40c67808ea949d6b2b0c2f2f2979509d352f04b664732c6c4f1f"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/judge_selection.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/judge_selection.json",
+      "bytes": 111684,
+      "sha256": "4daf8155d5d49bda2cf74b585582e46567ff9b80090db610c79e0960ff06ab06"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/metrics.csv",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/metrics.csv",
+      "bytes": 5645,
+      "sha256": "b622b95eaf739a0d264238c842b4636072d5504681c079e03d4d7d3df33c6b8b"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/report.md",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/report.md",
+      "bytes": 5000,
+      "sha256": "327cffacc3de10a996c439f5746b602809afbf735094d961520c801ba249cc65"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/validation_v2/summary.json",
+      "organized": "docs/gsm8k/b200_seed42/validation_v2/summary.json",
+      "bytes": 273267,
+      "sha256": "f5127f6fdc5fc0ebc2214d5c5da5acf7a7bcc927a16ac2c3a1f59b937ff0d99e"
+    },
+    {
       "original": "experiment_cli/__init__.py",
       "organized": "code/experiments/experiment_cli/__init__.py",
       "bytes": 73,
@@ -65,8 +167,8 @@
     {
       "original": "gsm8k_experiment/VALIDATION.md",
       "organized": "docs/gsm8k/VALIDATION.md",
-      "bytes": 6714,
-      "sha256": "fd47179dea32ffb6f1c52b9b917e76e52581e2612bb87298ecf444c1a3cfcae8"
+      "bytes": 7684,
+      "sha256": "53aff763f5d9af8c6d4077893255d2e6336687f6a20e8b1f299f6629b957e549"
     },
     {
       "original": "gsm8k_experiment/__init__.py",
@@ -215,8 +317,14 @@
     {
       "original": "gsm8k_experiment/validation.py",
       "organized": "code/experiments/gsm8k_experiment/validation.py",
-      "bytes": 20164,
-      "sha256": "092b4f76613528a2abb215d8cf7bd8cc51760b047c9e58592a37e195153eb770"
+      "bytes": 22708,
+      "sha256": "28ce501fac32c13612878f0abe0d1f2e2f3e73a7fa046a7c86efcbc929abc50b"
+    },
+    {
+      "original": "reproducibility/audit_gsm8k_rewards.py",
+      "organized": "reproducibility/audit_gsm8k_rewards.py",
+      "bytes": 17480,
+      "sha256": "0ce7350399d1bc5bd6064b2ab616a385367feda7c258eab1bf14293e58cb203d"
     },
     {
       "original": "tests/experiment_cli/test_cli.py",
@@ -275,8 +383,8 @@
     {
       "original": "tests/gsm8k/test_validation.py",
       "organized": "code/tests/gsm8k/test_validation.py",
-      "bytes": 7547,
-      "sha256": "9b80bf36f8f5f0d023febd90ba18af421feb7cd10cbb61f293a68950089bdc1e"
+      "bytes": 9322,
+      "sha256": "7f7fab6fc99fa681523cc40bcbd5df8b715b22e943d8b8e845c553511e4c2d31"
     }
   ]
 }

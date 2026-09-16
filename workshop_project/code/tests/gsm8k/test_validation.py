@@ -142,3 +142,33 @@ def test_preparation_only_never_opens_final_answers(tmp_path):
     path.write_text('invalid final JSON that must not be opened', encoding='utf8')
     result = validate_saved_run(tmp_path, include_final=False)
     assert result['final'] == []
+
+
+def test_reward_correctness_uses_continuous_corrected_reward_and_independent_labels():
+    # The proxy ties all answers, but a small correction ranks correctness perfectly.
+    # It need not predict the numeric gap accurately to break those ties.
+    rows = [dict(id=str(i), correct=bool(i % 2), numeric_match=bool(i % 2),
+                 proxy_z=1., judge_z=float(i % 2), gap=1.-i % 2,
+                 predicted_gap=.2 if i % 2 == 0 else .1) for i in range(6)]
+    a = evaluate_rows(rows, lock())
+    b = evaluate_rows(rows, lock(-100))
+    assert a['correctness_proxy_auroc'] == .5
+    assert a['correctness_corrected_reward_auroc'] == 1.
+    assert a['gap_r2'] < 0
+    assert a['correctness_corrected_reward_auroc'] == b['correctness_corrected_reward_auroc']
+    assert a['numeric_correctness_corrected_reward_auroc'] == 1.
+    assert a['correctness_n'] == a['correctness_judge_n'] == 6
+
+
+def test_reward_correctness_missing_grades_and_numeric_labels_are_separate():
+    rows = [dict(id='a', correct=False, numeric_match=True, proxy_z=1., predicted_gap=.1, gap=None, judge_z=None),
+            dict(id='b', correct=True, numeric_match=True, proxy_z=1., predicted_gap=.2, gap=0., judge_z=1.),
+            dict(id='c', correct=None, numeric_match=None, proxy_z=1., predicted_gap=.3, gap=0.),
+            dict(id='d', correct=False, proxy_z=None, predicted_gap=.4, gap=None)]
+    metrics = evaluate_rows(rows, lock())
+    assert metrics['correctness_n'] == metrics['correctness_excluded'] == 2
+    assert metrics['correctness_judge_n'] == 1
+    assert metrics['correctness_corrected_reward_auroc'] == 0
+    assert metrics['correctness_judge_auroc'] is None
+    assert metrics['numeric_correctness_corrected_reward_auroc'] is None
+    json.dumps(metrics, allow_nan=False)

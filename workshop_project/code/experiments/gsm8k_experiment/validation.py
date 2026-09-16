@@ -17,7 +17,7 @@ from sklearn.metrics import average_precision_score
 from .common import atomic_json, digest, read_json, read_jsonl
 from .metrics import auroc, safe_corr
 
-VERSION = "gap_validation_v1"
+VERSION = "gap_validation_v2"
 DEFAULTS = {"label_quantiles": [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95],
             "minimum_class_examples": 20, "minimum_class_questions": 20,
             "decision_metric": "balanced_accuracy"}
@@ -121,11 +121,33 @@ def fit_thresholds(calibration_gaps, rows, settings):
             "label_candidates": candidates, "decision_candidates": decisions}
 
 
+def reward_alignment(rows):
+    """Rank correct answers using the reward PPO receives, with matched rows.
+
+    These labels come from answer verification, independently of the grader gap
+    or any selected cutoff. Keep strict formatting and numeric matching separate.
+    """
+    result = {}
+    for target, prefix in (("correct", "correctness"), ("numeric_match", "numeric_correctness")):
+        valid = [r for r in usable(rows, ("proxy_z", "predicted_gap")) if type(r.get(target)) is bool]
+        y = np.array([r[target] for r in valid], bool)
+        proxy = np.array([r["proxy_z"] for r in valid], float)
+        corrected = proxy - np.array([r["predicted_gap"] for r in valid], float)
+        judged = usable(valid, ("judge_z",))
+        values = {"n": len(valid), "excluded": len(rows) - len(valid), "positive": int(y.sum()),
+                  "proxy_auroc": auroc(y, proxy), "corrected_reward_auroc": auroc(y, corrected),
+                  "judge_n": len(judged),
+                  "judge_auroc": auroc([r[target] for r in judged], [r["judge_z"] for r in judged])}
+        result.update({f"{prefix}_{key}": value for key, value in values.items()})
+    return result
+
+
 def evaluate_rows(rows, locked):
     valid = usable(rows, ("gap", "predicted_gap"))
     gaps, scores = (np.array([r[k] for r in valid], float) for k in ("gap", "predicted_gap"))
     metrics = {"n": len(rows), "n_scored": len(valid), "n_unscored": len(rows) - len(valid),
-               "questions_scored": len({r["id"] for r in valid}), **regression(gaps, scores)}
+               "questions_scored": len({r["id"] for r in valid}), **regression(gaps, scores),
+               **reward_alignment(rows)}
     mean = locked.get("calibration_mean_gap")
     metrics["calibration_mean_baseline_mse"] = float(np.mean((gaps - mean) ** 2)) if len(gaps) and mean is not None else None
     reward_rows = usable(valid, ("judge_z", "proxy_z"))
@@ -273,8 +295,9 @@ def validate_saved_run(output, destination=None, *, include_final=True, config=N
     csv_file(destination / "metrics.csv", rows)
     def fmt(value):
         return "unavailable" if value is None else f"{value:.4f}"
-    lines = ["# GSM8K gap-predictor validation", "", "Selection chooses cutoffs; final evaluation uses those fixed cutoffs. "
-             "These are diagnostic metrics, not policy-answer accuracy. Original run artifacts are unchanged.", ""]
+    lines = ["# GSM8K gap and reward validation", "", "Selection chooses gap cutoffs; final evaluation uses those fixed cutoffs. "
+             "Reward/correctness AUROC separately measures how well rewards rank correct answers. "
+             "Neither AUROC is policy-answer accuracy. Original run artifacts are unchanged.", ""]
     for teacher, locked in report["teachers"].items():
         lines += [f"## {teacher}", ""]
         if "metrics" not in locked:
@@ -283,12 +306,25 @@ def validate_saved_run(output, destination=None, *, include_final=True, config=N
         lines += [f"Label definition: `{locked['label_definition']}`.", "",
                   f"Prediction cutoff: `{locked['prediction_cutoff']}`.", "",
                   f"Post hoc on a run with final artifacts already present: **{locked['posthoc']}**.", ""]
-    lines += ["| Cohort | Teacher | Policy | Scored / all | AUROC | AP | Gap MSE | RMSE | MAE | Gap R2 | Corrected-judge R2 |",
+    lines += ["| Cohort | Teacher | Policy | Scored / all | High-gap AUROC | High-gap AP | Gap MSE | RMSE | MAE | Gap R2 | Corrected-judge R2 |",
               "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for r in rows:
         lines.append(f"| {r['cohort']} | {r['teacher']} | {r['policy']} | {r['n_scored']} / {r['n']} | "
                      + " | ".join(fmt(r.get(k)) for k in ("high_gap_auroc", "high_gap_average_precision", "gap_mse",
                                                           "gap_rmse", "gap_mae", "gap_r2", "corrected_judge_r2")) + " |")
+    lines += ["", "## Reward alignment with answer correctness", "",
+              "All proxy/corrected comparisons below use the same answers. Higher reward predicts a correct answer; "
+              "the corrected reward is proxy_z - predicted_gap. No gap threshold is involved. "
+              "Strict correctness includes the required answer format; numeric matching is reported separately. "
+              "These are descriptive ranking metrics, not an estimate of accuracy after another PPO run.", "",
+              "| Cohort | Teacher | Policy | Label | Scored / all | Correct | Proxy AUROC | Corrected-reward AUROC | Judge AUROC | Judge n |",
+              "|---|---|---|---|---:|---:|---:|---:|---:|---:|"]
+    for r in rows:
+        for prefix, name in (("correctness", "Strict correctness"), ("numeric_correctness", "Numeric match")):
+            lines.append(f"| {r['cohort']} | {r['teacher']} | {r['policy']} | {name} | "
+                         f"{r[prefix + '_n']} / {r['n']} | {r[prefix + '_positive']} | "
+                         + " | ".join(fmt(r.get(prefix + '_' + k)) for k in ("proxy_auroc", "corrected_reward_auroc", "judge_auroc"))
+                         + f" | {r[prefix + '_judge_n']} |")
     lines += ["", "MSE, RMSE, MAE and R2 use continuous normalized gaps. R2 can be negative; it is not squared correlation. "
               "Corrected-judge R2 instead compares proxy_z - predicted_gap with judge_z. AUROC/AP use continuous predicted_gap; "
               "the separate prediction cutoff determines precision/recall/F1 and balanced accuracy.", "",

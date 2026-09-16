@@ -10,6 +10,15 @@ This analysis uses the uploaded `gsm8k_outputs.zip`, containing a completed
 full run on one NVIDIA B200: seed 42, four reward arms, and 400 successful PPO
 updates per arm. It describes one training seed, not a multi-seed result.
 
+The subsequent [reward and metric bug audit](B200_REWARD_BUG_AUDIT.md) replayed
+all 25,600 terminal rewards and 19,907 kNN predictions from the original cache.
+The checks found no reward-sign, normalization, cache-alignment or teacher-routing
+error. It also adds the previously missing reward/correctness comparison:
+on identical validation answers, AUROC rises from **0.7178** for the proxy to
+**0.8788** for the 4B-corrected reward. This is a different target from detecting
+large proxy-judge gaps; the original gap metrics remain unchanged. See the
+[expanded validation report](b200_seed42/validation_v2/report.md).
+
 ![Final accuracies and paired comparisons](b200_seed42/final_comparison.png)
 
 Download the figure as [SVG](b200_seed42/final_comparison.svg) or

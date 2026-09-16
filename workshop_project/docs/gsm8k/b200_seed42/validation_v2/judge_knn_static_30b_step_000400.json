@@ -1,0 +1,81 @@
+{
+  "identity": {
+    "selection_identity": "5cd79e1265ea689914f9fc33e296cf58db49785c05918da6bac4d7d46575ef78",
+    "response_sha256": "382dfe649926ec37028cbd86edf7f49611e615e2eec6091dfc3562e651d5be12"
+  },
+  "teacher": "judge",
+  "policy": "knn_static_30b",
+  "step": 400,
+  "source": "evaluations/final/knn_static_30b/step_000400/responses.jsonl",
+  "metrics": {
+    "n": 1319,
+    "n_scored": 1319,
+    "n_unscored": 0,
+    "questions_scored": 1319,
+    "gap_mse": 1.0274445197835878,
+    "gap_rmse": 1.013629379893651,
+    "gap_mae": 0.7978379556364174,
+    "gap_r2": 0.08291709173077311,
+    "gap_pearson": 0.29604718816187703,
+    "gap_spearman": 0.33691351987886314,
+    "zero_gap_baseline_mse": 1.3042874379448808,
+    "evaluation_mean_baseline_mse": 1.1203398411629346,
+    "r2_note": "1 - SSE/SST against this cohort's mean; undefined for constant targets or fewer than two pairs",
+    "correctness_n": 1319,
+    "correctness_excluded": 0,
+    "correctness_positive": 562,
+    "correctness_proxy_auroc": 0.6166761471814665,
+    "correctness_corrected_reward_auroc": 0.7289168237611474,
+    "correctness_judge_n": 1319,
+    "correctness_judge_auroc": 0.9628320726599191,
+    "numeric_correctness_n": 1319,
+    "numeric_correctness_excluded": 0,
+    "numeric_correctness_positive": 594,
+    "numeric_correctness_proxy_auroc": 0.6315360501567399,
+    "numeric_correctness_corrected_reward_auroc": 0.7517798676419366,
+    "numeric_correctness_judge_n": 1319,
+    "numeric_correctness_judge_auroc": 0.9837478230581679,
+    "calibration_mean_baseline_mse": 1.3042874379448808,
+    "corrected_judge_n": 1319,
+    "corrected_judge_mse": 1.0274445197835878,
+    "corrected_judge_r2": -0.06000437887347121,
+    "high_gap_count": 16,
+    "high_gap_rate": 0.012130401819560273,
+    "high_gap_auroc": 0.7083173445894091,
+    "high_gap_average_precision": 0.03066929866762721,
+    "classification_status": "available",
+    "tp": 3,
+    "fp": 137,
+    "tn": 1166,
+    "fn": 13,
+    "precision": 0.02142857142857143,
+    "recall": 0.1875,
+    "specificity": 0.8948580199539524,
+    "f1": 0.038461538461538464,
+    "balanced_accuracy": 0.5411790099769762,
+    "flagged_fraction": 0.10614101592115238
+  },
+  "intervals": {
+    "gap_mse": {
+      "ci95": [
+        0.9496838817444111,
+        1.1053508659870679
+      ],
+      "valid_resamples": 2000
+    },
+    "gap_r2": {
+      "ci95": [
+        0.04891345061272564,
+        0.11523151077999678
+      ],
+      "valid_resamples": 2000
+    },
+    "high_gap_auroc": {
+      "ci95": [
+        0.5847822324791632,
+        0.8196059908075727
+      ],
+      "valid_resamples": 2000
+    }
+  }
+}

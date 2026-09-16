@@ -302,6 +302,11 @@ The integrated [validation step](gsm8k/VALIDATION.md) uses that same selection
 cohort to freeze diagnostic cutoffs before final scoring in new runs. It adds
 no training, calibration, memory or evaluation questions; selection metrics
 remain tuning diagnostics rather than an additional independent test set.
+The [reward bug audit](gsm8k/B200_REWARD_BUG_AUDIT.md) also reuses the saved
+25,600 training answers and cached embeddings. It adds reward/correctness
+AUROCs and checks 19,907 saved predictions without generating new answers or
+changing these counts. On the 256 validation answers, 4B-corrected reward
+AUROC for strict correctness is 0.8788, separate from high-gap AUROC 0.7307.
 The following sections explain how these counts arise and what other profiles
 would request.
 

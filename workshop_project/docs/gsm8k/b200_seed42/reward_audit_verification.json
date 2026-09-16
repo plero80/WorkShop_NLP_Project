@@ -1,0 +1,7 @@
+{
+  "unchanged_prior_metrics": 224,
+  "independent_new_auroc_checks": 42,
+  "strict_answers_reverified": 32707,
+  "numeric_answers_reverified": 7107,
+  "original_imported_files_unchanged": 1782
+}

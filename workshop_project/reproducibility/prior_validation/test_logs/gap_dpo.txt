@@ -1,0 +1,52 @@
+test_loss_and_gradient_direction (test_gap_dpo.DPOTests.test_loss_and_gradient_direction) ... ok
+test_optimizer_checkpoint_resume_matches_uninterrupted (test_gap_dpo.DPOTests.test_optimizer_checkpoint_resume_matches_uninterrupted) ... C:\Users\misha\AppData\Roaming\Python\Python312\site-packages\dateutil\tz\tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  EPOCH = datetime.datetime.utcfromtimestamp(0)
+DPO gap_selected step 1/6 loss=0.69315
+DPO gap_selected step 2/6 loss=0.69286
+DPO gap_selected step 3/6 loss=0.69258
+DPO gap_selected step 4/6 loss=0.69230
+DPO gap_selected step 5/6 loss=0.69201
+DPO gap_selected step 6/6 loss=0.69173
+DPO gap_selected step 1/6 loss=0.69315
+DPO gap_selected step 2/6 loss=0.69286
+DPO gap_selected step 3/6 loss=0.69258
+DPO gap_selected step 4/6 loss=0.69230
+DPO gap_selected step 5/6 loss=0.69201
+DPO gap_selected step 6/6 loss=0.69173
+ok
+test_parent_reference_is_not_base (test_gap_dpo.DPOTests.test_parent_reference_is_not_base) ... ok
+test_real_project_statistics_and_tiny_policy_update (test_gap_dpo.DPOTests.test_real_project_statistics_and_tiny_policy_update) ... ok
+test_response_mask_includes_eos_not_padding (test_gap_dpo.DPOTests.test_response_mask_includes_eos_not_padding) ... ok
+test_equal_actual_label_budgets_and_resume (test_gap_dpo.PipelineTests.test_equal_actual_label_budgets_and_resume) ... Judge labels gap_selected 2/4
+Judge labels gap_selected 4/4
+Judge labels random_selected 2/4
+Judge labels random_selected 4/4
+Judge labels gap_selected 2/4
+Judge labels gap_selected 4/4
+Judge labels random_selected 2/4
+Judge labels random_selected 4/4
+ok
+test_report_export_and_manual_review_survive_rerun (test_gap_dpo.PipelineTests.test_report_export_and_manual_review_survive_rerun) ... ERROR
+test_auc_ties_and_one_class (test_gap_dpo.ProtocolTests.test_auc_ties_and_one_class) ... ok
+test_bootstrap_is_paired (test_gap_dpo.ProtocolTests.test_bootstrap_is_paired) ... ok
+test_cache_tamper_and_dependency_guards (test_gap_dpo.ProtocolTests.test_cache_tamper_and_dependency_guards) ... ok
+test_gap_selection_and_no_teacher_leakage (test_gap_dpo.ProtocolTests.test_gap_selection_and_no_teacher_leakage) ... ok
+test_judge_quality_determines_preference (test_gap_dpo.ProtocolTests.test_judge_quality_determines_preference) ... ok
+test_schedule_resume_and_epochs (test_gap_dpo.ProtocolTests.test_schedule_resume_and_epochs) ... ok
+test_single_seed_and_budget (test_gap_dpo.ProtocolTests.test_single_seed_and_budget) ... ok
+test_ties_and_duplicate_answers_rejected (test_gap_dpo.ProtocolTests.test_ties_and_duplicate_answers_rejected) ... ok
+
+======================================================================
+ERROR: test_report_export_and_manual_review_survive_rerun (test_gap_dpo.PipelineTests.test_report_export_and_manual_review_survive_rerun)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\misha\Documents\reward_gap_knn\reward_gap_followup\tests\test_gap_dpo.py", line 260, in test_report_export_and_manual_review_survive_rerun
+    from gap_dpo.run import export
+  File "C:\Users\misha\Documents\reward_gap_knn\reward_gap_followup\gap_dpo\run.py", line 3, in <module>
+    import fcntl
+ModuleNotFoundError: No module named 'fcntl'
+
+----------------------------------------------------------------------
+Ran 15 tests in 4.337s
+
+FAILED (errors=1)

@@ -1,0 +1,63 @@
+test_correction_scales_and_no_positive_reward_increase (test_engine.PPOTests.test_correction_scales_and_no_positive_reward_increase) ... ok
+test_first_eos_is_included_and_padding_masked (test_engine.PPOTests.test_first_eos_is_included_and_padding_masked) ... ok
+test_gae_terminals_and_padding_do_not_bootstrap (test_engine.PPOTests.test_gae_terminals_and_padding_do_not_bootstrap) ... ok
+test_local_assets_need_no_auth_or_network (test_engine.PPOTests.test_local_assets_need_no_auth_or_network) ... ok
+test_packaged_memory_loads_and_query_is_finite (test_engine.PPOTests.test_packaged_memory_loads_and_query_is_finite) ... ok
+test_real_ppo_update_frozen_reference_and_exact_resume (test_engine.PPOTests.test_real_ppo_update_frozen_reference_and_exact_resume) ... ERROR
+test_response_alignment_and_left_padding (test_engine.PPOTests.test_response_alignment_and_left_padding) ... ok
+test_reward_head_embedding_pooling_matches_scalar_score (test_engine.PPOTests.test_reward_head_embedding_pooling_matches_scalar_score) ... ok
+test_adapter_load_and_shared_optimizer_fork (test_followup.FollowupTests.test_adapter_load_and_shared_optimizer_fork) ... ERROR
+test_eval_resume_identity_and_full_gap_labels (test_followup.FollowupTests.test_eval_resume_identity_and_full_gap_labels) ... round2 static test cap=6: 2/3
+round2 static test cap=6: 3/3
+ok
+test_packaged_inputs_and_conversation_groups (test_followup.FollowupTests.test_packaged_inputs_and_conversation_groups) ... ERROR
+test_review_blinding_orientation_validation_and_unblinding (test_followup.FollowupTests.test_review_blinding_orientation_validation_and_unblinding) ... ok
+test_signed_main_and_capped_ablation_are_distinct (test_followup.FollowupTests.test_signed_main_and_capped_ablation_are_distinct) ... ok
+test_tiny_two_round_pipeline_real_ppo_and_resume (test_followup.FollowupTests.test_tiny_two_round_pipeline_real_ppo_and_resume) ... ERROR
+test_whole_answer_scoring_and_guard (test_followup.FollowupTests.test_whole_answer_scoring_and_guard) ... ok
+
+======================================================================
+ERROR: test_real_ppo_update_frozen_reference_and_exact_resume (test_engine.PPOTests.test_real_ppo_update_frozen_reference_and_exact_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\test_engine.py", line 121, in test_real_ppo_update_frozen_reference_and_exact_resume
+    checkpoint=trainer.checkpoint(td,1,'test_identity',42,'knn_positive',[report])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\ppo_engine.py", line 256, in checkpoint
+    os.fsync(f.fileno())
+OSError: [Errno 9] Bad file descriptor
+
+======================================================================
+ERROR: test_adapter_load_and_shared_optimizer_fork (test_followup.FollowupTests.test_adapter_load_and_shared_optimizer_fork)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\test_followup.py", line 79, in test_adapter_load_and_shared_optimizer_fork
+    import run_study
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\run_study.py", line 3, in <module>
+    import fcntl
+ModuleNotFoundError: No module named 'fcntl'
+
+======================================================================
+ERROR: test_packaged_inputs_and_conversation_groups (test_followup.FollowupTests.test_packaged_inputs_and_conversation_groups)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\test_followup.py", line 159, in test_packaged_inputs_and_conversation_groups
+    import run_study
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\run_study.py", line 3, in <module>
+    import fcntl
+ModuleNotFoundError: No module named 'fcntl'
+
+======================================================================
+ERROR: test_tiny_two_round_pipeline_real_ppo_and_resume (test_followup.FollowupTests.test_tiny_two_round_pipeline_real_ppo_and_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\test_followup.py", line 172, in test_tiny_two_round_pipeline_real_ppo_and_resume
+    import run_study
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\run_study.py", line 3, in <module>
+    import fcntl
+ModuleNotFoundError: No module named 'fcntl'
+
+----------------------------------------------------------------------
+Ran 15 tests in 3.609s
+
+FAILED (errors=4)

@@ -1,0 +1,88 @@
+{
+  "config": {
+    "experiment": "knn_overnight_v1",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "branches": [
+      "raw",
+      "knn_positive",
+      "knn_signed"
+    ],
+    "primary_comparison": "knn_positive minus raw",
+    "milestones": [
+      50,
+      100,
+      200
+    ],
+    "updates": 200,
+    "rollout_batch_size": 32,
+    "generation_batch_size": 16,
+    "reward_batch_size": 16,
+    "mini_batch_size": 8,
+    "micro_batch_size": 4,
+    "ppo_epochs": 2,
+    "learning_rate": 3e-06,
+    "value_learning_rate": 0.0001,
+    "clip_range": 0.2,
+    "value_clip_range": 0.2,
+    "value_coefficient": 0.1,
+    "kl_coefficient": 0.05,
+    "target_update_kl": 0.1,
+    "gamma": 1.0,
+    "gae_lambda": 0.95,
+    "max_grad_norm": 1.0,
+    "max_prompt_tokens": 512,
+    "max_new_tokens": 128,
+    "reward_max_tokens": 1024,
+    "reward_prompt_limit": 768,
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "train_prompts": 20000,
+    "eval_prompts": 2000,
+    "monitor_prompts": 256,
+    "data_seed": 73129,
+    "eval_seed": 18431,
+    "checkpoint_every": 10,
+    "bootstrap_draws": 2000,
+    "cpu_threads": 8
+  },
+  "source_sha256": {
+    "assets.py": "9ea59fad1b4607e0e8d48333477fdc52368d4ac5aae7cfb773677e043e9b463f",
+    "chat_format.py": "813717e8a7cd0376509ab5d22a7ab2656b1f7f643290edfcf9cab9db097a6de1",
+    "common.py": "71321e2ca731ea60f6b80b5dc561f49a94e72312499a93b661248211736f6056",
+    "data_stage.py": "f17d011b6e59f38a211cb44fac357c4a9222aeb9f9e03df91c3d01bf30b78625",
+    "evaluation.py": "a83eda837592f9bc87a08053457928048d16b092bcd3441029f44f3818d655fe",
+    "fix_overnight_prompts.py": "36fc9ed5d05de4495f10fb7cf428239f515963fd2a29c913362f789f1e10ccfe",
+    "gap_correction.py": "9f7971677cc198824b02272fc407408f386ad9aaa8f5362be7d7700a5a82f86c",
+    "knn_core.py": "6fd334bfb9235e922a8b5df762232f3ee0e708bf2f57c03ba34e502f7cfcd435",
+    "launch.py": "039724dbbe1579004b703affb1a58590e594c7dfc9c877ef23417fe1d16cbafa",
+    "ppo_engine.py": "dff264d9329f07db2f90d808c2402bf98b7b708d5a5f575affbad12532007812",
+    "reporting.py": "32c2b3192de450a9fff26f5f903b85f7fb8a2800ace74a6c911b87ef547c85ac",
+    "reward_bridge.py": "abdd1a0132b9a764715e458f44a2a5d00553b545758871892252749f36da4539",
+    "run_study.py": "c7e0cfb8fb0d470966f3451c2d8b865ab1bd4f7a70dcbbcce064b14c27748001"
+  },
+  "input_sha256": {
+    "inputs/candidate_bank.csv": "32632fcdfb17535e775db4b27c78b65e5433cab380c150bad25753b10ae41589",
+    "inputs/memory/complete.json": "59a310c01eb34a37e0d2d97876dd335a351b618c0af8a2f5c41d697c272ede59",
+    "inputs/memory/detectors/gap_knn.npz": "9791731f5bc8be95b7d598993ee4f89f930e5ee0f276802683eb9f3fbf4cf8cd",
+    "inputs/memory/embedding_information.json": "8145accaac2f971af32466f600318bb424d35afd9b87ae31452dfd375e72b75c",
+    "inputs/memory/locked_detectors.json": "c6335447583d814ff1c7f099955023952c83715ae180003fa87659851b6ae9ec",
+    "inputs/memory/protocol.json": "b6be5f225bd3e6949958487a0e5e3cb8b46dbcb5bb81b907a812637238281a59",
+    "inputs/previous_eval_ids.json": "3f5a7632c3b2f77642e042a03563b92ab062f99674408fc487203ae745c39202",
+    "inputs/previous_prompts.json": "d5dd7fd382c33fe7f4ca036a84fda657af82316203012eb811cd128b038e0fa9"
+  },
+  "runtime_versions": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.0",
+    "huggingface_hub": "1.30.0"
+  },
+  "protocol_version": 1,
+  "identity": "1b19f14812b5978e636c85322ff15bad05b8fe307539fce683d73fe83cb5bf32"
+}

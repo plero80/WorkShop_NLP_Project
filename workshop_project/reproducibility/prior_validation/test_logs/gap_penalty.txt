@@ -1,0 +1,20 @@
+test_checkpoint_tampering_detected (test_gap_penalty.CoreTests.test_checkpoint_tampering_detected) ... ok
+test_conversation_duplicates_rejected (test_gap_penalty.CoreTests.test_conversation_duplicates_rejected) ... ok
+test_incomplete_candidate_pool_rejected (test_gap_penalty.CoreTests.test_incomplete_candidate_pool_rejected) ... ok
+test_invalid_reward_fails_without_clipping (test_gap_penalty.CoreTests.test_invalid_reward_fails_without_clipping) ... ok
+test_mse_quantities_are_distinct (test_gap_penalty.CoreTests.test_mse_quantities_are_distinct) ... ok
+test_paired_bootstrap_matches_ids_not_row_order (test_gap_penalty.CoreTests.test_paired_bootstrap_matches_ids_not_row_order) ... ok
+test_reward_scores_full_answers_without_judge (test_gap_penalty.CoreTests.test_reward_scores_full_answers_without_judge) ... ok
+test_reward_signs_and_zero_lambda (test_gap_penalty.CoreTests.test_reward_signs_and_zero_lambda) ... ok
+test_shuffled_training_epochs_are_matched_and_complete (test_gap_penalty.CoreTests.test_shuffled_training_epochs_are_matched_and_complete) ... ok
+test_single_seed_and_endpoint_settings_enforced (test_gap_penalty.CoreTests.test_single_seed_and_endpoint_settings_enforced) ... ok
+test_completed_report_and_blinded_ratings_preserved (test_gap_penalty.ExecutionTests.test_completed_report_and_blinded_ratings_preserved) ... ok
+test_corrupt_eval_shard_rejected (test_gap_penalty.ExecutionTests.test_corrupt_eval_shard_rejected) ... ok
+test_evaluation_resume_does_not_rescore_completed_batches (test_gap_penalty.ExecutionTests.test_evaluation_resume_does_not_rescore_completed_batches) ... ok
+test_pause_resume_matches_uninterrupted_full_state (test_gap_penalty.ExecutionTests.test_pause_resume_matches_uninterrupted_full_state) ... ok
+test_wrong_fork_and_committed_rollout_tampering_rejected (test_gap_penalty.ExecutionTests.test_wrong_fork_and_committed_rollout_tampering_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.932s
+
+OK

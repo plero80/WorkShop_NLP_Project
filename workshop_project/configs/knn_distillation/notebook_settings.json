@@ -1,0 +1,30 @@
+{
+  "source_kind": "refresh2",
+  "seeds": [
+    42
+  ],
+  "train_prompts": 2400,
+  "validation_prompts": 400,
+  "offline_prompts": 400,
+  "final_prompts": 512,
+  "ppo_updates": 100,
+  "monitor_every": 50,
+  "include_direct_judge_student": false,
+  "student_epochs": 3,
+  "student_batch_size": 4,
+  "student_accumulation": 8,
+  "student_lr": 2e-05,
+  "student_head_lr": 2e-05,
+  "student_lora_rank": 8,
+  "student_lora_alpha": 16,
+  "student_max_grad_norm": 1.0,
+  "student_checkpoint_every": 25,
+  "gradient_checkpointing": true,
+  "data_seed": 2026091231,
+  "student_seed": 2026091232,
+  "review_pairs_per_seed": 20,
+  "latency_examples": 32,
+  "latency_repeats": 5,
+  "allow_downloads": true,
+  "extra_hf_cache": null
+}

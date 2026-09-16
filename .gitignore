@@ -1,0 +1,26 @@
+# Preserved previous project and generated runtime copies.
+/original_project/
+/run/
+
+# Local environments, credentials, and generated launch state.
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.pytest_cache/
+.ipynb_checkpoints/
+.experiment_cli/
+/gsm8k_outputs/
+/important_outcomes_gsm8k.zip
+
+# Large scientific outputs remain local in their clearly labeled directories.
+/workshop_project/results/
+/workshop_project/archive/
+/workshop_project/data/prerequisites/*/
+__pycache__/
+*.py[cod]
+*.pid
+*.lock

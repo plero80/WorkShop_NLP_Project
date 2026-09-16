@@ -1,0 +1,2 @@
+-r ../requirements.txt
+datasets>=4.2,<5

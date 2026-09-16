@@ -1,0 +1,117 @@
+{
+  "outputs/study_cfdbaf579047d418/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.0",
+    "huggingface_hub": "1.30.0"
+  },
+  "refresh2_outputs/study_e7a7994106548cb9/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "next_studies_outputs/suite_b30276b4a35521aa/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "overopt_stress_outputs/suite_d6c2e772bfaaf512/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "knn_distillation_outputs/study_30a10b1428017bde/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "knn_distillation_outputs/study_93c278980369efa3/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "knn_distillation_outputs/study_c18793a5593485e3/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "best_of_n_outputs/study_40100cfcb78f1920/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "gap_penalty_outputs/study_acbd6d0549e856ca/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "gap_dpo_outputs/study_b2613885c2f2ca16/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "huggingface_hub": "1.31.0"
+  },
+  "external_benchmark_outputs/oracle_24490d9d4c1b726f/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "nltk": "3.9.1",
+    "langdetect": "1.0.9",
+    "immutabledict": "4.2.1",
+    "absl-py": "2.1.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1"
+  },
+  "external_benchmark_outputs/refresh2_7eb1eead641aece8/manifest.json": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.20.0",
+    "nltk": "3.9.1",
+    "langdetect": "1.0.9",
+    "immutabledict": "4.2.1",
+    "absl-py": "2.1.0",
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1"
+  },
+  "api_judge_outputs/study_aa9d924cc9efc1f4/manifest.json": null
+}

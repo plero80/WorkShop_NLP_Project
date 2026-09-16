@@ -1,0 +1,21 @@
+test_human_review_has_no_scores_filled (test_api_evaluation.AnalysisTests.test_human_review_has_no_scores_filled) ... ok
+test_prepared_real_data_complete_and_blinded (test_api_evaluation.AnalysisTests.test_prepared_real_data_complete_and_blinded) ... ok
+test_repeat_agreement_known_case (test_api_evaluation.AnalysisTests.test_repeat_agreement_known_case) ... ok
+test_report_uses_prompts_not_seed_rows_and_excludes_missing (test_api_evaluation.AnalysisTests.test_report_uses_prompts_not_seed_rows_and_excludes_missing) ... ok
+test_swapped_orders_map_to_same_method (test_api_evaluation.AnalysisTests.test_swapped_orders_map_to_same_method) ... ok
+test_budget_checked_before_network (test_api_evaluation.ClientTests.test_budget_checked_before_network) ... ok
+test_cache_and_repeat_independence (test_api_evaluation.ClientTests.test_cache_and_repeat_independence) ... ok
+test_failed_preflight_does_not_launch_bulk (test_api_evaluation.ClientTests.test_failed_preflight_does_not_launch_bulk) ... ok
+test_invalid_key_error_does_not_echo_secret (test_api_evaluation.ClientTests.test_invalid_key_error_does_not_echo_secret) ... ok
+test_midrun_model_change_stops (test_api_evaluation.ClientTests.test_midrun_model_change_stops) ... ok
+test_payload_hides_metadata (test_api_evaluation.ClientTests.test_payload_hides_metadata) ... ok
+test_raw_response_recovery_does_not_reissue_request (test_api_evaluation.ClientTests.test_raw_response_recovery_does_not_reissue_request) ... ok
+test_reasoning_tokens_not_double_billed (test_api_evaluation.ClientTests.test_reasoning_tokens_not_double_billed) ... ok
+test_run_jobs_cache_resume (test_api_evaluation.ClientTests.test_run_jobs_cache_resume) ... ok
+test_schema_and_refusal_not_numeric (test_api_evaluation.ClientTests.test_schema_and_refusal_not_numeric) ... ok
+test_unknown_network_cost_keeps_reservation (test_api_evaluation.ClientTests.test_unknown_network_cost_keeps_reservation) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.670s
+
+OK

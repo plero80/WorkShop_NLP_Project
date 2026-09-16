@@ -1,0 +1,13 @@
+numpy>=1.26,<3
+pandas>=2.2,<4
+scipy>=1.11,<2
+scikit-learn>=1.5,<2
+matplotlib>=3.8,<4
+transformers>=4.56.2,<6
+peft>=0.17,<0.21
+accelerate>=1,<2
+huggingface_hub>=0.35,<2
+safetensors>=0.4.5,<1
+threadpoolctl>=3.1,<4
+packaging>=23
+ipykernel>=6,<8

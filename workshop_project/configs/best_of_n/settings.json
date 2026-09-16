@@ -1,0 +1,19 @@
+{
+  "development_prompts": 512,
+  "confirmation_prompts": 512,
+  "dataset_split": "train",
+  "policies": ["initial", "proxy"],
+  "policy_seed": 42,
+  "candidates": 32,
+  "pool_sizes": [1, 4, 8, 16, 32],
+  "primary_policy": "proxy",
+  "primary_n": 32,
+  "candidate_batch_size": 8,
+  "answer_cap": 256,
+  "generation_seed": 2026091207,
+  "data_seed": 2026091208,
+  "bootstrap_seed": 2026091209,
+  "bootstrap_draws": 2000,
+  "allow_downloads": false,
+  "extra_hf_cache": null
+}

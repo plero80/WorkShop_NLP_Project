@@ -1,0 +1,122 @@
+{
+  "scope": "Offline synthetic CPU tests; no full experiment rerun.",
+  "python": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
+  "platform": "win32",
+  "local_versions": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.16.1",
+    "peft": "0.18.1",
+    "numpy": "1.26.4",
+    "pandas": "2.2.1",
+    "scipy": "1.12.0",
+    "scikit-learn": "1.4.1.post1"
+  },
+  "suites": [
+    {
+      "suite": "core",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "test_engine",
+        "test_followup",
+        "-v"
+      ],
+      "returncode": 1,
+      "tests_reported": 15,
+      "log": "test_logs/core.txt"
+    },
+    {
+      "suite": "best_of_n",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "best_of_n",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "tests_reported": 10,
+      "log": "test_logs/best_of_n.txt"
+    },
+    {
+      "suite": "api_evaluation",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "api_evaluation",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "tests_reported": 16,
+      "log": "test_logs/api_evaluation.txt"
+    },
+    {
+      "suite": "gap_penalty",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_gap_penalty.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "tests_reported": 15,
+      "log": "test_logs/gap_penalty.txt"
+    },
+    {
+      "suite": "gap_dpo",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_gap_dpo.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "tests_reported": 15,
+      "log": "test_logs/gap_dpo.txt"
+    },
+    {
+      "suite": "knn_distillation",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "knn_distillation/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 1,
+      "tests_reported": 10,
+      "log": "test_logs/knn_distillation.txt"
+    }
+  ],
+  "all_passed": false
+}

@@ -1,0 +1,11 @@
+{
+  "identity": "1b19f14812b5978e636c85322ff15bad05b8fe307539fce683d73fe83cb5bf32",
+  "base_model": [
+    "Qwen/Qwen2.5-0.5B-Instruct",
+    "7ae557604adf67be50417f59c2c2f167def9a775"
+  ],
+  "checkpoint_sha256": "28c6ce5d845e0ea71950e81dcc4794a3ff3e4d600172422067314710450b1c1c",
+  "seed": 43,
+  "branch": "knn_signed",
+  "update": 200
+}

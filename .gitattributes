@@ -1,0 +1,4 @@
+# Preserve exact bytes in both the original and organized project copies.
+original_project/** -text
+workshop_project/** -text
+/README.md text eol=lf

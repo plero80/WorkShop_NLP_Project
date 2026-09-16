@@ -1,0 +1,21 @@
+{
+  "CPU_TEST_LOG.txt": "ece527dc70f23ced2efc178684e59545a4988d292e5e73fb4618602d692fa462",
+  "README_START_HERE.md": "017bd7af8336637601a2c109cc1be80267f17423585c454d981a195e42e4ff1f",
+  "RTX6000WK_VALIDATION.json": "96e2cfa1d1025dd1922c90817a9324d2f5ac8ce1a6b8b668c4dd87ccfc3a3af0",
+  "RUN_JUDGE_STRENGTH_SANITY.ipynb": "724a1bc0979f30afe59713bb66c940c57823e4e0e244aef8c4c15c56335a73a6",
+  "RUN_OVEROPT_STRESS.ipynb": "d41020d042f7d3eb26cd88c4c0925acdfca272c4f9d5efd1d7ccd886d8447435",
+  "RUN_RTX_PRO_6000_WK_START_HERE.ipynb": "44cbf00d238dd8cad27fbad78a6f1a2fd802ee95802cf8f691a01626cd2206ac",
+  "VALIDATION.json": "f4b45606db1aed636a346d5320f7b9725fdd5f193eec65d6ccafc2205624f152",
+  "overopt_stress/expected_sources.json": "2f087c599fc83630f33fdc6f212f885fc295964f46e1af65dbd42a05b244b97c",
+  "overopt_stress/judge_strength_check.py": "b7cffac1ab1c7a646c43c537e62c777882c00d8fc34d3e2e8deaa81689ba3040",
+  "overopt_stress/launch_stress.py": "ae44ce7e20315c9191c763fae32639e184205676047314f5bc31b5add997d818",
+  "overopt_stress/rtx6000wk_runtime.py": "0837d10d2feb40f1dd25eaccb817d237eaf6e523bc26dc94314217559d4af558",
+  "overopt_stress/settings.json": "643e7dd0b35b78f6ac62a0a0df429b289b0757563b08dee246fe4fe2daee093a",
+  "overopt_stress/study_data.py": "5a0d8f6841d4af11945bec5825084ab4823e8c695b0b12107c100c79953126eb",
+  "overopt_stress/study_eval.py": "0c5dff2c5109108509112e60784b49de11bc6670dbc9444f8102398666d83fa1",
+  "overopt_stress/study_io.py": "e4b4d1ede55397d8a8ed95168efd791df1b5ac51dbd9520074659bf99100fdf3",
+  "overopt_stress/study_reports.py": "c5c9434ef7e8249b2b22eb0c512370ba8702c2377ce20a8cb630e05b4879f943",
+  "overopt_stress/study_reward.py": "bd59a9ef33ac0951c54da7b1735d517e0943a23e29e10465e12c83c8bfe785d5",
+  "overopt_stress/study_run.py": "33a4f8e4b4fce329e7fbb465dfc8b07090d22738f6a5d72b0a4f26a964c8343b",
+  "overopt_stress/study_train.py": "e2f7523f34492b6a8843fa2ddbb2ccfd51a0e37783046ec5729fea56e3616719"
+}

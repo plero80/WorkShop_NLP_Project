@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "organizes and verifies every copied fixture byte",
+    "runtime cache excluded and original cache preserved",
+    "restores original paths and CRLF bytes",
+    "code-only restoration excludes saved outputs",
+    "existing destination is never overwritten",
+    "tampered organized source fails verification",
+    "escaping mapping paths are rejected",
+    "original files remain intact after all operations"
+  ],
+  "passed": true
+}

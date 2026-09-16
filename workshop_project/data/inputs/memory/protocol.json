@@ -1,0 +1,302 @@
+{
+  "bank_sha256": "32632fcdfb17535e775db4b27c78b65e5433cab380c150bad25753b10ae41589",
+  "baseline_archive_sha256": "e4c1867c5748416c55ea93188fb5d816b5f34000fa3495db567cd32565b45032",
+  "calibration": {
+    "format_version": 1,
+    "judge_mean": 0.11191116714477539,
+    "judge_std": 8.365239331680028,
+    "proxy_mean": -1.8856342163085937,
+    "proxy_std": 4.033386063962294,
+    "theta": 0.8998121070053893
+  },
+  "corrections": "signed and positive-only, each with and without a distance gate; coefficient 1 fixed",
+  "cost_scope": "GPU extraction runs and CPU fitting/scoring times are reported separately; no end-to-end speedup claim",
+  "distance_gate": "mean k-neighbor distance < calibration-split quantile; far fallback preserves proxy",
+  "embedding_identity": "427c53c0bb252d3c90dca32567874e7ffafc99ed691331b3a4d9f41ed3aa90bc",
+  "embedding_shards": [
+    {
+      "name": "rows_000000_000256.npz",
+      "sha256": "9785179c72a125dd530ab4c66f6960f83c64d5b91c6ca6db7a98fbab594a2cdc"
+    },
+    {
+      "name": "rows_000256_000512.npz",
+      "sha256": "c2799f22f740ae5d2ec6f920e1e20574449327a6a1c89efab2277532465a21bd"
+    },
+    {
+      "name": "rows_000512_000768.npz",
+      "sha256": "cc317baa7065c73ff27f95882734503b872924cfd3d7bb4391a974ade9edc426"
+    },
+    {
+      "name": "rows_000768_001024.npz",
+      "sha256": "b1b4d61d57352c9a5a0a240dc7479c1104d194579c4faa9e1fad415d61491de0"
+    },
+    {
+      "name": "rows_001024_001280.npz",
+      "sha256": "9f1298ec50e63f0c9830d1f6d2ac954aa2cef8e504dcfbe01c22ee4343c04f67"
+    },
+    {
+      "name": "rows_001280_001536.npz",
+      "sha256": "64a45f907f8daa41b7125fb91316a65d0f95e29bfede729c0872f68235a1919c"
+    },
+    {
+      "name": "rows_001536_001792.npz",
+      "sha256": "0e1ff7b8c1cc88534216d006b3508bd1efaf1672f6f277e61e525fefce0ecd9e"
+    },
+    {
+      "name": "rows_001792_002048.npz",
+      "sha256": "53dd2c3fab3a756a60a0b30dd2f3a93398755be3d217a1586fb6ade42175ee90"
+    },
+    {
+      "name": "rows_002048_002304.npz",
+      "sha256": "9fd1212f4e05dd2812e054bd4a130bde4eee53389bea0a114b519c77869668e8"
+    },
+    {
+      "name": "rows_002304_002560.npz",
+      "sha256": "418f105bc1c2b2466b70fa7bc96c6735058901d989a8e972dcb9deac58bff5e0"
+    },
+    {
+      "name": "rows_002560_002816.npz",
+      "sha256": "db25e4111fca0d76ca58a1414036b46ad58385fb2836e27370e2180cfc3867cf"
+    },
+    {
+      "name": "rows_002816_003072.npz",
+      "sha256": "38f4f724ac4984c795c4d4402a3f1fb4998df2cd0ca62cdacb3663b489c9f685"
+    },
+    {
+      "name": "rows_003072_003328.npz",
+      "sha256": "03e370ee4dcf8edfd3f520270c4f502436a94692b5c356b32109291f096e27f8"
+    },
+    {
+      "name": "rows_003328_003584.npz",
+      "sha256": "e64c626079975d42ac03b764f7b690dc8d595da35737ef201cb4099a09338cfe"
+    },
+    {
+      "name": "rows_003584_003840.npz",
+      "sha256": "3648c9126bdccb2385b5cf8297440c5415a936e78075f78211e79c7a64a8f8e4"
+    },
+    {
+      "name": "rows_003840_004096.npz",
+      "sha256": "ef78743425b7b996e3172ad9d3ba5095a40da1c01a8116cccc87147d951535e1"
+    },
+    {
+      "name": "rows_004096_004352.npz",
+      "sha256": "7659f26103a13c2cdbcea4096d703cd487a8d3e885e1d1ad3dee9ccb8098686a"
+    },
+    {
+      "name": "rows_004352_004608.npz",
+      "sha256": "57806327bba6edb0cd5cfa464506d8e3b0b2b565564a89e15047dc996b42d8d7"
+    },
+    {
+      "name": "rows_004608_004864.npz",
+      "sha256": "b8088ac5317c553372b307d13894d3de9f6ed919080265f47ba12c0496902116"
+    },
+    {
+      "name": "rows_004864_005120.npz",
+      "sha256": "bc831fd24a27c7dea4096aac8a5eeadebe01a9106f96b6511e46c0c1e3d7fec9"
+    },
+    {
+      "name": "rows_005120_005376.npz",
+      "sha256": "23ebaef8106ad3e696cf9b8c25f270b3e35ac4c9b0b13b219857df510acddabe"
+    },
+    {
+      "name": "rows_005376_005632.npz",
+      "sha256": "6c36801eda219c51ef83799c205416698f68358b281d2a36f6cba07dee52e0fd"
+    },
+    {
+      "name": "rows_005632_005888.npz",
+      "sha256": "cd83aa7a89c820ef7739d9e40a883c1a3eb6887740d1405faba67f6b997417fb"
+    },
+    {
+      "name": "rows_005888_006144.npz",
+      "sha256": "a233ec7ca9c0303e6a5cda2713de6e9142adea845c6b7f621ec8e1ebd9fa6655"
+    },
+    {
+      "name": "rows_006144_006400.npz",
+      "sha256": "46f25590e0549df9e42dade0bb1464514364e53c333115db7f1bbe91aab74a26"
+    },
+    {
+      "name": "rows_006400_006656.npz",
+      "sha256": "bee7bcb49360d53a7a0421552d4d72e2abcbc6a47f200039b6260a950f8cf151"
+    },
+    {
+      "name": "rows_006656_006912.npz",
+      "sha256": "0a33a37b81adbebfbf709798362e2021f80d8756ee0736306d565630987821e4"
+    },
+    {
+      "name": "rows_006912_007168.npz",
+      "sha256": "3bddb0f12ef363adb7d2825cfff76a9ef667fb9a31989bc37fbc0a0be620b970"
+    },
+    {
+      "name": "rows_007168_007424.npz",
+      "sha256": "ec9ee8741122780b94c170139d74675d14b1dc7e2a325e27047ff037688333ec"
+    },
+    {
+      "name": "rows_007424_007680.npz",
+      "sha256": "76d2e20bf9b3f94484031a38109168173e0fce717f88bcad23587ae812fd16a7"
+    },
+    {
+      "name": "rows_007680_007936.npz",
+      "sha256": "530602eb5fbbbc77f8f9aa317641805742b061f48861138b76ad50368f6e3b32"
+    },
+    {
+      "name": "rows_007936_008192.npz",
+      "sha256": "a11b09b2bc6fd8769163a98bda4d7fc24f8d2cf7a8ce263b7e43c9626cd2eeec"
+    },
+    {
+      "name": "rows_008192_008448.npz",
+      "sha256": "c4ffd7c1b6b908cd770f1a3af07a04e249df1a59cad479e55bddd74751d63284"
+    },
+    {
+      "name": "rows_008448_008704.npz",
+      "sha256": "c6534b2e04373c44be766a1906f604b561def0ab72cbb924129a4903d55f51a1"
+    },
+    {
+      "name": "rows_008704_008960.npz",
+      "sha256": "19fa10c6d8a050f3e2d9e91be8a28be5c843d607e94d717ab0d5735200b1dc62"
+    },
+    {
+      "name": "rows_008960_009216.npz",
+      "sha256": "0997565c393578cc5dc7700cfdb9cb50c5661bf941374fb0950379279a939603"
+    },
+    {
+      "name": "rows_009216_009472.npz",
+      "sha256": "0d6ec4328505ac7eac6cc62cdc34e60f71313d93c4d28fad942ffcffd9dab90b"
+    },
+    {
+      "name": "rows_009472_009728.npz",
+      "sha256": "e75b6ee41858c6905faa7d536bbf28f8c06654791a7dcc0020c25ea4684a2c8f"
+    },
+    {
+      "name": "rows_009728_009984.npz",
+      "sha256": "41283be698a520546db4853a15f5f9c43cbe41979329d32230d0f46ec595127f"
+    },
+    {
+      "name": "rows_009984_010240.npz",
+      "sha256": "ec57a60cfd442e7d55eb29d9d4489371a2488983144308d089706c5287bda719"
+    },
+    {
+      "name": "rows_010240_010496.npz",
+      "sha256": "0a17b3fa114571a3ff35c133aeadd6b0a247b6bbc12256981e9fc43960f13da8"
+    },
+    {
+      "name": "rows_010496_010752.npz",
+      "sha256": "c926d670eb57a1663f7b0b024141dc44aaf726d2a49225db2056737cf7ae1fc5"
+    },
+    {
+      "name": "rows_010752_011008.npz",
+      "sha256": "4b5961d6faf553fa78964408f680fba52e67384bda30ca23be8039d8b3ed80df"
+    },
+    {
+      "name": "rows_011008_011264.npz",
+      "sha256": "09cc8d9578ea3859aaae78bce2ca2a15a0a68629b1e92c6e31bc12c9b019f209"
+    },
+    {
+      "name": "rows_011264_011520.npz",
+      "sha256": "ee810f785f81205cf126317717226d39d04c09e201f31f54ed7a1499ccfb0235"
+    },
+    {
+      "name": "rows_011520_011776.npz",
+      "sha256": "26a3bae5100ea22239eabc00cfe08f1b3aeb303f2858336b2ccef0980f5b6472"
+    },
+    {
+      "name": "rows_011776_012032.npz",
+      "sha256": "701482aef682d2b13b0c2170e44348b6a7f5abf940ba7b94c82801d36723a2c7"
+    },
+    {
+      "name": "rows_012032_012288.npz",
+      "sha256": "71f4f1e0ba7b3931f9ccfc8442fc7d86544980eab018f255ba94932dfcdc6b09"
+    },
+    {
+      "name": "rows_012288_012544.npz",
+      "sha256": "5282ec03a138fd8518cc058540d5c9bfacfc38f72097118f6a942f437e3296c7"
+    },
+    {
+      "name": "rows_012544_012785.npz",
+      "sha256": "f1b31fe94b0bc8a4f18f9bf83a68b082bb8dc533792ce74a074e76583b8bc6b6"
+    }
+  ],
+  "gap_memory": "all training examples and signed proxy_z - judge_z gaps",
+  "gap_weights": "exp(-cosine_distance / validation-selected temperature), normalized over k neighbors",
+  "label": "proxy_z - judge_z > frozen theta",
+  "limitations": "Labels are fixed judge-defined high-gap events, not independent human-confirmed reward hacks. This test bank was already inspected in earlier experiments; this is exploratory follow-up analysis. Base/stage1 breakdowns are not unseen-policy tests because both sources occur in training. A distant query is unknown, not certified safe. Bootstrap intervals resample whole prompts conditional on this frozen encoder, memory order, and fitted detectors; they exclude training/model variability. Saved neural baselines are the user's fitted seed-42 models on the same data and labels; they use different training procedures and are not new runs. No PPO mitigation is tested here.",
+  "mixed_knn_score": "distance-weighted positive fraction among k training neighbors",
+  "positive_knn_score": "mean cosine similarity to k positive training examples",
+  "primary_method": "gap_knn signed_gated",
+  "primary_metric": "judge approximation MSE",
+  "prototype_order": "ascending SHA256(prompt NUL answer); fixed representatives",
+  "prototype_score": "nearest representative cosine similarity; counts are metadata, not probabilities",
+  "ranking": "raw detector score; SHA256 row-id resolves ties independently of labels",
+  "secondary_metrics": "AP, AUROC, recall/precision at 10% review, fixed-candidate judge quality",
+  "settings": {
+    "audit_fraction": 0.1,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 20260909,
+    "cpu_threads": 8,
+    "distance_gate_quantile": 0.95,
+    "distance_temperature": 0.1,
+    "gap_k": [
+      5,
+      15,
+      31,
+      63
+    ],
+    "gap_temperatures": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "insertion_radii": [
+      0.0,
+      0.005,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "mixed_k": [
+      5,
+      15,
+      31,
+      63
+    ],
+    "positive_k": [
+      1,
+      3,
+      5,
+      10,
+      25
+    ],
+    "probe_c": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "query_batch_size": 128
+  },
+  "source_sha256": {
+    "chat_format.py": "813717e8a7cd0376509ab5d22a7ab2656b1f7f643290edfcf9cab9db097a6de1",
+    "extract_embeddings.py": "28647abb688a96367e06fd0bb494aac74f1a73d3c11d292d7a0ff754ec503a2c",
+    "gap_correction.py": "9f7971677cc198824b02272fc407408f386ad9aaa8f5362be7d7700a5a82f86c",
+    "knn_core.py": "6fd334bfb9235e922a8b5df762232f3ee0e708bf2f57c03ba34e502f7cfcd435",
+    "reward_metrics.py": "8884535818d18e7452e27d58268990ad359dcd05e8ffc111cfda77eb588f017f",
+    "run_experiment.py": "fe841f48272e19803155f7def0864bdc34e609e276d8afbf5fa17adaacfce1cd"
+  },
+  "split_roles": {
+    "calibration": "monotonic probability calibration and fixed-quantile distance cutoff",
+    "model_validation": "gap k and temperature by gap MSE; detector radius, k, C by AP",
+    "selection": "raw-score 90th-percentile flag gate",
+    "test": "previously inspected evaluation; no fitting",
+    "training": "memory and linear-probe fitting"
+  },
+  "version": 2,
+  "versions": {
+    "numpy": "2.1.2",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.1",
+    "torch": "2.8.0+cu128",
+    "transformers": "5.16.1"
+  }
+}

@@ -1,0 +1,27 @@
+test_runner_reuses_generated_and_scored_batches (test_best_of_n.RecoveryIntegrationTests.test_runner_reuses_generated_and_scored_batches) ... ERROR
+test_bootstrap_paired_and_deterministic (test_best_of_n.SelectionTests.test_bootstrap_paired_and_deterministic) ... ok
+test_default_settings_valid (test_best_of_n.SelectionTests.test_default_settings_valid) ... ok
+test_exclusion_groups_include_previous_memory_and_final (test_best_of_n.SelectionTests.test_exclusion_groups_include_previous_memory_and_final) ... ok
+test_judge_scores_cannot_change_knn_choice (test_best_of_n.SelectionTests.test_judge_scores_cannot_change_knn_choice) ... ok
+test_offset_reduces_mse_but_not_selection (test_best_of_n.SelectionTests.test_offset_reduces_mse_but_not_selection) ... ok
+test_perfect_correction_recovers_best (test_best_of_n.SelectionTests.test_perfect_correction_recovers_best) ... ok
+test_report_end_to_end (test_best_of_n.SelectionTests.test_report_end_to_end) ... C:\Users\misha\AppData\Roaming\Python\Python312\site-packages\dateutil\tz\tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  EPOCH = datetime.datetime.utcfromtimestamp(0)
+ok
+test_shard_recovery_rejects_corruption_and_changed_protocol (test_best_of_n.SelectionTests.test_shard_recovery_rejects_corruption_and_changed_protocol) ... ok
+test_ties_duplicates_and_incomplete_pool (test_best_of_n.SelectionTests.test_ties_duplicates_and_incomplete_pool) ... ok
+
+======================================================================
+ERROR: test_runner_reuses_generated_and_scored_batches (test_best_of_n.RecoveryIntegrationTests.test_runner_reuses_generated_and_scored_batches)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\best_of_n\test_best_of_n.py", line 77, in test_runner_reuses_generated_and_scored_batches
+    from bon_run import evaluate_generator
+  File "C:\Users\misha\Documents\reward_gap_knn\.showcase-check\runtime\best_of_n\bon_run.py", line 2, in <module>
+    import argparse, fcntl, os, signal, sys, time, traceback, zipfile
+ModuleNotFoundError: No module named 'fcntl'
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.103s
+
+FAILED (errors=1)

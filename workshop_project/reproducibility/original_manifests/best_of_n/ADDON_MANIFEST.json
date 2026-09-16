@@ -1,0 +1,14 @@
+{
+  "RUN_BEST_OF_N.ipynb": "bb2351a629e0dca8badb0b0cfcefc769fd150de10d911838dfa3ce8271a9e5a5",
+  "RUN_BEST_OF_N_CONFIRMATION.ipynb": "56a33775b54189213813025657f2cb4de06548c02373edd3d0bd9690e0144262",
+  "best_of_n/README.md": "04c229ffba9371b81ba7d974e2ca2de159d455d2a0198ed3c1589ae7bcbc4181",
+  "best_of_n/VALIDATION.json": "98ca244511919d626b9783af457f043111f8f8dfd9fbd3f73b951d84236c5629",
+  "best_of_n/bon_data.py": "c39b88cfa73e0351cb420bab123fcf553720256d9c8c704c255bd091f323bd80",
+  "best_of_n/bon_io.py": "dc186807b32e822513a53d2f89973c3cff63d7377e1a1815fdd2a4f07aef8ec2",
+  "best_of_n/bon_metrics.py": "7cfd054595c5a7b1e34ad8693310c71404cde2831c51f641fcd14c00a168e0a2",
+  "best_of_n/bon_run.py": "6abe333f6fda9de1287dad8c08dfea2a81baa68a26b052024f2b00790938a29c",
+  "best_of_n/expected_sources.json": "0d769619cfad75bebbaba983b0b1e72bcea07dda46afcc15bbb9d4b285d65723",
+  "best_of_n/launch_best_of_n.py": "3f1f51b347f71751b15bdd264d33e5aa3eda7dcad00dd0e1358d5337906f1ce8",
+  "best_of_n/settings.json": "1e1c43eaeafb246d0bdeaef9772c3eba99d9d1234bcd11569a2105183d76650f",
+  "best_of_n/test_best_of_n.py": "654be7de7560d360eacf25c7c65793dfd633f988d1895017c1c4c1458abda73f"
+}

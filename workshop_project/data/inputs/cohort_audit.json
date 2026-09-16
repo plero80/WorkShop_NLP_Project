@@ -1,0 +1,19 @@
+{
+  "selection_seed": 20260910,
+  "eligible_distinct_groups": 4548,
+  "counts": {
+    "development_fit": 1024,
+    "development_validation": 512,
+    "offline_test": 512,
+    "fresh_final": 1024,
+    "refresh_round1": 1024
+  },
+  "source": "Previously unused rows of the original HH train-source pool; not HH official test.",
+  "exclusion": "NFKC, case-folded, whitespace-normalized first-user-turn groups from used PPO training, previous final/monitor, historical candidate bank and previous prompts.",
+  "no_score_based_selection": true,
+  "root_disjoint": true,
+  "source_archive_sha256": "5b169452a22226c7237c196eeb1d8e4411a86406ebb76173e584894b6ff457e0",
+  "forbidden_opening_groups": 18237,
+  "forbidden_opening_hash": "4acb08fc487cefe0fe1db3b3731d2ef3ee97cef72c93d290ae7211584de2cec4",
+  "group_normalization": "NFKC + casefold + whitespace collapse; SHA256 of canonical JSON string"
+}

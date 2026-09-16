@@ -1,0 +1,84 @@
+{
+  "gap_knn": {
+    "calibration": {
+      "a": 1.7120041696691908,
+      "b": -3.936320273012007,
+      "mean": -0.00371925868267028,
+      "std": 0.3045511760655432
+    },
+    "distance_cutoff": 0.012577595189213753,
+    "distance_gate_quantile": 0.95,
+    "distance_gate_rule": "mean k-neighbor cosine distance < distance_cutoff",
+    "gate": 0.37866492385749084,
+    "gate_rule": "raw score > selection 90th percentile",
+    "memory_vectors": 7990,
+    "parameters": {
+      "k": 31,
+      "temperature": 0.05
+    },
+    "selection_flagged_fraction": 0.09912170639899624
+  },
+  "linear_probe": {
+    "calibration": {
+      "a": 1.9448120474786175,
+      "b": -4.247042466967439,
+      "mean": -1.0702744100210215,
+      "std": 1.6063633164394648
+    },
+    "gate": 1.172574520111084,
+    "gate_rule": "raw score > selection 90th percentile",
+    "memory_vectors": 0,
+    "parameters": {
+      "C": 10.0,
+      "intercept": -4.68209981918335
+    },
+    "selection_flagged_fraction": 0.09912170639899624
+  },
+  "mixed_knn": {
+    "calibration": {
+      "a": 0.9271379150100026,
+      "b": -3.3682300890759547,
+      "mean": 0.048849730439025095,
+      "std": 0.06374203637714378
+    },
+    "gate": 0.14313221260310466,
+    "gate_rule": "raw score > selection 90th percentile",
+    "memory_vectors": 7990,
+    "parameters": {
+      "k": 63,
+      "temperature": 0.1
+    },
+    "selection_flagged_fraction": 0.09912170639899624
+  },
+  "positive_knn": {
+    "calibration": {
+      "a": 1.8591095556609822,
+      "b": -3.4520123369358036,
+      "mean": 0.9873335941861359,
+      "std": 0.004618472976427277
+    },
+    "gate": 0.9906697273254395,
+    "gate_rule": "raw score > selection 90th percentile",
+    "memory_vectors": 408,
+    "parameters": {
+      "k": 10
+    },
+    "selection_flagged_fraction": 0.09912170639899624
+  },
+  "positive_prototypes": {
+    "calibration": {
+      "a": 0.3089159622036084,
+      "b": -2.907539875630398,
+      "mean": 0.97047623853958,
+      "std": 0.009004953507974475
+    },
+    "gate": 0.9823446273803711,
+    "gate_rule": "raw score > selection 90th percentile",
+    "memory_vectors": 2,
+    "parameters": {
+      "k": 1,
+      "radius": 0.1
+    },
+    "selection_flagged_fraction": 0.09912170639899624
+  }
+}

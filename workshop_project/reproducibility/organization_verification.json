@@ -1,0 +1,16 @@
+{
+  "files_copied_and_sha256_verified": 48796,
+  "original_bytes_preserved": 6165777273,
+  "excluded_caches_and_process_markers": 478,
+  "by_directory": {
+    "reproducibility": 16,
+    "notebooks": 19,
+    "archive": 20,
+    "docs": 11,
+    "code": 663,
+    "configs": 14,
+    "data": 53,
+    "results": 48000
+  },
+  "passed": true
+}

@@ -1,0 +1,24 @@
+{
+  "recorded_at_utc": "2026-09-16T08:16:42.867398+00:00",
+  "passed": true,
+  "cli_tests_passed": 27,
+  "test_command": "python -m pytest tests/experiment_cli -q --disable-warnings --tb=short",
+  "junit_report": "active_validation/experiment_cli_tests.xml",
+  "registered_additions_checked_in_source_and_runtime": 40,
+  "additions_manifest_sha256": "0bdc5d73f6c6891eb12408b4651daccdf7e9ab7e9bace19abfc105fb6a5fcc81",
+  "shared_core_sources_unchanged": 15,
+  "notebook_cells_compile": true,
+  "requirements_includes_verified": [
+    "experiment_cli/requirements.txt",
+    "gsm8k_experiment/requirements.txt",
+    "requirements.txt"
+  ],
+  "code_only_verify": {
+    "files_checked": 150,
+    "changed_or_missing": [],
+    "passed": true
+  },
+  "scope": "GSM8K YAML presets, CLI, and notebook entry points; scientific runners unchanged.",
+  "gpu_jobs_started": 0,
+  "models_downloaded": 0
+}

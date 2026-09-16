@@ -1,0 +1,66 @@
+{
+  "active_families": [
+    "best_of_n",
+    "exploration",
+    "distillation",
+    "followup"
+  ],
+  "mapped_files_checked_for_presence_and_size": 26669,
+  "full_artifact_hash_check_rerun": false,
+  "python_files_parsed": 40,
+  "notebooks_parsed": 6,
+  "source_guard_hashes_verified": 22,
+  "supporting_cohort_hashes_verified": 21,
+  "broken_navigation_links": [],
+  "parent_artifacts_and_exclusion_cohorts_retained": true,
+  "code_files_sha256_verified": 110,
+  "code_restore_files_verified": 110,
+  "offline_tests": {
+    "run": 35,
+    "passed": 26,
+    "errors": 9,
+    "all_passed": false,
+    "error_reason": "Windows platform limitations: missing fcntl and os.fsync bad file descriptor.",
+    "suites": [
+      {
+        "suite": "core",
+        "returncode": 1,
+        "tests": 15,
+        "error_messages": [
+          "[Errno 9] Bad file descriptor",
+          "No module named 'fcntl'",
+          "No module named 'fcntl'",
+          "No module named 'fcntl'"
+        ],
+        "log": "active_validation/core.txt"
+      },
+      {
+        "suite": "best_of_n",
+        "returncode": 1,
+        "tests": 10,
+        "error_messages": [
+          "No module named 'fcntl'"
+        ],
+        "log": "active_validation/best_of_n.txt"
+      },
+      {
+        "suite": "knn_distillation",
+        "returncode": 1,
+        "tests": 10,
+        "error_messages": [
+          "No module named 'fcntl'",
+          "No module named 'fcntl'",
+          "No module named 'fcntl'",
+          "No module named 'fcntl'"
+        ],
+        "log": "active_validation/knn_distillation.txt"
+      }
+    ],
+    "scope_note": "Results from the preceding source-cleanup check; not rerun for this archive-only deletion."
+  },
+  "archive_folder_deleted": true,
+  "archive_files_removed_from_map": 21468,
+  "files_excluded": 22127,
+  "organization_mapping_consistent": true,
+  "archive_cannot_be_restored_by_current_map": true
+}

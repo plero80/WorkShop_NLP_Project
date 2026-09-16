@@ -1,0 +1,64 @@
+{
+  "recorded_at_utc": "2026-09-16T07:52:28.830790+00:00",
+  "platform": "Windows; Python 3.12; offline CPU fixtures",
+  "versions": {
+    "torch": "2.6.0+cu124",
+    "transformers": "5.16.1",
+    "peft": "0.18.1",
+    "accelerate": "1.13.0",
+    "datasets": "5.0.1",
+    "numpy": "1.26.4",
+    "pytest": "9.0.2"
+  },
+  "tests": [
+    {
+      "command": "python -m pytest tests/gsm8k -q --disable-warnings --tb=short",
+      "passed": 76,
+      "failed": 0,
+      "warnings": 2,
+      "seconds": 29.28
+    },
+    {
+      "command": "python -m pytest tests/gsm8k/test_suite_runner.py -q --disable-warnings --tb=short",
+      "passed": 3,
+      "failed": 0,
+      "seconds": 3.05,
+      "reason": "Retested suite/export after including shared requirements in export."
+    }
+  ],
+  "coverage": [
+    "Tiny Qwen2 policy, Qwen3 judge, Qwen3 MoE teacher",
+    "Shared trainer invocation, update parity, frozen reference, and exact optimizer continuation",
+    "Generation likelihood agreement, padding, microbatch equivalence",
+    "All six reward arms: pilot, full, completed rerun and final-protocol guard",
+    "Numeric grading, retry parsing, question-group exclusion, and matched teacher memories",
+    "Tampered checkpoint and legacy migration rejection",
+    "Portable exclusive output lock",
+    "Multi-seed orchestration and export scope"
+  ],
+  "code_only_verification": {
+    "files_checked": 142,
+    "changed_or_missing": [],
+    "passed": true
+  },
+  "cli_help_passed": [
+    "run",
+    "suite",
+    "status",
+    "export"
+  ],
+  "new_files_hash_checked_and_compiled": 32,
+  "combined_registered_files": 26701,
+  "shared_core_files_unchanged": 15,
+  "shared_engine_sha256": "e31b160a3d2cc42040a23e9d594013025d9b7c945dd0c1de3a073ed0cbc43153",
+  "additions_manifest_sha256": "66517ef37cf9267ab060acdf42e52625c2e022872d676f6e37b23f08d2e212c0",
+  "separate_ppo_optimizer_loop_present": false,
+  "archive_recreated": false,
+  "gpu_training_executed": false,
+  "pretrained_weights_downloaded": false,
+  "limitations": [
+    "CPU fixture tests do not establish GSM8K quality, full-model GPU memory fit, or GPU throughput.",
+    "Unrelated original Linux-only operational tests were not rerun; shared sources remain unchanged."
+  ],
+  "passed": true
+}

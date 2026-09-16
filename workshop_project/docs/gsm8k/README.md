@@ -88,3 +88,37 @@ The integration passed **76 offline tests**. Tests cover generation/log-probabil
 microbatch equivalence, frozen reference weights, exact optimizer continuation,
 grading and memory behavior, and a tiny-model pilot/full/resume run. Model
 fixtures are created locally without downloading pretrained weights.
+
+## Resume after the inline-score formatting failure
+
+The reply `Judgement: Correctness_score: 5` contains an explicit rating but the
+original parser required the score on its own line. The `grading_inline_score_v1`
+fix accepts this exact complete inline form for ratings 1 through 5. It rejects
+truncated replies, competing scores, quotes, ranges, and inferred ratings.
+
+For the known failure during initial memory preparation, pull the update in the
+Git checkout and apply the audited repair to the existing runtime:
+
+```bash
+cd /workspace/WorkShop_NLP_Project
+git pull --ff-only
+source .venv/bin/activate
+python workshop_project/reproducibility/repair_gsm8k_inline_score.py --runtime run/gsm8k
+cd run/gsm8k
+export HF_HOME=/workspace/hf-cache
+export TMPDIR=/workspace/tmp
+mkdir -p "$TMPDIR"
+python -m experiment_cli run gsm8k-b200
+```
+
+The repair takes the output lock, checks the exact parent code and shared-engine
+hashes, and requires a matching saved failed reply before training has begun.
+It changes only the two parser/scorer source files and the manifest source
+identity, saving the parent manifest and patch details under `source_amendments/`.
+Generated responses, calibration artifacts, initial weights, and existing valid
+cached scores remain untouched. It can safely finish an interrupted repair and
+does nothing on a repeated completed repair. This is a recorded protocol amendment,
+not permission to resume arbitrary code changes or standalone ZIP checkpoints.
+
+For a different output, pass `--output gsm8k_outputs/NAME` (relative to the runtime).
+Newly restored runtimes already include the corrected parser.

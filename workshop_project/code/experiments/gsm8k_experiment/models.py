@@ -15,7 +15,7 @@ from .shared import flat_config, pack_items
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 from peft import LoraConfig, get_peft_model, get_peft_model_state_dict, set_peft_model_state_dict
 
-from .answers import parse_rating, parse_rating_prose
+from .answers import parse_rating, parse_rating_prose, parse_rating_inline
 from .common import append_jsonl, digest
 from .recovery import RECOVERY_ID, RECOVERY_POLICY, FORMAT_ID
 
@@ -300,17 +300,21 @@ class RewardScorer:
                 attempt_budget = s["max_new_tokens"]
                 for attempt, budget in enumerate(budgets + [None]):
                     if value["score"] is None and not value.get("grading_length_capped", False):
-                        recovered = parse_rating_prose(value["judge_output"])
+                        recovered = parse_rating_inline(value["judge_output"])
+                        format_id, form = "grading_inline_score_v1", "explicit_inline_score"
+                        if recovered is None:
+                            recovered = parse_rating_prose(value["judge_output"])
+                            format_id, form = FORMAT_ID, "explicit_terminal_score_sentence"
                         if recovered is not None:
                             value["score"] = float(recovered)
                             value["grading_format_recovery"] = {
-                                "id": FORMAT_ID, "form": "explicit_terminal_score_sentence",
+                                "id": format_id, "form": form,
                                 "max_new_tokens": attempt_budget,
                             }
                             self.cache.event(role=self.role, stage=stage, kind="score_format_recovered",
                                              examples=1, question_id=row["id"], score=recovered,
-                                             max_new_tokens=attempt_budget, recovery_protocol=FORMAT_ID)
-                            print(f"{self.role} {stage}: accepted explicit score sentence for {row['id'][:12]}: {recovered}", flush=True)
+                                             max_new_tokens=attempt_budget, recovery_protocol=format_id)
+                            print(f"{self.role} {stage}: accepted {form} for {row['id'][:12]}: {recovered}", flush=True)
                     if value["score"] is not None:
                         break
                     append_jsonl(self.cache.output / "invalid_judge_outputs.jsonl", {"role": self.role, "stage": stage,

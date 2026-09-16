@@ -1,0 +1,23 @@
+{
+  "recorded_at_utc": "2026-09-16T09:40:38.200212+00:00",
+  "passed": true,
+  "tests": {
+    "inline_score_gsm8k_tests.xml": {
+      "tests": 95,
+      "failed": 0,
+      "seconds": 27.251
+    },
+    "inline_score_repair_tests.xml": {
+      "tests": 9,
+      "failed": 0,
+      "seconds": 1.805
+    }
+  },
+  "scope": "Exact reported inline score accepted only on complete replies; cached valid scores preserved; audited pre-training repair verifies source/core/config/evidence/lock and supports interruption recovery.",
+  "patch_id": "grading_inline_score_v1",
+  "source_before": "9f82a55461008f5b82d3febf7755bbb5480e5d6304f2883e41a0fb58685c7cd8",
+  "source_after": "20a9eba529df881261ba3c3df8c26285ddd40fdf22fd7bff3574658b78c72806",
+  "actual_runner_fingerprint_verified": true,
+  "gpu_training_executed": false,
+  "additions_manifest_sha256": "a6214a6225faacea6860a8b6dc3e6e2e2b00cf058370f544dcd48aa3faede83f"
+}

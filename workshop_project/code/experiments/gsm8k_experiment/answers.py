@@ -74,6 +74,12 @@ def parse_rating(text):
     return int(matches[0]) if len(matches) == 1 else None
 
 
+def parse_rating_inline(text):
+    """One complete inline declaration, without rationale or candidate quoting."""
+    match = re.fullmatch(r"\s*Judgement:\s*Correctness_score\s*:\s*([1-5])\s*[.!]?\s*", text, re.IGNORECASE)
+    return int(match[1]) if match else None
+
+
 def parse_rating_prose(text):
     """Read one explicit terminal score sentence; never infer from arithmetic.
 

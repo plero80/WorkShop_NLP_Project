@@ -59,8 +59,8 @@
     {
       "original": "gsm8k_experiment/README.md",
       "organized": "docs/gsm8k/README.md",
-      "bytes": 4575,
-      "sha256": "e66f8caca59e2bcfaca230af3a5295d75845aa3a212f1960d733e843cfc9145c"
+      "bytes": 6201,
+      "sha256": "c5c3df826d7a2aeb8612828d93854b304df4f7539eb00ce4c39e51572050c21a"
     },
     {
       "original": "gsm8k_experiment/__init__.py",
@@ -71,8 +71,8 @@
     {
       "original": "gsm8k_experiment/answers.py",
       "organized": "code/experiments/gsm8k_experiment/answers.py",
-      "bytes": 3873,
-      "sha256": "595b849a05e10a0fc4f7c58a59351355f2f7aada57b02d1f3eafc08b22074f49"
+      "bytes": 4141,
+      "sha256": "50f317d765e18c1bf871cfe8e9358d03c685f62333e71b29e1cb008e82249281"
     },
     {
       "original": "gsm8k_experiment/assets.py",
@@ -125,8 +125,8 @@
     {
       "original": "gsm8k_experiment/models.py",
       "organized": "code/experiments/gsm8k_experiment/models.py",
-      "bytes": 19646,
-      "sha256": "e7c4455f8a69f9214d099ddf7f9fceb19ea2f023189bbd87822ac4e3d2d9b526"
+      "bytes": 19929,
+      "sha256": "14533a41443595691ee7bc0f1c5da4d8a082bdf9ac8b97cc171c74a781c44f8a"
     },
     {
       "original": "gsm8k_experiment/numeric.py",
@@ -221,8 +221,8 @@
     {
       "original": "tests/gsm8k/test_score_format.py",
       "organized": "code/tests/gsm8k/test_score_format.py",
-      "bytes": 5571,
-      "sha256": "d3c40183bbadc272102adf27de7c77f810f896ad050c6ed6f872613ad11d4248"
+      "bytes": 8036,
+      "sha256": "f0c46acee1e934723e8ecb2176c94d626a827c42fa5226e9075b35ec3d5f64bf"
     },
     {
       "original": "tests/gsm8k/test_shared_integration.py",

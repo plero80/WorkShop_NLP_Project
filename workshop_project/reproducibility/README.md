@@ -38,6 +38,11 @@ report is in `active_validation/experiment_cli_tests.xml`. These reports describ
 their respective source snapshots, rather than claiming later changes were tested.
 `prior_validation/`, `organization_verification.json`, and other earlier check
 records describe the initial, larger project and are historical evidence.
+
+`gsm8k_inline_score_patch.json` pins the parent and corrected source hashes for the
+reported inline-grade formatting failure. `repair_gsm8k_inline_score.py` performs
+the audited pre-training recovery described in the [GSM8K guide](../docs/gsm8k/README.md).
+`inline_score_validation.json` and its logs record the parser and recovery tests.
 The previous full snapshot and submission ZIPs remain in `../../original_project/`.
 
 Saved run identities and source guards have not been rewritten. Extra root

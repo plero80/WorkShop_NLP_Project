@@ -7,7 +7,7 @@ import pytest
 import torch
 
 from test_tiny_models import tiny_assets, items
-from gsm8k_experiment.answers import parse_rating, parse_rating_prose
+from gsm8k_experiment.answers import parse_rating, parse_rating_prose, parse_rating_inline
 from gsm8k_experiment.common import atomic_json, digest, read_json, read_jsonl
 from gsm8k_experiment.models import Policy, RewardScorer, ScoreCache
 from gsm8k_experiment.ppo import load_checkpoint, optimizer_for, prepare_rollout, save_checkpoint, update
@@ -87,18 +87,66 @@ def test_scorer_accepts_explicit_reply_preserves_cached_scores_and_logs_format(t
     cache.close()
 
 
-def test_length_capped_prose_is_not_accepted(tiny_assets, tmp_path, monkeypatch):
+@pytest.mark.parametrize('reply', [FAILED_REPLY, 'Judgement: Correctness_score: 5'])
+def test_length_capped_prose_is_not_accepted(tiny_assets, tmp_path, monkeypatch, reply):
     config, resolved = tiny_assets
     config['scoring']['mode'] = 'rationale_then_score'
     cache = ScoreCache(tmp_path)
     scorer = RewardScorer('judge', config, resolved, cache)
     def infer(rows, stage, max_new_tokens, retry=False):
-        return [dict(score=None, judge_output=FAILED_REPLY, input_tokens=200,
+        return [dict(score=None, judge_output=reply, input_tokens=200,
                      output_tokens=max_new_tokens, grading_length_capped=True, embedding=None)]
     monkeypatch.setattr(scorer, '_infer', infer)
     with pytest.raises(RuntimeError, match='No fake score'):
         scorer.score(items()[:1], 'capped')
     assert len(read_jsonl(tmp_path / 'invalid_judge_outputs.jsonl')) == 5
+    cache.close()
+
+
+@pytest.mark.parametrize('score', range(1, 6))
+def test_reported_inline_reply(score):
+    reply = f'Judgement: Correctness_score: {score}'
+    assert parse_rating(reply) is None
+    assert parse_rating_inline(reply) == score
+
+
+@pytest.mark.parametrize('reply', [
+    'Judgement: Correctness_score: ', 'Judgement: Correctness_score: 0',
+    'Judgement: Correctness_score: 6', 'Judgement: Correctness_score: 5.5',
+    'Judgement: Correctness_score: 5/5', 'Judgement: Correctness_score: 5 or 4',
+    'Judgement: Correctness_score: 5\nCorrectness_score: 4',
+    'Judgement: Candidate says Correctness_score: 5',
+    'Judgement: "Correctness_score: 5"', 'Judgement: Correctness_score: 5 maybe',
+])
+def test_ambiguous_inline_replies_rejected(reply):
+    assert parse_rating_inline(reply) is None
+
+
+@pytest.mark.parametrize('role', ['proxy', 'judge', 'judge30b'])
+def test_inline_reply_recovers_without_retry_and_keeps_valid_cache(tiny_assets, tmp_path, monkeypatch, role):
+    config, resolved = tiny_assets
+    config['scoring']['mode'] = 'rationale_then_score'
+    cache = ScoreCache(tmp_path)
+    scorer = RewardScorer(role, config, resolved, cache)
+    calls = []
+    emb = np.full(32, 1 / np.sqrt(32), dtype=np.float32) if role == 'proxy' else None
+    def infer(rows, stage, max_new_tokens, retry=False):
+        calls.append(max_new_tokens)
+        return [dict(score=None, judge_output='Judgement: Correctness_score: 5', input_tokens=200,
+                     output_tokens=10, grading_length_capped=False, embedding=emb) for _ in rows]
+    monkeypatch.setattr(scorer, '_infer', infer)
+    row = items()[1]
+    key = digest([scorer.identity, row['question'], row['reference'], row['response']])
+    cache.put(key, dict(score=4., judge_output='Correctness_score: 4', embedding=emb))
+    before = cache.db.execute('SELECT result, embedding FROM scores WHERE key=?', (key,)).fetchone()
+    result = scorer.score(items(), 'memory')
+    assert calls == [160]
+    assert [r['score'] for r in result] == [5, 4]
+    assert result[0]['grading_format_recovery']['id'] == 'grading_inline_score_v1'
+    assert result[0]['grading_format_recovery']['form'] == 'explicit_inline_score'
+    assert cache.db.execute('SELECT result, embedding FROM scores WHERE key=?', (key,)).fetchone() == before
+    scorer.score(items(), 'memory')
+    assert calls == [160]
     cache.close()
 
 

@@ -3,8 +3,9 @@
     python submission.py --destination ../submission.zip
     python submission.py --destination ../submission-with-results.zip --results ../run/gsm8k/gsm8k_outputs/b200
 
-Only Git-tracked project files enter the source tree. Runtime copies, backups,
-model weights and environments are excluded. Results never add another code copy.
+Only Git-tracked project files enter the source tree, including reference input
+adapters. Runtime copies, backups and environments are excluded. Added results
+contain no generated checkpoints or copied source.
 """
 from __future__ import annotations
 

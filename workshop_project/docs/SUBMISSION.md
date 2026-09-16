@@ -22,8 +22,9 @@ From the repository root, create a source-only submission:
 python workshop_project/submission.py --destination submission-source.zip
 ```
 
-This includes tracked project code, configurations, notebooks, input files,
-documentation, and provenance. There is one active source tree, no `run/`, no
+This includes tracked project code, configurations, notebooks, input files
+(including the original reference adapters), documentation, and provenance.
+There is one active source tree, no `run/`, no
 backup snapshot, and no environments. `SUBMISSION_MANIFEST.json` records file
 hashes and the Git commit at packaging time. The builder needs a Git checkout;
 running GSM8K from an extracted submission does not require Git.

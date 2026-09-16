@@ -483,6 +483,36 @@ Sources: [base settings](../configs/gsm8k/settings.json),
 [preparation/training/evaluation](../code/experiments/gsm8k_experiment/run.py),
 [matched teacher memories](../code/experiments/gsm8k_experiment/teacher_memory.py).
 
+## Full fresh HH run on a new pod (GPU run pending)
+
+The [fresh launcher](hh_fresh/README.md) starts from pinned pretrained models
+and downloaded HH-RLHF. It consumes no old experiment labels or checkpoints.
+Seeds are **42, 43, 44**. It reuses the existing PPO implementation.
+
+- Shared fresh calibration: **400 prompts / 800 answers**.
+- Shared fresh M0: **2,000 prompts / 8,000 answers**.
+- Three parent-stage training pools: **3,200 distinct prompts each**.
+- Two refresh cohorts: **1,024 prompts/answers each per seed**.
+- Memory sizes: **8,000 -> 9,024 -> 10,048 rows**.
+- Ridge validation: **400 prompts / 800 answers per seed**.
+- Offline prediction evaluation: **400 other prompts / 800 answers per seed**.
+- Final-arm training pool: **2,400 prompts**, with 3,200 rollout slots per arm.
+- Monitoring: **512 prompts** per final arm at updates 350 and 400.
+- Refresh comparisons: **2,048 shared HH test prompts**, evaluated for five
+  first-/second-refresh policy checkpoints per seed.
+- Final proxy/kNN/ridge evaluation: **512 separate HH test prompts per arm/seed**.
+
+Each seed trains one M0 parent, two first-refresh comparison arms, two
+second-refresh comparison arms, and three final reward arms: **8 x 100 = 800
+PPO updates per seed**, **2,400 total**, generating **76,800 PPO rollout answers**.
+The final policies are at update 400. The total includes all comparison forks.
+The complete planned judge budget is **64,288 scores**, with zero judge calls
+inside PPO. All outcomes, controls and label budgets are newly generated.
+
+The fresh 8,000-row initial memory is a deliberate new specification; it is not
+a replay of the historical 7,990-row memory. Every cohort is separated by
+conversation opening before scoring, including the parent training pools.
+
 ## Scope of the saved evidence
 
 The removed experiment implementations are not additional active experiments

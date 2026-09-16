@@ -23,6 +23,16 @@ prompt counts, kNN memory, seeds, and training/evaluation budget.
 
 ## Running the code
 
+For a **new pod with no saved experiments**, run the complete HH-RLHF pipeline:
+
+```bash
+python hh_fresh.py run --dry-run
+python hh_fresh.py run
+```
+
+It downloads its inputs, rebuilds both memory refreshes, and trains all proxy,
+kNN and ridge controls for seeds 42/43/44. See the [fresh-run setup](docs/hh_fresh/README.md).
+
 Run the new matched HH-RLHF M2 ridge PPO arm on the RTX PRO 6000:
 
 ```bash

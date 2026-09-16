@@ -41,12 +41,12 @@ def aggregate(table, keys):
     return result.reset_index()
 
 
-def policy_intervals(frames, draws, seed):
+def policy_intervals(frames, draws, seed, comparisons=None):
     metrics = {'judge_z': 'judge_delta', 'high_gap': 'high_gap_delta', 'response_tokens': 'length_delta',
                'completion_eos': 'completion_delta', 'refusal_diagnostic': 'refusal_diagnostic_delta'}
     rng = np.random.default_rng(seed)
     records, paired = [], []
-    for alternative, reference in [('knn', 'proxy'), ('ridge', 'proxy'), ('ridge', 'knn')]:
+    for alternative, reference in (comparisons if comparisons is not None else [('knn', 'proxy'), ('ridge', 'proxy'), ('ridge', 'knn')]):
         seeds = sorted(s for s, b in frames if b == alternative and (s, reference) in frames)
         differences = []
         for s in seeds:

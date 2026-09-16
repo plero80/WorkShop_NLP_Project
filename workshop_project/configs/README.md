@@ -10,6 +10,8 @@
   ridge/kNN comparison and memory-budget ablation, run with `hh_offline.py`.
 - [experiments/hh-ridge-ppo.yaml](experiments/hh-ridge-ppo.yaml): matched M2
   ridge-reward continuation for three seeds, run with `hh_ridge_ppo.py`.
+- [experiments/hh-fresh.yaml](experiments/hh-fresh.yaml): full three-seed HH run
+  with two refreshes and new proxy/kNN/ridge controls, run with `hh_fresh.py`.
 
 Exploration settings are embedded in its notebooks. Retained settings are
 unchanged. Source guards are under

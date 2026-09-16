@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "description": "New GSM8K integration, YAML CLI, HH-RLHF offline comparisons and matched M2 ridge PPO; separate from immutable original file map.",
+  "description": "New GSM8K integration, YAML CLI, HH-RLHF offline comparisons, matched M2 ridge PPO, and full fresh HH training with two memory refreshes; separate from immutable original file map.",
   "files": [
     {
       "original": "README.md",
       "organized": "README.md",
-      "bytes": 4290,
-      "sha256": "b7daa306f3136528283e86b08944aaa5c487d492f266abd90f9d80b9cddad385"
+      "bytes": 4615,
+      "sha256": "693c53e3fd67cb284953a8b9187afa9e7ef6d962abc36b279c042b9fdce7c75a"
     },
     {
       "original": "code/README.md",
       "organized": "code/README.md",
-      "bytes": 1614,
-      "sha256": "1dde8de1192cd4550547aa886788b501c8de4bd324c7e3ec4a27432b40408458"
+      "bytes": 1868,
+      "sha256": "f20579dd0a6f21f87732bfe35719d94bd9a3da2f2fedb66d09bb789d68e03a57"
     },
     {
       "original": "experiment_cli/__init__.py",
@@ -203,8 +203,8 @@
     {
       "original": "hh_ridge_ppo/reports.py",
       "organized": "code/experiments/hh_ridge_ppo/reports.py",
-      "bytes": 14346,
-      "sha256": "e47b2b07254de6f9e13fc6c70b82632287e18d5823728e1e2d2e219d361a5ed4"
+      "bytes": 14410,
+      "sha256": "f70c87829c67edbc5244df9c3f75c32742cc5fd78c6062703132e83d53575b3a"
     },
     {
       "original": "hh_ridge_ppo/reward.py",
@@ -293,8 +293,8 @@
     {
       "original": "configs/README.md",
       "organized": "configs/README.md",
-      "bytes": 1021,
-      "sha256": "4378224aa38d6e825e91749fe2fa6725e5cc390d2333792a9f148412993a798c"
+      "bytes": 1181,
+      "sha256": "743058d9ce0b9ad645ff54f06b3e1bf54b622183975f81cf9a124af020e8c8bf"
     },
     {
       "original": "experiment_cli/presets/gsm8k-b200.yaml",
@@ -371,14 +371,14 @@
     {
       "original": "docs/EXPERIMENT_DATA_COUNTS.md",
       "organized": "docs/EXPERIMENT_DATA_COUNTS.md",
-      "bytes": 28910,
-      "sha256": "3c0afe5c334232786f84dd7664d0f97677b29ae75e2e4377b4cf5d0c5cfe4508"
+      "bytes": 30679,
+      "sha256": "eb7e4b6567c7c6d31b4d95cc317793e833c702bbe5077c008919e88c182747af"
     },
     {
       "original": "docs/README.md",
       "organized": "docs/README.md",
-      "bytes": 1378,
-      "sha256": "b41ca231e7d8d20a0eb15a86181b6bbc9a974d8fbfd39d1ae16060eff646365b"
+      "bytes": 1540,
+      "sha256": "11f2aee49852a2dbac5b3aa1beeb7e96fa93f8a82d56def25428f7c06ac94287"
     },
     {
       "original": "docs/gsm8k/B200_REWARD_BUG_AUDIT.md",
@@ -781,6 +781,66 @@
       "organized": "requirements-hh-ridge-ppo.txt",
       "bytes": 272,
       "sha256": "7b0ccfcf50e7a6fd5ca7f1c54bed1f85f7d9853bd3d07869f049ee8293931a09"
+    },
+    {
+      "original": "hh_fresh.py",
+      "organized": "hh_fresh.py",
+      "bytes": 339,
+      "sha256": "19454e54f486f0095164ee2bae92477bfa0c58525014287ce1f9e11088d3ddb6"
+    },
+    {
+      "original": "requirements-hh-fresh.txt",
+      "organized": "requirements-hh-fresh.txt",
+      "bytes": 91,
+      "sha256": "6d188ceb3dee86296f691f761416c8d1d2475fa196ce00616095447cdcc68178"
+    },
+    {
+      "original": "configs/experiments/hh-fresh.yaml",
+      "organized": "configs/experiments/hh-fresh.yaml",
+      "bytes": 630,
+      "sha256": "188089172d08060b5dbde157ea2a48284ed47a39afcd11a3f88f2d7e16763763"
+    },
+    {
+      "original": "docs/hh_fresh/README.md",
+      "organized": "docs/hh_fresh/README.md",
+      "bytes": 7964,
+      "sha256": "e18bc415b1b5180850d4b9e722faca18bcedf90e0e9168c12593cca28f2b1861"
+    },
+    {
+      "original": "hh_fresh/artifacts.py",
+      "organized": "code/experiments/hh_fresh/artifacts.py",
+      "bytes": 7841,
+      "sha256": "2d58f116db32cb47520dc2e201ef98da267d41541975f84f9e1b3f06d5c47421"
+    },
+    {
+      "original": "hh_fresh/data.py",
+      "organized": "code/experiments/hh_fresh/data.py",
+      "bytes": 4152,
+      "sha256": "b9e79a554f4dc9d9710eb8d811fc59816e9ffd236418a25995389406dd72824e"
+    },
+    {
+      "original": "hh_fresh/reports.py",
+      "organized": "code/experiments/hh_fresh/reports.py",
+      "bytes": 9123,
+      "sha256": "9d3ed7495dff4eddac101260dda1dba7749d0ec00ceab4fd99c53ea4a1d7ebf1"
+    },
+    {
+      "original": "hh_fresh/run.py",
+      "organized": "code/experiments/hh_fresh/run.py",
+      "bytes": 19421,
+      "sha256": "e335719b30a0647498d627489b5446dcc3478b785829398c03ac6ab79b4d2a70"
+    },
+    {
+      "original": "hh_fresh/__init__.py",
+      "organized": "code/experiments/hh_fresh/__init__.py",
+      "bytes": 81,
+      "sha256": "fc103996a4cc2f79692c5c5789302428a4d552a4eaed36b6c68baf5112240823"
+    },
+    {
+      "original": "tests/hh_fresh/test_fresh.py",
+      "organized": "code/tests/hh_fresh/test_fresh.py",
+      "bytes": 9825,
+      "sha256": "7e3aac9577725244040efa8aa127222dc4356dd8c9962978f31f0073bded4215"
     }
   ]
 }

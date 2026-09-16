@@ -1,0 +1,30 @@
+version: 1
+experiment: hh_fresh
+output: results/hh_fresh
+seeds: [42, 43, 44]
+data_seed: 2026091702
+eval_seed: 2026091703
+review_seed: 2026091704
+allow_downloads: true
+extra_hf_cache: null
+stage_updates: 100
+monitor_every: 50
+calibration_answers_per_prompt: 2
+memory_answers_per_prompt: 4
+high_gap_quantile: 0.95
+ridge_alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+bootstrap_samples: 2000
+counts:
+  calibration: 400
+  memory: 2000
+  train_M0: 3200
+  train_M1: 3200
+  train_M2: 3200
+  train_comparison: 2400
+  refresh1: 1024
+  refresh2: 1024
+  validation: 400
+  offline: 400
+  monitor: 512
+  refresh2_eval: 2048
+  final: 512

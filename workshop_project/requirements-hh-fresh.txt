@@ -1,0 +1,2 @@
+# Fresh HH training uses the same shared PPO environment.
+-r requirements-hh-ridge-ppo.txt

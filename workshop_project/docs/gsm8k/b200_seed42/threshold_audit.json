@@ -1,0 +1,99 @@
+{
+  "input_sha256": {
+    "prepared/normalization.json": "06189c2135127f90778ec38e624d9162f240e4d3c6f2babf8b7a2d3ef8421107",
+    "prepared/calibration_raw.jsonl": "3ba556f4f22199b9f4ffd61c1dc3b8b9e0d973fab15b43c7f6f3ee2c93127197",
+    "prepared/memory_raw.jsonl": "b1b260b48afcc55676aaa675d6089524ce816b63dfed4e4108d1d5041f5d7d90",
+    "prepared/selection_scored.jsonl": "06477d2eb33992ddcbd75217daf01e89f48bd1787beab46591b1479e7191bf3f",
+    "prepared_30b/normalization.json": "ee32d28b12d684e5b788c0c66671dd2e437fc308739f17b3c46ac41c7739444f",
+    "prepared_30b/calibration_raw.jsonl": "178b786a68b5e286e7387e9e975ec64d7e6673cd547889fd826ae9022f995e15",
+    "prepared_30b/memory_raw.jsonl": "93a64422bc1804274fb6619491aded443b43e671f4ab0748cc5ffb915d6b5361",
+    "prepared_30b/selection_scored.jsonl": "acdb43bbda5364d7b42731edac239eae2a4e975d1030cb20f6f8eec772fb45c2",
+    "evaluations/final/base/step_000000/responses.jsonl": "3573a36b0730835fbbbcc23505d89134212d2225a5d012d27bedc5d4e188f9b8",
+    "evaluations/final/proxy/step_000400/responses.jsonl": "86053afccf3116ad78012c8e1da6d8000b7244f382e1312518003c3198096a11",
+    "evaluations/final/judge/step_000400/responses.jsonl": "40ca89f9c3458f9a1a16678c007a3b43d1b8fbd176be700cce4f406561c0321d",
+    "evaluations/final/knn_static/step_000400/responses.jsonl": "bd68007568a6e1377dae4701db8b8e52d2804b4664c24dd8381dba8294f99390",
+    "evaluations/final/knn_static_30b/step_000400/responses.jsonl": "382dfe649926ec37028cbd86edf7f49611e615e2eec6091dfc3562e651d5be12"
+  },
+  "numpy_version": "1.26.4",
+  "script_sha256": "1a6b7f041227260573ed1ca1af11286143ffd790c5329beb9feeee552aa39237",
+  "metrics_source_sha256": "3a2c8fafb4f0c40b20fb52c3f37d7738093d63090333aba8c3e283d0789942c7",
+  "checks": {
+    "calibration_memory_selection_disjoint": true,
+    "final_disjoint_from_preparation": true,
+    "saved_gaps_recomputed": true,
+    "original_q95_recomputed": true,
+    "inputs_unchanged": true
+  },
+  "final": [
+    {
+      "policy": "base",
+      "diagnostic_teacher": "4B",
+      "threshold": 1.2097379800099946,
+      "comparator": ">",
+      "n": 1319,
+      "positive": 72,
+      "negative": 1247,
+      "positive_questions": 72,
+      "negative_questions": 1247,
+      "auroc": 0.6614207431168136,
+      "ci95_low": 0.6107444454229549,
+      "ci95_high": 0.7176550355252491
+    },
+    {
+      "policy": "proxy",
+      "diagnostic_teacher": "4B",
+      "threshold": 1.2097379800099946,
+      "comparator": ">",
+      "n": 1319,
+      "positive": 131,
+      "negative": 1188,
+      "positive_questions": 131,
+      "negative_questions": 1188,
+      "auroc": 0.6980813221271237,
+      "ci95_low": 0.6550342510443895,
+      "ci95_high": 0.7427123897723541
+    },
+    {
+      "policy": "judge",
+      "diagnostic_teacher": "4B",
+      "threshold": 1.2097379800099946,
+      "comparator": ">",
+      "n": 1319,
+      "positive": 15,
+      "negative": 1304,
+      "positive_questions": 15,
+      "negative_questions": 1304,
+      "auroc": 0.6671267893660532,
+      "ci95_low": 0.49425323790176173,
+      "ci95_high": 0.8124756721848678
+    },
+    {
+      "policy": "knn_static",
+      "diagnostic_teacher": "4B",
+      "threshold": 1.2097379800099946,
+      "comparator": ">",
+      "n": 1319,
+      "positive": 22,
+      "negative": 1297,
+      "positive_questions": 22,
+      "negative_questions": 1297,
+      "auroc": 0.69114039391603,
+      "ci95_low": 0.556371677091489,
+      "ci95_high": 0.8112258670379144
+    },
+    {
+      "policy": "knn_static_30b",
+      "diagnostic_teacher": "4B",
+      "threshold": 1.2097379800099946,
+      "comparator": ">",
+      "n": 1319,
+      "positive": 16,
+      "negative": 1303,
+      "positive_questions": 16,
+      "negative_questions": 1303,
+      "auroc": 0.7083173445894091,
+      "ci95_low": 0.5847822324791632,
+      "ci95_high": 0.8196059908075727
+    }
+  ]
+}

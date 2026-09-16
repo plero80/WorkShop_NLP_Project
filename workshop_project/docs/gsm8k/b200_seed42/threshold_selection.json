@@ -1,0 +1,205 @@
+{
+  "analysis": "exploratory, post hoc; seed 42 only",
+  "quantiles": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "candidate_definition": "strict > at calibration Q05..Q95 in steps of 5 percentiles, every distinct observed calibration gap, and zero; inclusive >= Q95",
+  "selection_rule": "maximum selection AUROC among upper-tail definitions (nonnegative cutoff; <=50% calibration positives); >=20 selection answers and >=20 selection questions in each class; ties prefer > then highest quantile",
+  "unrestricted_rule": "same selection ranking without the upper-tail constraint; reported separately, not used for final diagnostic labels",
+  "bootstrap": {
+    "samples": 2000,
+    "seed": 42,
+    "unit": "question with all its answers",
+    "scope": "fixed fitted memories, normalization and label definitions; no selection or seed-variability adjustment"
+  },
+  "selection": {
+    "4B": {
+      "normalization": {
+        "proxy_mean": 4.34765625,
+        "proxy_std": 0.8971713224551582,
+        "judge_mean": 2.6796875,
+        "judge_std": 1.4083101229288064,
+        "threshold": 1.9198088541157206
+      },
+      "calibration_questions": 128,
+      "selection_questions": 128,
+      "winner": {
+        "teacher": "4B",
+        "quantile": 0.9,
+        "comparator": ">",
+        "threshold": 1.2097379800099946,
+        "calibration_positive": 20,
+        "n": 256,
+        "positive": 27,
+        "negative": 229,
+        "positive_questions": 26,
+        "negative_questions": 127,
+        "auroc": 0.7307132459970888,
+        "ci95_low": 0.6624615882257804,
+        "ci95_high": 0.7963940990521841,
+        "valid_bootstraps": 2000,
+        "eligible": true,
+        "upper_tail": true
+      },
+      "unrestricted_winner": {
+        "teacher": "4B",
+        "quantile": 0.3,
+        "comparator": ">",
+        "threshold": -0.9204746423071835,
+        "calibration_positive": 171,
+        "n": 256,
+        "positive": 181,
+        "negative": 75,
+        "positive_questions": 107,
+        "negative_questions": 54,
+        "auroc": 0.7569797421731124,
+        "ci95_low": 0.6816048816293073,
+        "ci95_high": 0.8249071988486051,
+        "valid_bootstraps": 2000,
+        "eligible": true,
+        "upper_tail": false
+      },
+      "winner_vs_next_distinct_definition": {
+        "runner_up": {
+          "teacher": "4B",
+          "quantile": 0.75,
+          "comparator": ">",
+          "threshold": 0.8051945380189404,
+          "calibration_positive": 62,
+          "n": 256,
+          "positive": 67,
+          "negative": 189,
+          "positive_questions": 57,
+          "negative_questions": 118,
+          "auroc": 0.6872778962331201,
+          "ci95_low": 0.6229952067891834,
+          "ci95_high": 0.7492404083395017,
+          "valid_bootstraps": 2000,
+          "eligible": true,
+          "upper_tail": true
+        },
+        "auroc_difference": 0.04343534976396868,
+        "paired_question_bootstrap_ci95": [
+          -0.02488857491705475,
+          0.11544218385630628
+        ]
+      },
+      "selection_operating_point": {
+        "threshold": 0.09989431500434875,
+        "comparator": ">=",
+        "balanced_accuracy": 0.722707423580786,
+        "recall": 1.0,
+        "specificity": 0.44541484716157204,
+        "precision": 0.17532467532467533,
+        "tp": 27,
+        "fp": 127,
+        "tn": 102,
+        "fn": 0
+      },
+      "q90_strict_equals_q95_inclusive_for_all_25_grade_pairs": true
+    },
+    "30B": {
+      "normalization": {
+        "proxy_mean": 4.34765625,
+        "proxy_std": 0.8971713224551582,
+        "judge_mean": 2.18359375,
+        "judge_std": 1.670482590439343,
+        "threshold": 1.4356457056732026
+      },
+      "calibration_questions": 128,
+      "selection_questions": 128,
+      "winner": {
+        "teacher": "30B",
+        "quantile": 0.65,
+        "comparator": ">",
+        "threshold": 0.3210313895764224,
+        "calibration_positive": 79,
+        "n": 256,
+        "positive": 74,
+        "negative": 182,
+        "positive_questions": 62,
+        "negative_questions": 116,
+        "auroc": 0.6761211761211762,
+        "ci95_low": 0.6120935048195981,
+        "ci95_high": 0.7388215077678574,
+        "valid_bootstraps": 2000,
+        "eligible": true,
+        "upper_tail": true
+      },
+      "unrestricted_winner": {
+        "teacher": "30B",
+        "quantile": 0.25,
+        "comparator": ">",
+        "threshold": -0.9588719162961383,
+        "calibration_positive": 180,
+        "n": 256,
+        "positive": 191,
+        "negative": 65,
+        "positive_questions": 109,
+        "negative_questions": 46,
+        "auroc": 0.8009665726943214,
+        "ci95_low": 0.7288102088909519,
+        "ci95_high": 0.8633493501085294,
+        "valid_bootstraps": 2000,
+        "eligible": true,
+        "upper_tail": false
+      },
+      "winner_vs_next_distinct_definition": {
+        "runner_up": {
+          "teacher": "30B",
+          "quantile": 0.7,
+          "comparator": ">",
+          "threshold": 0.8370163001808674,
+          "calibration_positive": 68,
+          "n": 256,
+          "positive": 66,
+          "negative": 190,
+          "positive_questions": 56,
+          "negative_questions": 118,
+          "auroc": 0.6709728867623604,
+          "ci95_low": 0.6016667887250594,
+          "ci95_high": 0.7370761393023914,
+          "valid_bootstraps": 2000,
+          "eligible": true,
+          "upper_tail": true
+        },
+        "auroc_difference": 0.0051482893588157275,
+        "paired_question_bootstrap_ci95": [
+          -0.025312847447749098,
+          0.03421634453997375
+        ]
+      },
+      "selection_operating_point": {
+        "threshold": 0.1288985311985016,
+        "comparator": ">=",
+        "balanced_accuracy": 0.6638699138699138,
+        "recall": 0.7837837837837838,
+        "specificity": 0.5439560439560439,
+        "precision": 0.41134751773049644,
+        "tp": 58,
+        "fp": 83,
+        "tn": 99,
+        "fn": 16
+      },
+      "q90_strict_equals_q95_inclusive_for_all_25_grade_pairs": false
+    }
+  }
+}

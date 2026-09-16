@@ -164,6 +164,13 @@ results or continuous gap-regression errors.
 The completed run and its frozen scores remain as recorded. Changing the cutoff
 after inspecting these answers would be a separately labeled diagnostic analysis.
 
+The subsequent [exploratory threshold analysis](B200_THRESHOLD_ANALYSIS.md)
+uses calibration and selection data to compare alternatives. For the 4B
+upper-tail diagnostic, `gap > 1.2097379800099946` (Q90) gives selection AUROC
+0.731 and final AUROC 0.691 on the 4B-memory policy's answers. Including ties
+at the original Q95 gives the same labels. This reanalysis is separate from
+the frozen run metrics and does not alter training or accuracy results.
+
 ## Provenance and checks
 
 Source archive: `gsm8k_outputs.zip`, 305,042,263 bytes, 3,551 entries.

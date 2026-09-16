@@ -1,0 +1,163 @@
+{
+  "identity": {
+    "version": "hh_offline_v1",
+    "recipe": {
+      "version": 1,
+      "experiment": "hh_offline",
+      "output": "results/hh_offline",
+      "candidate_bank": "data/inputs/candidate_bank.csv",
+      "memory": "data/inputs/memory",
+      "validation": [
+        "results/followup/study_cfdbaf579047d418/evaluations/development/development_validation/cap_256/legacy_raw_s42",
+        "results/followup/study_cfdbaf579047d418/evaluations/development/development_validation/cap_256/legacy_knn_signed_s42"
+      ],
+      "test": [
+        "results/followup/study_cfdbaf579047d418/evaluations/development/offline_test/cap_256/legacy_raw_s42",
+        "results/followup/study_cfdbaf579047d418/evaluations/development/offline_test/cap_256/legacy_knn_signed_s42"
+      ],
+      "transfer": {
+        "second_refresh_parent": [
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_42/parent_pi2",
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_43/parent_pi2",
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_44/parent_pi2"
+        ],
+        "second_refresh_static": [
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_42/static_M1",
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_43/static_M1",
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_44/static_M1"
+        ],
+        "second_refresh_refreshed": [
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_42/refresh_M2",
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_43/refresh_M2",
+          "data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_44/refresh_M2"
+        ]
+      },
+      "settings": {
+        "memory_fractions": [
+          0.125,
+          0.25,
+          0.5,
+          1.0
+        ],
+        "subset_seeds": [
+          42,
+          43,
+          44
+        ],
+        "ridge_alphas": [
+          0.001,
+          0.01,
+          0.1,
+          1.0,
+          10.0,
+          100.0,
+          1000.0
+        ],
+        "knn_k": 31,
+        "knn_temperature": 0.05,
+        "knn_k_grid": [
+          5,
+          15,
+          31,
+          63
+        ],
+        "knn_temperature_grid": [
+          0.01,
+          0.05,
+          0.1
+        ],
+        "cpu_threads": 4,
+        "bootstrap_samples": 2000,
+        "bootstrap_seed": 20260916
+      }
+    },
+    "inputs": {
+      "data\\inputs\\candidate_bank.csv": "32632fcdfb17535e775db4b27c78b65e5433cab380c150bad25753b10ae41589",
+      "data\\inputs\\memory\\complete.json": "59a310c01eb34a37e0d2d97876dd335a351b618c0af8a2f5c41d697c272ede59",
+      "data\\inputs\\memory\\detectors\\gap_knn.npz": "9791731f5bc8be95b7d598993ee4f89f930e5ee0f276802683eb9f3fbf4cf8cd",
+      "data\\inputs\\memory\\embedding_information.json": "8145accaac2f971af32466f600318bb424d35afd9b87ae31452dfd375e72b75c",
+      "data\\inputs\\memory\\protocol.json": "b6be5f225bd3e6949958487a0e5e3cb8b46dbcb5bb81b907a812637238281a59",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\parent_pi2\\complete.json": "46f715e4d2ae4a15b51aba38babf7741e534568654b84614d8e159fafd9ad70e",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\parent_pi2\\features.npz": "d231850ec83c0d84e287274e548e4b26e225d051be36718d8e152571c488f10f",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\parent_pi2\\predictions.csv": "bc78ad4e97f8cd28ef6249fb15dd688f73c5749887fa5093eb875a5603e4442b",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\refresh_M2\\complete.json": "953371acad3b9139ddf769dc4bdd0f84ddf2beb60cc81a173517f026d1890997",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\refresh_M2\\features.npz": "b12a7b582e5714f2f9487bf516b4802d52e6fca436f1f70917781e84ee05edc9",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\refresh_M2\\predictions.csv": "f107f7f8d2b5d76c83e020b1744b040177d35cc8fbc0f6d69bccc9f69d68f0bf",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\static_M1\\complete.json": "a3bc2aad977c6922c50acaf711da82817862f1040c5f9c7b5255b9e8b2f6b1fd",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\static_M1\\features.npz": "1b76bffb80cdffb9c2a9bc2a2e05d57b55bb622105f417ee5fa2e85abec1c6e4",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_42\\static_M1\\predictions.csv": "f3fc6221cf72ea3f50eb4529b01ac2da10e6a270821820a5859430fe7ae6a202",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\parent_pi2\\complete.json": "0f914ca79b9ff66f2cd0fdd8d68f0021650ea2339a8e4e812ae865729904a75b",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\parent_pi2\\features.npz": "cba3b25fd9b649503755101f39e90fe7da2af4ec4b34b9b88c802b9739690127",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\parent_pi2\\predictions.csv": "15f0454c741a543bc07d3caf3b2a6eca9a6fab846a9b90524b966ca322255a95",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\refresh_M2\\complete.json": "5fcd77935183e1b38af63d44d4273952b1d5e7cab5a60a4d57966af931cb5c1b",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\refresh_M2\\features.npz": "afd79d8070d6cabf078c5465cd3aac84be914b72f513b20f3409bf0d902a44b2",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\refresh_M2\\predictions.csv": "eb9fd44da20fb157c55ca364802279accafd643fe13036e0868a1bd714247e3f",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\static_M1\\complete.json": "9188105ad905553b2e724c75e0f79bf1b59c9b8491df01800a913ea903905c95",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\static_M1\\features.npz": "1a7081260f83dc20b6e4acff88b351fd123fe2943486ba5d556f8dbcd88866fb",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_43\\static_M1\\predictions.csv": "dcc5e6a63018fc7cffe8b909906bff849fab38bf9f73e552e03eb8eeca69905a",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\parent_pi2\\complete.json": "4b82246d19c3c01502bc0cbce46c9ad47a87e3972b4fbd22ea8b67913e1ad959",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\parent_pi2\\features.npz": "cff6c2ebff50d3f7a9dc85619c81e71b8d4f97bfc984dd5d5ac76015a84b1a6d",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\parent_pi2\\predictions.csv": "8934248b7468099119603af3a63605bcc6c4b5c492589d7f3be25134400b993d",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\refresh_M2\\complete.json": "9bdc19e7b3d81ae228201088d022abd056f592b5db5ed4efedeefe81a6ee00e6",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\refresh_M2\\features.npz": "e34360960d2bebccab6248be5c7b83bdb60d9516c82cbd14837c39b1f0a68c80",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\refresh_M2\\predictions.csv": "dcf1a1ad762ead8cdc854bba66d58d4220d24d1b28e0fba037a9c977042f4481",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\static_M1\\complete.json": "69eeb4baaac108077666f9dae760183e9010c23bbf5730451f90a72998f84ba1",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\static_M1\\features.npz": "bcc2ac5168cd8acdc70214391aa5276c7ab41916494e721af639ba68c348981d",
+      "data\\prerequisites\\memory_refresh\\study_e7a7994106548cb9\\evaluations\\final3\\seed_44\\static_M1\\predictions.csv": "9978a37995cedeafb6efe6c1c04c2bc677d76f479f185de3cb9f522c5f0829aa",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\development_validation\\cap_256\\legacy_knn_signed_s42\\complete.json": "1177998fa3310623b44e760dc28fdbd74c9cb5c31636b75e7e98ef4cb0e11a56",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\development_validation\\cap_256\\legacy_knn_signed_s42\\features.npz": "81168bfb7c75e04c08b4e59d2de852839321a9922062e4a09f99e836c0af9f2c",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\development_validation\\cap_256\\legacy_knn_signed_s42\\predictions.csv": "14ac822b6b94fbbdb9ae62451e1f4872c0c195d88bbe07223746ae3bf814dca9",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\development_validation\\cap_256\\legacy_raw_s42\\complete.json": "b7aa012bea75805bc1cdcf4eca40e84859c08f64935eaddd898c28b72e60afe4",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\development_validation\\cap_256\\legacy_raw_s42\\features.npz": "ecabdb823bb4eb4b350b3a975dda8d77749d75f9e4f8220b134e4f506d156dd7",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\development_validation\\cap_256\\legacy_raw_s42\\predictions.csv": "d61140038cd62791ae765d8ffdc8b55234532ac50781bba2c45ca37585330a23",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\offline_test\\cap_256\\legacy_knn_signed_s42\\complete.json": "e52ac1a4ee516b82cc951af6809db842365850b595be2b9259c40d29075b1884",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\offline_test\\cap_256\\legacy_knn_signed_s42\\features.npz": "f2115ac8eae2d0c66ee874fe010d2bd6ee21563c2f26fb14c9d26689b95b6078",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\offline_test\\cap_256\\legacy_knn_signed_s42\\predictions.csv": "f6e1024e7b32201ccc83220b7b0b9e8ac100964338eee66527dd658c403ad469",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\offline_test\\cap_256\\legacy_raw_s42\\complete.json": "e79d17fd07f3dd38a10c74c65a4d311d40a21af6ac192cb171cde073c23c51d0",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\offline_test\\cap_256\\legacy_raw_s42\\features.npz": "721d1d5e0106298349b38ed03b3bdac58969940e06b0b2c56047d4fbbe14790b",
+      "results\\followup\\study_cfdbaf579047d418\\evaluations\\development\\offline_test\\cap_256\\legacy_raw_s42\\predictions.csv": "929a43716f27791fa3c2673880f2c944de738053f8837abe2e839bbccfd415ea"
+    },
+    "sources": {
+      "code\\core\\chat_format.py": "813717e8a7cd0376509ab5d22a7ab2656b1f7f643290edfcf9cab9db097a6de1",
+      "code\\core\\common.py": "b7560e6c4af7c21c38c5e1a1e9b92a521d7a2024a6e695e3e93e21942f7af333",
+      "code\\core\\evaluation.py": "476922c09fbb5ca7da70334c4174e5d77812dd2d886e5d901cc7c8aa8dc23c8d",
+      "code\\core\\knn_core.py": "6fd334bfb9235e922a8b5df762232f3ee0e708bf2f57c03ba34e502f7cfcd435",
+      "code\\experiments\\experiment_cli\\cli.py": "b6d111d84009e8bb27a43ec01bb015a5b0f3c51cbd8ab724920ed596e5780f71",
+      "code\\experiments\\hh_offline\\__init__.py": "31b81fec50785f1b1b0f5eec25a8e44e7fd499f1735bfa710413b0587ef25e45",
+      "code\\experiments\\hh_offline\\data.py": "c1f845422c384bf9ece2cd3f7a657042af576cfafe18fac33b31d00857685a3a",
+      "code\\experiments\\hh_offline\\metrics.py": "067fe1951ca045113fa77ba700e38a31c4968a1674f38a099714f58a72513b23",
+      "code\\experiments\\hh_offline\\report.py": "958ed4f42b3d3e4c17486e7f5421cbcf6b8d01e21a0d2ba91e0c9d04ce27aec6",
+      "code\\experiments\\hh_offline\\run.py": "edb1f966e996126bbcd02babbcafc2556b453130af01dc5402ed049736ab3137",
+      "code\\experiments\\knn_distillation\\data.py": "3e9be6947a4a47c4d8c1ba49e889f0b6f43fdfaacc383d96334ec74b8830dfd3",
+      "code\\experiments\\knn_distillation\\io.py": "ac77f84965c99b09e570e2180395a3765d23791a36c42d6ecdce7571d38aa556",
+      "hh_offline.py": "3e00c1b51a7de96ceb36792109a44a1d5e52cb0c9ead6a26aa1fa315f4be6a7f"
+    },
+    "versions": {
+      "numpy": "1.26.4",
+      "pandas": "2.2.1",
+      "scipy": "1.12.0",
+      "scikit-learn": "1.4.1.post1",
+      "threadpoolctl": "3.4.0"
+    }
+  },
+  "run_id": "83789341f53dcd522e4f24f065e1a311d53e7032f89456f15d00bf84c1cb84d3",
+  "retrospective_analysis": true,
+  "test_used_for_tuning": false,
+  "scope": "Offline gap/reward prediction; no PPO or new grader calls",
+  "calibration": {
+    "format_version": 1,
+    "judge_mean": 0.11191116714477539,
+    "judge_std": 8.365239331680028,
+    "proxy_mean": -1.8856342163085937,
+    "proxy_std": 4.033386063962294,
+    "theta": 0.8998121070053893
+  },
+  "embedding_identity": "427c53c0bb252d3c90dca32567874e7ffafc99ed691331b3a4d9f41ed3aa90bc",
+  "training_rows": 7990,
+  "training_groups": 1885,
+  "validation_rows": 1024,
+  "validation_groups": 512,
+  "tuning_objective": "Validation conversation-weighted gap MSE; no refit on validation",
+  "subset_unit": "Normalized first-human-turn group; retain all its memory answers",
+  "subset_seeds_are_ppo_seeds": false
+}

@@ -23,6 +23,16 @@ prompt counts, kNN memory, seeds, and training/evaluation budget.
 
 ## Running the code
 
+Run the new HH-RLHF ridge baseline and memory-size ablation on saved data:
+
+```bash
+python hh_offline.py run --dry-run
+python hh_offline.py run
+```
+
+This is a CPU experiment with a [YAML recipe and run guide](docs/hh_offline/README.md).
+It uses the saved HH-RLHF embeddings and judge scores without additional PPO.
+
 Run GSM8K from this folder using [YAML recipes and the CLI](docs/EXPERIMENT_CLI.md):
 
 ```bash

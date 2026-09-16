@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "description": "New GSM8K integration and YAML CLI; separate from immutable original file map.",
+  "description": "New GSM8K integration, YAML CLI and HH-RLHF offline comparisons; separate from immutable original file map.",
   "files": [
     {
       "original": "EXPERIMENT_CLI.md",
@@ -13,6 +13,12 @@
       "organized": "notebooks/gsm8k/RUN_GSM8K_PPO.ipynb",
       "bytes": 3192,
       "sha256": "30bc7f1bd088c3dfc3c9d8b87f26ed3306a7d274c96cf1f4ca787e52747feb0f"
+    },
+    {
+      "original": "configs/experiments/hh-offline.yaml",
+      "organized": "configs/experiments/hh-offline.yaml",
+      "bytes": 2156,
+      "sha256": "795502b8b0c5d420689b9782d884e321b041fefb21ed35baabb590ac12342404"
     },
     {
       "original": "docs/gsm8k/B200_REWARD_BUG_AUDIT.md",
@@ -115,6 +121,210 @@
       "organized": "docs/gsm8k/b200_seed42/validation_v2/summary.json",
       "bytes": 273267,
       "sha256": "f5127f6fdc5fc0ebc2214d5c5da5acf7a7bcc927a16ac2c3a1f59b937ff0d99e"
+    },
+    {
+      "original": "docs/hh_offline/README.md",
+      "organized": "docs/hh_offline/README.md",
+      "bytes": 6358,
+      "sha256": "102ebb15fa630b8baaeaa839a61bd43d3484a7ed3ab6579fda32a867bf65748f"
+    },
+    {
+      "original": "docs/hh_offline/RESULTS.md",
+      "organized": "docs/hh_offline/RESULTS.md",
+      "bytes": 5684,
+      "sha256": "fd705da456051570f399e2358b783a30f252a38fa2b7d5bae491d019fa022b37"
+    },
+    {
+      "original": "docs/hh_offline/completed/manifest.json",
+      "organized": "docs/hh_offline/completed/manifest.json",
+      "bytes": 13624,
+      "sha256": "72f6cdde8fac526b9f356f028d907306b0898ace5d65850ff87422e371c4f177"
+    },
+    {
+      "original": "docs/hh_offline/completed/memory_ablation.pdf",
+      "organized": "docs/hh_offline/completed/memory_ablation.pdf",
+      "bytes": 24833,
+      "sha256": "b9a747758c2069d6dfa8f432d36d5024fcf6664bed6c0a6d323b027232c214d5"
+    },
+    {
+      "original": "docs/hh_offline/completed/memory_ablation.png",
+      "organized": "docs/hh_offline/completed/memory_ablation.png",
+      "bytes": 126483,
+      "sha256": "694eb69ecae328f55c0d0c57ec9054c9f4c9f0b696574c8d6ec0ad8190f77bcd"
+    },
+    {
+      "original": "docs/hh_offline/completed/memory_ablation.svg",
+      "organized": "docs/hh_offline/completed/memory_ablation.svg",
+      "bytes": 86480,
+      "sha256": "41dae300e7a51927f38cef6b3732c5f4afd8f9fa5963c4c1cbe041e8cae13e3d"
+    },
+    {
+      "original": "docs/hh_offline/completed/metrics.csv",
+      "organized": "docs/hh_offline/completed/metrics.csv",
+      "bytes": 17811,
+      "sha256": "98fd66a6b13340026717dfe49801549911d772656690e979e789d4eebc1f3a69"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.125_sample_42.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.125_sample_42.json",
+      "bytes": 21741,
+      "sha256": "2d1955b8403ec9fd2695079303790954f7a0ee085e4aecffe0790d5f00eceefe"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.125_sample_42.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.125_sample_42.npz",
+      "bytes": 8268,
+      "sha256": "c71b135396ec600c73ee1cbff84ec9b2a6498d2172e2ee5cc2d19735676fa206"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.125_sample_43.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.125_sample_43.json",
+      "bytes": 22690,
+      "sha256": "9fe683f243581da3c6780a7ee5dc0cba52e7f74a31911bb6d594bb849899b8c5"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.125_sample_43.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.125_sample_43.npz",
+      "bytes": 8274,
+      "sha256": "c207a97b71a5cb278e0f525e042cc71100ddb23b30319d132eca2db73e9bccdb"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.125_sample_44.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.125_sample_44.json",
+      "bytes": 22049,
+      "sha256": "4c5e6262cafe299d5ec46fb293023f061462989049378c26df588d776e16d315"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.125_sample_44.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.125_sample_44.npz",
+      "bytes": 8275,
+      "sha256": "34cc0244df448110d7a2fb5119ad5c8cfc266a0523087ceaadc4f9ebf0aff718"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.25_sample_42.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.25_sample_42.json",
+      "bytes": 43952,
+      "sha256": "c4b983fe144da42ade8392bd9d6cd0275678bd5b3a6f68f7225ebd06a869b686"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.25_sample_42.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.25_sample_42.npz",
+      "bytes": 8272,
+      "sha256": "3c440acffadae7ccedf44c183bb0cf8de72caaa15ecb9604c514f32919cff67f"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.25_sample_43.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.25_sample_43.json",
+      "bytes": 44842,
+      "sha256": "2cfefbb0e154863274cff11540e5a85f6cdd7b13608f78edf73792fc34ae0ecc"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.25_sample_43.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.25_sample_43.npz",
+      "bytes": 8278,
+      "sha256": "5395bfd5e0a0d0e829bbf3a63caa29def43d880160c8f05b73c4bfd3886ece81"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.25_sample_44.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.25_sample_44.json",
+      "bytes": 43962,
+      "sha256": "67374d92da860ce9bd9923176f56391795e7a394b5c771f57eb24cf00812a5d0"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.25_sample_44.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.25_sample_44.npz",
+      "bytes": 8274,
+      "sha256": "55eb485e48ba0a2718b54cac3387497bdd934c943054d2939edbf9ed16995e36"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.5_sample_42.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.5_sample_42.json",
+      "bytes": 87803,
+      "sha256": "f3eb36dac3ee90c9814974fc8075907a13493e175e760cb4d1e372c77e2d03a3"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.5_sample_42.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.5_sample_42.npz",
+      "bytes": 8279,
+      "sha256": "9ca4f41d2625c9c8c7941b212f015f2d766713bd03f2ec775c17670be926e6e8"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.5_sample_43.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.5_sample_43.json",
+      "bytes": 88221,
+      "sha256": "42a1d47140d11096028107b2e4cc71a44bc84757af16ef98ff603c6718f491da"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.5_sample_43.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.5_sample_43.npz",
+      "bytes": 8279,
+      "sha256": "db20dc94ac104d68b56eb77312bcab3bb48990e883d809283340171b25a52d82"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.5_sample_44.json",
+      "organized": "docs/hh_offline/completed/models/fraction_0.5_sample_44.json",
+      "bytes": 87272,
+      "sha256": "29f707f97b95ade4d0de4a29c3e42ec050db3015dc8e0e071447ca8e0051bab9"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_0.5_sample_44.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_0.5_sample_44.npz",
+      "bytes": 8286,
+      "sha256": "2791018c871755ef34d7e7052536781f8b0eed4cbb29bde1c602efa2d4587ab9"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_1_sample_42.json",
+      "organized": "docs/hh_offline/completed/models/fraction_1_sample_42.json",
+      "bytes": 175561,
+      "sha256": "1899726732c712bfa733c622963695acfbfd233c972a6004a966967e83c4d498"
+    },
+    {
+      "original": "docs/hh_offline/completed/models/fraction_1_sample_42.npz",
+      "organized": "docs/hh_offline/completed/models/fraction_1_sample_42.npz",
+      "bytes": 8303,
+      "sha256": "6fb0f820a9b39dd7d69bef78385d527926305523a30564389a84dd6af3d7fbb8"
+    },
+    {
+      "original": "docs/hh_offline/completed/report.md",
+      "organized": "docs/hh_offline/completed/report.md",
+      "bytes": 7794,
+      "sha256": "11aac7cb2afb207d75311ae05b13a8804d7b89626e82b1a805a9626dcb31cc1b"
+    },
+    {
+      "original": "docs/hh_offline/completed/selection_complete.json",
+      "organized": "docs/hh_offline/completed/selection_complete.json",
+      "bytes": 2410,
+      "sha256": "19277ea595e956efdd7948371a9c1f881883937b8d3bdf97aed12c9a69c6928d"
+    },
+    {
+      "original": "docs/hh_offline/completed/snapshot.json",
+      "organized": "docs/hh_offline/completed/snapshot.json",
+      "bytes": 3779,
+      "sha256": "df8d74f266b2e923e7a634752783dab9978fcf10858865c4d588dc60522170a5"
+    },
+    {
+      "original": "docs/hh_offline/completed/summary.json",
+      "organized": "docs/hh_offline/completed/summary.json",
+      "bytes": 59287,
+      "sha256": "cb461d80bb895bc66f875e920d6107e4189c877be1de1b959fcbf4dd01a4d079"
+    },
+    {
+      "original": "docs/hh_offline/completed/validation_candidates.csv",
+      "organized": "docs/hh_offline/completed/validation_candidates.csv",
+      "bytes": 15104,
+      "sha256": "4282a75ec8ba42c62085f9d0fd6d4dfd075bf08da3ae0f004f8a9a8ed6de3009"
+    },
+    {
+      "original": "docs/hh_offline/neighbor_replay_audit.json",
+      "organized": "docs/hh_offline/neighbor_replay_audit.json",
+      "bytes": 1010,
+      "sha256": "66dabff9286854631f5900ee44db9b54eacf93fe276701b55e7b7f12c478d06f"
+    },
+    {
+      "original": "docs/hh_offline/verification.json",
+      "organized": "docs/hh_offline/verification.json",
+      "bytes": 394,
+      "sha256": "9460105344b36e041f6bbbd2cf9fa13d45549e1b98a409fe92222f308fb470e6"
     },
     {
       "original": "experiment_cli/__init__.py",
@@ -321,10 +531,58 @@
       "sha256": "28ce501fac32c13612878f0abe0d1f2e2f3e73a7fa046a7c86efcbc929abc50b"
     },
     {
+      "original": "hh_offline.py",
+      "organized": "hh_offline.py",
+      "bytes": 333,
+      "sha256": "3e00c1b51a7de96ceb36792109a44a1d5e52cb0c9ead6a26aa1fa315f4be6a7f"
+    },
+    {
+      "original": "hh_offline/__init__.py",
+      "organized": "code/experiments/hh_offline/__init__.py",
+      "bytes": 80,
+      "sha256": "31b81fec50785f1b1b0f5eec25a8e44e7fd499f1735bfa710413b0587ef25e45"
+    },
+    {
+      "original": "hh_offline/data.py",
+      "organized": "code/experiments/hh_offline/data.py",
+      "bytes": 4832,
+      "sha256": "c1f845422c384bf9ece2cd3f7a657042af576cfafe18fac33b31d00857685a3a"
+    },
+    {
+      "original": "hh_offline/metrics.py",
+      "organized": "code/experiments/hh_offline/metrics.py",
+      "bytes": 3281,
+      "sha256": "067fe1951ca045113fa77ba700e38a31c4968a1674f38a099714f58a72513b23"
+    },
+    {
+      "original": "hh_offline/report.py",
+      "organized": "code/experiments/hh_offline/report.py",
+      "bytes": 10683,
+      "sha256": "958ed4f42b3d3e4c17486e7f5421cbcf6b8d01e21a0d2ba91e0c9d04ce27aec6"
+    },
+    {
+      "original": "hh_offline/run.py",
+      "organized": "code/experiments/hh_offline/run.py",
+      "bytes": 16451,
+      "sha256": "edb1f966e996126bbcd02babbcafc2556b453130af01dc5402ed049736ab3137"
+    },
+    {
+      "original": "notebooks/followup/HH_OFFLINE_BASELINES.ipynb",
+      "organized": "notebooks/followup/HH_OFFLINE_BASELINES.ipynb",
+      "bytes": 3198,
+      "sha256": "1e4fdb04dd5f11f801c58c6c883d1d07e39363cf2bacdef98fb7e22a8f59d27e"
+    },
+    {
       "original": "reproducibility/audit_gsm8k_rewards.py",
       "organized": "reproducibility/audit_gsm8k_rewards.py",
       "bytes": 17480,
       "sha256": "0ce7350399d1bc5bd6064b2ab616a385367feda7c258eab1bf14293e58cb203d"
+    },
+    {
+      "original": "requirements-hh-offline.txt",
+      "organized": "requirements-hh-offline.txt",
+      "bytes": 124,
+      "sha256": "73867e0560bfb6f23086f13ca5e3727a0e0f21179fcab75e6b64274f44d1b54b"
     },
     {
       "original": "tests/experiment_cli/test_cli.py",
@@ -385,6 +643,12 @@
       "organized": "code/tests/gsm8k/test_validation.py",
       "bytes": 9322,
       "sha256": "7f7fab6fc99fa681523cc40bcbd5df8b715b22e943d8b8e845c553511e4c2d31"
+    },
+    {
+      "original": "tests/hh_offline/test_offline.py",
+      "organized": "code/tests/hh_offline/test_offline.py",
+      "bytes": 8588,
+      "sha256": "b3e8a6c41e9c4a090fc3aa9a1ae94e5ae917e2fdf11108859d1128ed004a652b"
     }
   ]
 }

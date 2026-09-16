@@ -115,6 +115,33 @@ Sources: [configuration](../configs/config.json),
 [saved manifest](../results/followup/study_cfdbaf579047d418/manifest.json),
 [seed-42 memory lock](../results/followup/study_cfdbaf579047d418/refresh/seed_42/locked_reward.json).
 
+### New offline baselines and memory-size ablation
+
+The follow-up also has a new CPU-only [ridge baseline and memory-size ablation](hh_offline/README.md).
+It fits on the **original 7,990 memory labels** and uses the same saved **512
+validation conversations / 1,024 answers** and **512 offline-test conversations /
+1,024 answers** for every method. The memory's 2,000 full prompt texts correspond
+to **1,885 normalized first-human-turn conversation groups**.
+
+| Memory fraction | Conversation groups | Actual fitting-answer counts across samples |
+|---|---:|---:|
+| 12.5% | 236 | 973, 1,016, 987 |
+| 25% | 472 | 1,985, 2,026, 1,987 |
+| 50% | 943 | 3,985, 4,005, 3,962 |
+| 100% | 1,885 | 7,990; identical full memory fitted once |
+
+Sampling seeds 42/43/44 select nested memory groups; they are not new PPO seeds.
+All answers from each sampled conversation remain together. Ridge, fixed kNN
+and validation-tuned kNN use the exact same labeled rows at each budget. This
+creates **10 distinct fitting sets**, reusing existing labels. The original
+calibration and high-gap threshold remain shared and frozen.
+
+The full-memory predictors are also evaluated on **18,432 saved second-refresh
+final answers**: 2,048 conversations × 3 policy conditions × 3 saved policy
+seeds. These original-memory transfer evaluations are separate from the
+policies' actual refreshed-memory rewards. The entire addition generates
+**zero new answers, zero new judge labels and zero PPO updates**.
+
 ## 2. Best-of-N: which generated answer should we select?
 
 Saved study: `study_40100cfcb78f1920`, development phase.

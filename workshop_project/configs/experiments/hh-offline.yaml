@@ -1,0 +1,38 @@
+# Offline HH-RLHF regression comparison. Paths are relative to workshop_project.
+version: 1
+experiment: hh_offline
+output: results/hh_offline
+candidate_bank: data/inputs/candidate_bank.csv
+memory: data/inputs/memory
+validation:
+  - results/followup/study_cfdbaf579047d418/evaluations/development/development_validation/cap_256/legacy_raw_s42
+  - results/followup/study_cfdbaf579047d418/evaluations/development/development_validation/cap_256/legacy_knn_signed_s42
+test:
+  - results/followup/study_cfdbaf579047d418/evaluations/development/offline_test/cap_256/legacy_raw_s42
+  - results/followup/study_cfdbaf579047d418/evaluations/development/offline_test/cap_256/legacy_knn_signed_s42
+# These policy answers are additional transfer evaluations of the ORIGINAL
+# memory's predictors, not evaluations of each policy's refreshed reward memory.
+transfer:
+  second_refresh_parent:
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_42/parent_pi2
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_43/parent_pi2
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_44/parent_pi2
+  second_refresh_static:
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_42/static_M1
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_43/static_M1
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_44/static_M1
+  second_refresh_refreshed:
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_42/refresh_M2
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_43/refresh_M2
+    - data/prerequisites/memory_refresh/study_e7a7994106548cb9/evaluations/final3/seed_44/refresh_M2
+settings:
+  memory_fractions: [0.125, 0.25, 0.5, 1.0]
+  subset_seeds: [42, 43, 44]
+  ridge_alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+  knn_k: 31
+  knn_temperature: 0.05
+  knn_k_grid: [5, 15, 31, 63]
+  knn_temperature_grid: [0.01, 0.05, 0.1]
+  cpu_threads: 4
+  bootstrap_samples: 2000
+  bootstrap_seed: 20260916

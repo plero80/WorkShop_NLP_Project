@@ -1,0 +1,27 @@
+{
+  "run_id": "83789341f53dcd522e4f24f065e1a311d53e7032f89456f15d00bf84c1cb84d3",
+  "models": 10,
+  "test_answers_opened": false,
+  "fitted_artifacts": {
+    "models\\fraction_0.125_sample_42.json": "2d1955b8403ec9fd2695079303790954f7a0ee085e4aecffe0790d5f00eceefe",
+    "models\\fraction_0.125_sample_42.npz": "c71b135396ec600c73ee1cbff84ec9b2a6498d2172e2ee5cc2d19735676fa206",
+    "models\\fraction_0.125_sample_43.json": "9fe683f243581da3c6780a7ee5dc0cba52e7f74a31911bb6d594bb849899b8c5",
+    "models\\fraction_0.125_sample_43.npz": "c207a97b71a5cb278e0f525e042cc71100ddb23b30319d132eca2db73e9bccdb",
+    "models\\fraction_0.125_sample_44.json": "4c5e6262cafe299d5ec46fb293023f061462989049378c26df588d776e16d315",
+    "models\\fraction_0.125_sample_44.npz": "34cc0244df448110d7a2fb5119ad5c8cfc266a0523087ceaadc4f9ebf0aff718",
+    "models\\fraction_0.25_sample_42.json": "c4b983fe144da42ade8392bd9d6cd0275678bd5b3a6f68f7225ebd06a869b686",
+    "models\\fraction_0.25_sample_42.npz": "3c440acffadae7ccedf44c183bb0cf8de72caaa15ecb9604c514f32919cff67f",
+    "models\\fraction_0.25_sample_43.json": "2cfefbb0e154863274cff11540e5a85f6cdd7b13608f78edf73792fc34ae0ecc",
+    "models\\fraction_0.25_sample_43.npz": "5395bfd5e0a0d0e829bbf3a63caa29def43d880160c8f05b73c4bfd3886ece81",
+    "models\\fraction_0.25_sample_44.json": "67374d92da860ce9bd9923176f56391795e7a394b5c771f57eb24cf00812a5d0",
+    "models\\fraction_0.25_sample_44.npz": "55eb485e48ba0a2718b54cac3387497bdd934c943054d2939edbf9ed16995e36",
+    "models\\fraction_0.5_sample_42.json": "f3eb36dac3ee90c9814974fc8075907a13493e175e760cb4d1e372c77e2d03a3",
+    "models\\fraction_0.5_sample_42.npz": "9ca4f41d2625c9c8c7941b212f015f2d766713bd03f2ec775c17670be926e6e8",
+    "models\\fraction_0.5_sample_43.json": "42a1d47140d11096028107b2e4cc71a44bc84757af16ef98ff603c6718f491da",
+    "models\\fraction_0.5_sample_43.npz": "db20dc94ac104d68b56eb77312bcab3bb48990e883d809283340171b25a52d82",
+    "models\\fraction_0.5_sample_44.json": "29f707f97b95ade4d0de4a29c3e42ec050db3015dc8e0e071447ca8e0051bab9",
+    "models\\fraction_0.5_sample_44.npz": "2791018c871755ef34d7e7052536781f8b0eed4cbb29bde1c602efa2d4587ab9",
+    "models\\fraction_1_sample_42.json": "1899726732c712bfa733c622963695acfbfd233c972a6004a966967e83c4d498",
+    "models\\fraction_1_sample_42.npz": "6fb0f820a9b39dd7d69bef78385d527926305523a30564389a84dd6af3d7fbb8"
+  }
+}

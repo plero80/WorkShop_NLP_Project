@@ -3,7 +3,7 @@
 | Directory | Purpose |
 |---|---|
 | [core/](core/) | Shared reward, kNN, policy optimization, evaluation, and launch code |
-| [experiments/](experiments/) | Best-of-N, kNN distillation, GSM8K using shared PPO, and its YAML CLI |
+| [experiments/](experiments/) | Best-of-N, kNN distillation, HH offline baselines, GSM8K using shared PPO, and its YAML CLI |
 | [tests/](tests/) | Original tests and GSM8K integration tests |
 | [templates/](templates/) | Original human-review HTML template |
 

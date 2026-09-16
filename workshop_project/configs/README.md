@@ -6,6 +6,8 @@
 - [environment/](environment/): shared dependency requirements.
 - [gsm8k/](gsm8k/): new GSM8K profiles, shared source hashes, and extra dependencies.
 - [experiments/](experiments/): YAML launch presets for the new experiment CLI.
+- [experiments/hh-offline.yaml](experiments/hh-offline.yaml): saved-data HH-RLHF
+  ridge/kNN comparison and memory-budget ablation, run with `hh_offline.py`.
 
 Exploration settings are embedded in its notebooks. Retained settings are
 unchanged. Source guards are under

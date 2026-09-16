@@ -1,0 +1,46 @@
+{
+  "source": "workshop_project/results/hh_offline/comparison_83789341f53dcd52",
+  "copied_sha256": {
+    "manifest.json": "72f6cdde8fac526b9f356f028d907306b0898ace5d65850ff87422e371c4f177",
+    "memory_ablation.pdf": "b9a747758c2069d6dfa8f432d36d5024fcf6664bed6c0a6d323b027232c214d5",
+    "memory_ablation.png": "694eb69ecae328f55c0d0c57ec9054c9f4c9f0b696574c8d6ec0ad8190f77bcd",
+    "memory_ablation.svg": "41dae300e7a51927f38cef6b3732c5f4afd8f9fa5963c4c1cbe041e8cae13e3d",
+    "metrics.csv": "98fd66a6b13340026717dfe49801549911d772656690e979e789d4eebc1f3a69",
+    "models/fraction_0.125_sample_42.json": "2d1955b8403ec9fd2695079303790954f7a0ee085e4aecffe0790d5f00eceefe",
+    "models/fraction_0.125_sample_42.npz": "c71b135396ec600c73ee1cbff84ec9b2a6498d2172e2ee5cc2d19735676fa206",
+    "models/fraction_0.125_sample_43.json": "9fe683f243581da3c6780a7ee5dc0cba52e7f74a31911bb6d594bb849899b8c5",
+    "models/fraction_0.125_sample_43.npz": "c207a97b71a5cb278e0f525e042cc71100ddb23b30319d132eca2db73e9bccdb",
+    "models/fraction_0.125_sample_44.json": "4c5e6262cafe299d5ec46fb293023f061462989049378c26df588d776e16d315",
+    "models/fraction_0.125_sample_44.npz": "34cc0244df448110d7a2fb5119ad5c8cfc266a0523087ceaadc4f9ebf0aff718",
+    "models/fraction_0.25_sample_42.json": "c4b983fe144da42ade8392bd9d6cd0275678bd5b3a6f68f7225ebd06a869b686",
+    "models/fraction_0.25_sample_42.npz": "3c440acffadae7ccedf44c183bb0cf8de72caaa15ecb9604c514f32919cff67f",
+    "models/fraction_0.25_sample_43.json": "2cfefbb0e154863274cff11540e5a85f6cdd7b13608f78edf73792fc34ae0ecc",
+    "models/fraction_0.25_sample_43.npz": "5395bfd5e0a0d0e829bbf3a63caa29def43d880160c8f05b73c4bfd3886ece81",
+    "models/fraction_0.25_sample_44.json": "67374d92da860ce9bd9923176f56391795e7a394b5c771f57eb24cf00812a5d0",
+    "models/fraction_0.25_sample_44.npz": "55eb485e48ba0a2718b54cac3387497bdd934c943054d2939edbf9ed16995e36",
+    "models/fraction_0.5_sample_42.json": "f3eb36dac3ee90c9814974fc8075907a13493e175e760cb4d1e372c77e2d03a3",
+    "models/fraction_0.5_sample_42.npz": "9ca4f41d2625c9c8c7941b212f015f2d766713bd03f2ec775c17670be926e6e8",
+    "models/fraction_0.5_sample_43.json": "42a1d47140d11096028107b2e4cc71a44bc84757af16ef98ff603c6718f491da",
+    "models/fraction_0.5_sample_43.npz": "db20dc94ac104d68b56eb77312bcab3bb48990e883d809283340171b25a52d82",
+    "models/fraction_0.5_sample_44.json": "29f707f97b95ade4d0de4a29c3e42ec050db3015dc8e0e071447ca8e0051bab9",
+    "models/fraction_0.5_sample_44.npz": "2791018c871755ef34d7e7052536781f8b0eed4cbb29bde1c602efa2d4587ab9",
+    "models/fraction_1_sample_42.json": "1899726732c712bfa733c622963695acfbfd233c972a6004a966967e83c4d498",
+    "models/fraction_1_sample_42.npz": "6fb0f820a9b39dd7d69bef78385d527926305523a30564389a84dd6af3d7fbb8",
+    "report.md": "11aac7cb2afb207d75311ae05b13a8804d7b89626e82b1a805a9626dcb31cc1b",
+    "selection_complete.json": "19277ea595e956efdd7948371a9c1f881883937b8d3bdf97aed12c9a69c6928d",
+    "summary.json": "cb461d80bb895bc66f875e920d6107e4189c877be1de1b959fcbf4dd01a4d079",
+    "validation_candidates.csv": "4282a75ec8ba42c62085f9d0fd6d4dfd075bf08da3ae0f004f8a9a8ed6de3009"
+  },
+  "omitted": [
+    "predictions.csv.gz",
+    "complete.json"
+  ],
+  "note": "Portable report/model artifacts match the source bytes except for the documented SVG whitespace normalization; full per-answer output stays in the local result directory.",
+  "transformations": {
+    "memory_ablation.svg": {
+      "source_sha256": "de4887104236c31737bd9824d0cc8d26e93f14d6fa6c3091088cfb298e6e80a5",
+      "snapshot_sha256": "41dae300e7a51927f38cef6b3732c5f4afd8f9fa5963c4c1cbe041e8cae13e3d",
+      "change": "Trailing whitespace removed; normalized SVG XML tree verified unchanged."
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "cohort": "followup offline_test; legacy_raw_s42 then legacy_knn_signed_s42",
+  "mechanism": "Float32 cosine near-ties at the 31st/32nd boundary; replacing only that neighbor reproduces the archived prediction.",
+  "cases": [
+    {
+      "query_row": 53,
+      "recomputed_minus_saved": 0.017710452364549545,
+      "cosine_margin": 1.1920928955078125e-07,
+      "recomputed_memory_row": 1292,
+      "historical_alternative_memory_row": 4800,
+      "absolute_error_after_single_swap": 1.0109574317962444e-07
+    },
+    {
+      "query_row": 600,
+      "recomputed_minus_saved": 0.021280656587955082,
+      "cosine_margin": 1.1920928955078125e-07,
+      "recomputed_memory_row": 6881,
+      "historical_alternative_memory_row": 1962,
+      "absolute_error_after_single_swap": 7.673454632817212e-08
+    }
+  ],
+  "historical_fixed_knn_mse": 0.1568148511127578,
+  "recomputed_fixed_knn_mse": 0.15682549523683212,
+  "algorithm_changed": false,
+  "original_predictions_modified": false
+}

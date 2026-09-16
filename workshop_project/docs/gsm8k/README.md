@@ -57,10 +57,12 @@ python -m gsm8k_experiment.export
 Use the project's existing CUDA PyTorch environment. Real runs require CUDA;
 the imported batch sizes and 30B teacher target a large-memory GPU. Installation,
 model downloads, and training happen only when you run these commands.
-Default pilot/full targets are 100/400 updates. Pilot uses the monitor cohort;
+Default pilot/full targets are 100/400 rollout attempts (successful updates and
+attempts skipped for missing rewards are reported separately). Pilot uses the monitor cohort;
 full opens the held-out final cohort and fixes its target and arm list.
 The same output directory resumes an unchanged protocol. Changes to configuration,
-code, versions, or model revisions require a new output directory.
+code, versions, or model revisions require a new output directory unless an explicit,
+audited upgrade below supports that exact source transition.
 
 To launch a sequential multi-seed suite:
 
@@ -84,26 +86,42 @@ python -m pip install pytest
 python -m pytest tests/gsm8k -q
 ```
 
-The integration passed **76 offline tests**. Tests cover generation/log-probability agreement, unequal sequence padding,
+Offline tests cover generation/log-probability agreement, unequal sequence padding,
 microbatch equivalence, frozen reference weights, exact optimizer continuation,
 grading and memory behavior, and a tiny-model pilot/full/resume run. Model
 fixtures are created locally without downloading pretrained weights.
 
-## Resume after the inline-score formatting failure
+## Continue past ungradable examples
 
 The reply `Judgement: Correctness_score: 5` contains an explicit rating but the
 original parser required the score on its own line. The `grading_inline_score_v1`
 fix accepts this exact complete inline form for ratings 1 through 5. It rejects
 truncated replies, competing scores, quotes, ranges, and inferred ratings.
 
-For the known failure during initial memory preparation, pull the update in the
-Git checkout and apply the audited repair to the existing runtime:
+If grading still fails after bounded retries, the run saves the full question,
+reference, candidate answer, and grader replies under `review/ungraded/`. The
+score stays `null`. Failed cases are cached, so resuming does not endlessly retry
+the same example. No made-up reward is substituted.
+
+- PPO excludes examples without valid rewards. An entirely ungraded batch skips
+  that attempt, then continues; checkpoints and reports record successful and skipped updates.
+- Calibration and memory use valid pairs. If a 30B memory label is missing, both
+  static memories use the same remaining subset. If too few labels remain for a
+  valid calibration or the configured k, affected arms are reported as unavailable;
+  other stages continue.
+- Evaluation saves every answer and keeps every question in accuracy denominators.
+  Grade diagnostics disclose their available-label counts; absent metrics are `null`.
+- `ungraded_examples.csv` is generated with the report for convenient review.
+  Editing review files does not change stored rewards or training.
+
+To update an existing Runpod runtime, first let any active run exit (or interrupt
+it with Ctrl+C). Pull and apply this upgrade from the Git checkout, then resume:
 
 ```bash
 cd /workspace/WorkShop_NLP_Project
 git pull --ff-only
 source .venv/bin/activate
-python workshop_project/reproducibility/repair_gsm8k_inline_score.py --runtime run/gsm8k
+python workshop_project/reproducibility/upgrade_gsm8k_ungraded.py --runtime run/gsm8k
 cd run/gsm8k
 export HF_HOME=/workspace/hf-cache
 export TMPDIR=/workspace/tmp
@@ -111,14 +129,19 @@ mkdir -p "$TMPDIR"
 python -m experiment_cli run gsm8k-b200
 ```
 
-The repair takes the output lock, checks the exact parent code and shared-engine
-hashes, and requires a matching saved failed reply before training has begun.
-It changes only the two parser/scorer source files and the manifest source
-identity, saving the parent manifest and patch details under `source_amendments/`.
-Generated responses, calibration artifacts, initial weights, and existing valid
-cached scores remain untouched. It can safely finish an interrupted repair and
-does nothing on a repeated completed repair. This is a recorded protocol amendment,
-not permission to resume arbitrary code changes or standalone ZIP checkpoints.
+The upgrade supports both published source versions (before and after the inline
+parser fix), including runs with checkpoints. It locks the output and checks exact
+source hashes, unchanged shared-engine hashes, configuration, and checkpoint checksums.
+It records the parent manifest and original checkpoints under
+`source_amendments/ungraded_review_v1/`, updates runtime sources, and changes checkpoint
+identity metadata. Weights, optimizer state, RNG state, progress, generated answers,
+and cached grades are preserved. Repeating an interrupted upgrade completes it;
+repeating a completed upgrade is a no-op. Checkpoint engine and identity checks remain enforced.
+
+This is a recorded change to missing-grade handling, not an unchanged scientific
+protocol. The original `repair_gsm8k_inline_score.py` remains available for the specific
+historical pre-training parser repair, with its original patch payload preserved.
 
 For a different output, pass `--output gsm8k_outputs/NAME` (relative to the runtime).
-Newly restored runtimes already include the corrected parser.
+Newly restored runtimes already include nonblocking grading. Review records for the
+B200 preset are in `run/gsm8k/gsm8k_outputs/b200/review/ungraded/` from the Git checkout.

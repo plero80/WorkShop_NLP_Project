@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "gsm8k_tests": 107,
+  "upgrade_and_historical_repair_tests": 20,
+  "gpu_training_run": false,
+  "source_fingerprint": "c29faaa41991310a535810f453867075eb0d3c8718edf6ccc4cbdb665f1675e9",
+  "shared_core_unchanged": true,
+  "coverage": [
+    "cached review records after exhausted retries",
+    "partial and empty PPO reward batches",
+    "ungraded calibration/memory/selection/refresh/final evaluation",
+    "matched 4B/30B memory exclusions",
+    "all-missing run and suite reporting",
+    "checkpoint preservation and interrupted upgrade recovery"
+  ],
+  "restored_and_verified_files": 153,
+  "b200_cli_dry_run_passed": true
+}

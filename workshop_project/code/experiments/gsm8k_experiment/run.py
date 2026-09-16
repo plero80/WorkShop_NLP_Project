@@ -26,10 +26,11 @@ from .common import (ROOT, atomic_json, digest, load_config, read_json, read_jso
 from .data import prepare_data, rollout_questions
 from .memory import GapMemory, Normalization, corrected_reward, select_memory
 from .metrics import summarize_rows
+from .grading import number, scores, paired, subset, unavailable
 from .models import Policy, RewardScorer, ScoreCache
 from .ppo import load_checkpoint, optimizer_for, prepare_rollout, save_checkpoint, update
 from .recovery import checkpoint_parents
-from .teacher_memory import (teacher_config, load_matched_memory, prepare_teacher_memory, evaluate_teacher30b)
+from .teacher_memory import (teacher_config, load_matched_memory, prepare_teacher_memory, evaluate_teacher30b, shared_base_memory)
 
 
 def serializable_response(row):
@@ -72,19 +73,25 @@ def score_both(items, proxy, judge, stage):
     print(f"Scoring {stage}: {len(items)} responses with judge", flush=True)
     j = judge.score(items, stage)
     emb = np.stack([x["embedding"] for x in p]).astype(np.float32)
-    return np.array([x["score"] for x in p]), np.array([x["score"] for x in j]), emb, p, j
+    return scores([x["score"] for x in p]), scores([x["score"] for x in j]), emb, p, j
 
 
 def annotated(items, ps, js, emb, norm, memory, identity, p_outputs=None, j_outputs=None):
-    pred, similarity, neighbors = memory.predict(emb, [x["id"] for x in items], identity)
-    gaps = norm.gap(ps, js)
+    ps, js = scores(ps), scores(js)
+    if memory is not None:
+        pred, similarity, neighbors = memory.predict(emb, [x["id"] for x in items], identity)
+    else:
+        pred, similarity, neighbors = [None] * len(items), [None] * len(items), [[] for _ in items]
+    gaps = norm.gap(ps, js) if norm is not None else [None] * len(items)
     result = []
     for i, item in enumerate(items):
         row = {**serializable_response(item), **verify_answer(item["response"], item["reference"]),
-               "proxy_score": float(ps[i]), "judge_score": float(js[i]),
-               "proxy_z": float(norm.proxy_z(ps[i])), "judge_z": float(norm.judge_z(js[i])),
-               "gap": float(gaps[i]), "predicted_gap": float(pred[i]),
-               "nearest_similarity": float(similarity[i]), "neighbor_indices": neighbors[i]}
+               "proxy_score": number(ps[i]), "judge_score": number(js[i]),
+               "proxy_z": number(norm.proxy_z(ps[i])) if norm else None,
+               "judge_z": number(norm.judge_z(js[i])) if norm else None,
+               "gap": number(gaps[i]), "predicted_gap": number(pred[i]),
+               "nearest_similarity": number(similarity[i]), "neighbor_indices": neighbors[i],
+               "grading_status": "scored" if paired(ps[i], js[i]) else "unscored"}
         if p_outputs is not None:
             row["proxy_judgement"] = p_outputs[i]["judge_output"]
             row["judge_judgement"] = j_outputs[i]["judge_output"]
@@ -92,6 +99,8 @@ def annotated(items, ps, js, emb, norm, memory, identity, p_outputs=None, j_outp
             row["judge_grading_recovery"] = j_outputs[i].get("grading_recovery")
             row["proxy_grading_format_recovery"] = p_outputs[i].get("grading_format_recovery")
             row["judge_grading_format_recovery"] = j_outputs[i].get("grading_format_recovery")
+            row["proxy_review_path"] = p_outputs[i].get("review_path")
+            row["judge_review_path"] = j_outputs[i].get("review_path")
         numeric = extract_answer(item["response"], length_capped=item.get("length_capped", False),
                                  ended_with_eos=item.get("ended_with_eos", True))
         prediction = numeric["prediction"]
@@ -129,18 +138,35 @@ def prepare_memory(policy, proxy, judge, split, config, output):
         cohorts[name] = (items, ps, js, emb, p, j)
         write_jsonl(folder / f"{name}_raw.jsonl", [{**serializable_response(item),
                          **verify_answer(item["response"], item["reference"]),
-                         "proxy_score": float(ps[i]), "judge_score": float(js[i]),
+                         "proxy_score": number(ps[i]), "judge_score": number(js[i]),
+                         "proxy_review_path": p[i].get("review_path"), "judge_review_path": j[i].get("review_path"),
                          "proxy_judgement": p[i]["judge_output"], "judge_judgement": j[i]["judge_output"]}
                          for i, item in enumerate(items)])
         if name == "calibration":
-            norm = Normalization.fit(ps, js, config["knn"]["gap_quantile"], config["scoring"]["minimum_std"])
-            norm.save(folder / "normalization.json")
-    m, sel = cohorts["memory"], cohorts["selection"]
+            valid = paired(ps, js)
+            if not valid.all() and (valid.sum() < 2 or min(ps[valid].std(), js[valid].std()) < config["scoring"]["minimum_std"]):
+                unavailable(output, "prepared", "insufficient varied calibration grades", valid_pairs=int(valid.sum()), total=len(ps))
+                norm = None
+            else:
+                norm = Normalization.fit(ps[valid], js[valid], config["knn"]["gap_quantile"], config["scoring"]["minimum_std"])
+                norm.save(folder / "normalization.json")
+    if norm is None:
+        return None, None
+    valid_cohorts = {name: subset(c, paired(c[1], c[2])) for name, c in cohorts.items()}
+    atomic_json(folder / "grading_coverage.json", {
+        name: {"total": len(c[0]), "valid_pairs": len(valid_cohorts[name][0]),
+               "excluded": len(c[0]) - len(valid_cohorts[name][0])} for name, c in cohorts.items()})
+    m, sel = valid_cohorts["memory"], valid_cohorts["selection"]
+    if len(m[0]) < max(config["knn"]["k_grid"]) or not sel[0]:
+        unavailable(output, "prepared", "insufficient valid memory or selection grades",
+                    memory_pairs=len(m[0]), selection_pairs=len(sel[0]))
+        return norm, None
     memory, grid = select_memory(m[3], norm.gap(m[1], m[2]), [x["id"] for x in m[0]],
                     sel[3], norm.gap(sel[1], sel[2]), [x["id"] for x in sel[0]], config, proxy.identity)
     memory.save(folder / "memory_initial.npz")
     atomic_json(folder / "selection_grid.json", grid)
-    rows = annotated(sel[0], sel[1], sel[2], sel[3], norm, memory, proxy.identity, sel[4], sel[5])
+    all_sel = cohorts["selection"]
+    rows = annotated(*all_sel[:4], norm, memory, proxy.identity, *all_sel[4:])
     write_jsonl(folder / "selection_scored.jsonl", rows)
     atomic_json(folder / "selection_metrics.json", {**summarize_rows(rows, norm.threshold),
                 "note": "Selection diagnostics; the default suite fixes k=32 and temperature=0.05 for both memories. Non-singleton grids are tuning metrics, not held-out evidence."})
@@ -198,12 +224,12 @@ def evaluate(policy, rows, proxy, judge, norm, memory, output, arm, step, kind, 
     scored = annotated(items, ps, js, emb, norm, memory, proxy.identity, p, j)
     folder.mkdir(parents=True, exist_ok=True)
     write_jsonl(folder / "responses.jsonl", scored)
-    metrics = {**summarize_rows(scored, norm.threshold), "arm": arm, "update": step,
-               "cohort": kind, "decoding": "greedy", "memory_examples": len(memory.gaps),
+    metrics = {**summarize_rows(scored, norm.threshold if norm else None), "arm": arm, "update": step,
+               "cohort": kind, "decoding": "greedy", "memory_examples": len(memory.gaps) if memory else 0,
                "numeric_protocol": NUMERIC_VERSION, "diagnostic_teacher": "judge",
                "diagnostic_memory_teacher": "judge"}
     atomic_json(metrics_path, metrics)
-    print(f"{kind} {arm} at {step}: accuracy={metrics['accuracy']:.3%}, mean gap={metrics['mean_gap']:.3f}", flush=True)
+    print(f"{kind} {arm} at {step}: accuracy={metrics['accuracy']:.3%}, mean gap={metrics['mean_gap']}, unscored={metrics['n_unscored']}", flush=True)
     return metrics
 
 
@@ -268,6 +294,7 @@ def reward_for_arm(items, arm, proxy, judge, norm, memory, config):
             row.update(judge_score=score["score"], judge_judgement=score["judge_output"])
             row["judge_grading_recovery"] = score.get("grading_recovery")
             row["judge_grading_format_recovery"] = score.get("grading_format_recovery")
+            row["judge_review_path"] = score.get("review_path")
     else:
         scores = proxy.score(items, stage)
         zp = norm.proxy_z([x["score"] for x in scores])
@@ -275,6 +302,7 @@ def reward_for_arm(items, arm, proxy, judge, norm, memory, config):
             row.update(proxy_score=score["score"], proxy_judgement=score["judge_output"])
             row["proxy_grading_recovery"] = score.get("grading_recovery")
             row["proxy_grading_format_recovery"] = score.get("grading_format_recovery")
+            row["proxy_review_path"] = score.get("review_path")
         rewards = zp
         if arm.startswith("knn"):
             pred, similarities, _ = memory.predict(np.stack([x["embedding"] for x in scores]),
@@ -288,11 +316,13 @@ def reward_for_arm(items, arm, proxy, judge, norm, memory, config):
         format_cost = penalties.get("format_penalty", 0.0) * (not row["format_valid"])
         incomplete_cost = penalties.get("incomplete_penalty", 0.0) * (
             row.get("length_capped", False) or not row.get("ended_with_eos", True))
-        row.update(task_reward=float(reward), format_penalty=float(format_cost),
+        row.update(task_reward=number(reward), format_penalty=float(format_cost),
                    incomplete_penalty=float(incomplete_cost),
-                   optimization_reward=float(reward - format_cost - incomplete_cost))
+                   optimization_reward=number(reward - format_cost - incomplete_cost),
+                   used_for_ppo=bool(np.isfinite(reward)),
+                   exclusion_reason=None if np.isfinite(reward) else "unscored_reward")
         adjusted.append(row["optimization_reward"])
-    rewards = np.asarray(adjusted)
+    rewards = np.asarray(adjusted, dtype=float)
     return rewards, details
 
 
@@ -310,10 +340,12 @@ def refresh_memory(policy, memory, proxy, judge, norm, split, config, output, st
     items = ensure_generation(policy, rows, output, f"refresh/{step:06d}", k["refresh_responses"])
     ps, js, emb, p, j = score_both(items, proxy, judge, f"refresh/knn_refresh/{step}")
     # Fixed calibration; no renormalization or retuning k on refreshed data.
-    updated = memory.extend(emb, norm.gap(ps, js), [x["id"] for x in items])
+    valid = paired(ps, js)
+    updated = memory.extend(emb[valid], norm.gap(ps[valid], js[valid]), [x["id"] for i, x in enumerate(items) if valid[i]])
     updated.save(path)
-    write_jsonl(path.with_suffix(".jsonl"), [{**serializable_response(x), "proxy_score": float(ps[i]),
-                                           "judge_score": float(js[i]), "gap": float(norm.gap(ps[i], js[i]))}
+    write_jsonl(path.with_suffix(".jsonl"), [{**serializable_response(x), "proxy_score": number(ps[i]),
+                                           "judge_score": number(js[i]), "gap": number(norm.gap(ps[i], js[i])),
+                                           "used_for_memory": bool(valid[i])}
                                           for i, x in enumerate(items)])
     return updated
 
@@ -326,11 +358,12 @@ def train_arm(policy, arm, target, proxy, judge, norm, initial_memory, initial_s
     checkpoint = folder / "checkpoint.pt"
     policy.restore_trainable(initial_state)
     optimizer = optimizer_for(policy, config)
-    step, memory, last_refresh = 0, initial_memory, 0
+    step, memory, last_refresh, successful_updates = 0, initial_memory, 0, 0
     if checkpoint.exists():
         saved = load_checkpoint(checkpoint, policy, optimizer, fingerprint, arm,
                                 accepted_parents=checkpoint_parents(output, fingerprint))
         step = saved["step"]
+        successful_updates = saved["extra"].get("successful_updates", step)
         last_refresh = saved["extra"].get("last_refresh", 0)
         if last_refresh:
             memory = GapMemory.load(folder / "memories" / f"step_{last_refresh:06d}.npz")
@@ -347,9 +380,17 @@ def train_arm(policy, arm, target, proxy, judge, norm, initial_memory, initial_s
         scored_at = time.monotonic()
         rewards, details = reward_for_arm(items, arm, proxy, judge, norm, memory, config)
         stats_at = time.monotonic()
-        rollout = prepare_rollout(policy, items, rewards, config)
+        valid = np.isfinite(rewards)
+        valid_items = [item for i, item in enumerate(items) if valid[i]]
+        rollout = prepare_rollout(policy, valid_items, rewards[valid], config) if valid_items else []
         updated_at = time.monotonic()
-        stats = update(policy, optimizer, rollout, config, step)
+        if rollout:
+            stats = update(policy, optimizer, rollout, config, successful_updates)
+            successful_updates += 1
+        else:
+            stats = {"optimizer_steps": 0, "skip_reason": "no_valid_rewards"}
+        stats.update(graded_responses=int(valid.sum()), excluded_responses=int((~valid).sum()),
+                     successful_updates=successful_updates, skipped_updates=step + 1 - successful_updates)
         if torch.cuda.is_available() and policy.device.type == "cuda":
             torch.cuda.synchronize(policy.device)
         finished_at = time.monotonic()
@@ -361,25 +402,27 @@ def train_arm(policy, arm, target, proxy, judge, norm, initial_memory, initial_s
         if arm == "knn_refresh" and step % config["knn"]["refresh_every"] == 0:
             memory = refresh_memory(policy, memory, proxy, judge, norm, split, config, output, step)
             last_refresh = step
-        stats.update(update=step, arm=arm, mean_reward=float(np.mean(rewards)),
+        stats.update(update=step, arm=arm, mean_reward=float(np.mean(rewards[valid])) if valid.any() else None,
                      rollout_accuracy=float(np.mean([x["correct"] for x in details])),
-                     seconds=time.monotonic() - start_time, memory_examples=len(memory.gaps))
+                     seconds=time.monotonic() - start_time, memory_examples=len(memory.gaps) if memory else 0)
         # Per-update files are overwritten if an interrupted update must be replayed.
         atomic_json(folder / "training" / f"step_{step:06d}.json", stats)
         write_jsonl(folder / "rollouts" / f"step_{step:06d}.jsonl", details)
         do_monitor = step % p["monitor_every"] == 0 or step == target
         if step % p["checkpoint_every"] == 0 or do_monitor:
-            save_checkpoint(checkpoint, policy, optimizer, step, fingerprint, arm, {"last_refresh": last_refresh})
+            save_checkpoint(checkpoint, policy, optimizer, step, fingerprint, arm,
+                            {"last_refresh": last_refresh, "successful_updates": successful_updates})
         if do_monitor:
             evaluate(policy, split["cohorts"]["monitor"], proxy, judge, eval_norm, memory if arm == "knn_refresh" else eval_memory, output, arm, step, "monitor")
-        print(f"PPO {arm} {step}/{target}: reward={stats['mean_reward']:.3f}, rollout accuracy={stats['rollout_accuracy']:.3%}, {stats['seconds']:.1f}s", flush=True)
+        print(f"PPO {arm} attempt {step}/{target}: reward={stats['mean_reward']}, excluded={stats['excluded_responses']}, rollout accuracy={stats['rollout_accuracy']:.3%}, {stats['seconds']:.1f}s", flush=True)
         print(f"  generate={stats['generation_seconds']:.1f}s grade={stats['grading_seconds']:.1f}s "
               f"old/ref+GAE={stats['rollout_stats_seconds']:.1f}s optimize={stats['optimization_seconds']:.1f}s", flush=True)
     # Also finishes a monitor interrupted immediately after its checkpoint save.
     evaluate(policy, split["cohorts"]["monitor"], proxy, judge, eval_norm, memory if arm == "knn_refresh" else eval_memory, output, arm, target, "monitor")
     policy.lm.save_pretrained(folder / "adapter")
     policy.tokenizer.save_pretrained(folder / "adapter")
-    atomic_json(folder / "completed.json", {"update": step, "last_refresh": last_refresh, "fingerprint": fingerprint})
+    atomic_json(folder / "completed.json", {"update": step, "last_refresh": last_refresh, "fingerprint": fingerprint,
+                                          "successful_updates": successful_updates, "skipped_updates": step - successful_updates})
     del optimizer
     gc.collect()
     torch.cuda.empty_cache()
@@ -438,7 +481,7 @@ def main(argv=None):
             judge = RewardScorer("judge", config, resolved, cache)
             norm, initial_memory = prepare_memory(policy, proxy, judge, split, config, output)
             strong_context = None
-            if "knn_static_30b" in arms:
+            if "knn_static_30b" in arms and norm is not None and initial_memory is not None:
                 strong_context = load_matched_memory(output, norm, initial_memory, config, resolved)
                 if strong_context is None:
                     status(output, "load_30b_memory_teacher")
@@ -450,6 +493,8 @@ def main(argv=None):
                         del teacher
                         gc.collect()
                         torch.cuda.empty_cache()
+                if strong_context is not None:
+                    initial_memory = shared_base_memory(output, initial_memory)
             recover_cached_monitors(policy, split["cohorts"]["monitor"], proxy, judge, norm,
                                     initial_memory, output, arms, config)
             evaluate(policy, split["cohorts"]["monitor"], proxy, judge, norm, initial_memory, output, "base", 0, "monitor")
@@ -463,16 +508,24 @@ def main(argv=None):
                 if previous["updates"] != target or previous["arms"] != arms:
                     raise ValueError("The final test set was already opened at a different target/arm list. Keep that declared protocol; use a new experiment for exploratory extensions.")
             # Pilot evaluates monitor only. The official test cohort stays unopened.
+            skipped_arms = {}
             for arm in arms:
-                reward_norm, reward_memory = strong_context if arm == "knn_static_30b" else (norm, initial_memory)
+                reward_norm, reward_memory = (strong_context or (None, None)) if arm == "knn_static_30b" else (norm, initial_memory)
+                if (arm != "oracle" and reward_norm is None) or (arm.startswith("knn") and reward_memory is None):
+                    skipped_arms[arm] = "insufficient valid grades to prepare this arm"
+                    print(f"Skipping {arm}: {skipped_arms[arm]}; continuing.", flush=True)
+                    continue
                 train_arm(policy, arm, target, proxy, judge, reward_norm, reward_memory, initial_state,
                           split, config, output, fingerprint, evaluation_context=(norm, initial_memory))
+            atomic_json(output / "skipped_arms.json", skipped_arms)
             if args.stage == "full":
                 atomic_json(final_marker, {"updates": target, "arms": arms, "decoding": "greedy",
                                           "questions": len(split["cohorts"]["final"]), "fingerprint": fingerprint})
                 policy.restore_trainable(initial_state)
                 evaluate(policy, split["cohorts"]["final"], proxy, judge, norm, initial_memory, output, "base", 0, "final")
                 for arm in arms:
+                    if arm in skipped_arms:
+                        continue
                     optimizer = optimizer_for(policy, config)
                     saved = load_checkpoint(output / "arms" / arm / "checkpoint.pt", policy, optimizer, fingerprint, arm,
                                             accepted_parents=checkpoint_parents(output, fingerprint))
@@ -488,7 +541,7 @@ def main(argv=None):
                         status(output, "load_30b_final_evaluator")
                         teacher = RewardScorer("judge30b", teacher_config(config), resolved, cache)
                         try:
-                            evaluate_teacher30b(proxy, teacher, *strong_context, output, arms, target)
+                            evaluate_teacher30b(proxy, teacher, *strong_context, output, [a for a in arms if a not in skipped_arms], target)
                         finally:
                             del teacher
                             gc.collect()
@@ -497,6 +550,7 @@ def main(argv=None):
             from .report import make_report
             make_report(output, target=target, arms=arms)
             status(output, "complete", run_stage=args.stage, updates=target, arms=arms,
+                   skipped_arms=skipped_arms,
                    report=str(output / "report.md"))
         except Exception as e:
             status(output, "failed", error_type=type(e).__name__, message=str(e))

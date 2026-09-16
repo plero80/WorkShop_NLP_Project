@@ -97,7 +97,7 @@ def repair(runtime, output):
             raise ValueError("Shared source pins changed.")
         replacements = {}
         for name in patch["changed_files"]:
-            source = PROJECT / "code/experiments/gsm8k_experiment" / name
+            source = PROJECT / "reproducibility/patch_payloads/grading_inline_score_v1" / name
             if file_hash(source) != patch["after"][name]:
                 raise ValueError(f"Checkout patch source differs: {name}")
             replacements[name] = source.read_bytes()

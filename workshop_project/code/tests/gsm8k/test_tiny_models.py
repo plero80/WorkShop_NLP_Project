@@ -242,8 +242,9 @@ def test_generated_grading_retry_never_uses_fake_reward(tiny_assets, tmp_path, m
                  "output_tokens": 2, "embedding": np.ones(32) / np.sqrt(32)} for _ in rows]
 
     monkeypatch.setattr(proxy, "_infer", bad)
-    with pytest.raises(RuntimeError, match="No fake score"):
-        proxy.score(items()[:1], "invalid_test")
+    result = proxy.score(items()[:1], "invalid_test")
+    assert result[0]["score"] is None
+    assert result[0]["grading_status"] == "unscored"
     assert calls == [False, True, True, True, True]
     from gsm8k_experiment.common import read_jsonl
     assert len(read_jsonl(tmp_path / "invalid_judge_outputs.jsonl")) == 5

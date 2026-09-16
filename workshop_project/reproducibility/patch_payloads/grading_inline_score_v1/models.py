@@ -18,7 +18,6 @@ from peft import LoraConfig, get_peft_model, get_peft_model_state_dict, set_peft
 from .answers import parse_rating, parse_rating_prose, parse_rating_inline
 from .common import append_jsonl, digest
 from .recovery import RECOVERY_ID, RECOVERY_POLICY, FORMAT_ID
-from .grading import PROTOCOL, review_case
 
 
 POLICY_SYSTEM = (
@@ -296,7 +295,6 @@ class RewardScorer:
             chunk = missing[start:start + s["batch_size"]]
             values = self._infer([x[2] for x in chunk], stage, s["max_new_tokens"])
             for (i, key, row), value in zip(chunk, values):
-                attempts = []
                 budgets = [s["retry_max_new_tokens"]] + [n for n in RECOVERY_POLICY["extra_max_new_tokens"]
                                                          if n > s["retry_max_new_tokens"]]
                 attempt_budget = s["max_new_tokens"]
@@ -319,13 +317,11 @@ class RewardScorer:
                             print(f"{self.role} {stage}: accepted {form} for {row['id'][:12]}: {recovered}", flush=True)
                     if value["score"] is not None:
                         break
-                    failed = {"role": self.role, "stage": stage,
+                    append_jsonl(self.cache.output / "invalid_judge_outputs.jsonl", {"role": self.role, "stage": stage,
                                     "question_id": row["id"], "response": row["response"], "judge_output": value["judge_output"],
                                     "attempt": attempt, "max_new_tokens": attempt_budget,
                                     "output_tokens": value.get("output_tokens"),
-                                    "length_capped": value.get("grading_length_capped"), "recovery_protocol": RECOVERY_ID}
-                    attempts.append(failed)
-                    append_jsonl(self.cache.output / "invalid_judge_outputs.jsonl", failed)
+                                    "length_capped": value.get("grading_length_capped"), "recovery_protocol": RECOVERY_ID})
                     if budget is None:
                         break
                     print(f"{self.role} {stage}: grade missing for {row['id'][:12]}; retry with {budget} tokens", flush=True)
@@ -338,14 +334,8 @@ class RewardScorer:
                                              examples=1, question_id=row["id"], max_new_tokens=budget,
                                              recovery_protocol=RECOVERY_ID)
                 if value["score"] is None:
-                    value["grading_status"] = "unscored"
-                    value["grading_protocol"] = PROTOCOL
-                    value["review_path"] = review_case(self.cache.output, key, self.role, stage, row,
-                                                       value, attempts, self.identity)
-                    self.cache.event(role=self.role, stage=stage, kind="unscored", examples=1,
-                                     question_id=row["id"], review_path=value["review_path"])
-                    print(f"{self.role} {stage}: unscored {row['id'][:12]}; saved {value['review_path']}; continuing.", flush=True)
-                elif not 1 <= value["score"] <= 5:
+                    raise RuntimeError(f"{self.role} emitted no valid Correctness_score after bounded retries through {attempt_budget} tokens. All failed replies are saved in invalid_judge_outputs.jsonl. No fake score was used.")
+                if not 1 <= value["score"] <= 5:
                     raise ValueError("Judge rating outside [1, 5].")
                 if self.config["scoring"]["cache"]:
                     self.cache.put(key, value)

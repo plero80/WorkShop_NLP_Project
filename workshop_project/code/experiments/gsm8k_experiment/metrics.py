@@ -27,13 +27,18 @@ def auroc(labels, scores):
 
 def summarize_rows(rows, threshold):
     def avg(key):
-        return float(np.mean([x[key] for x in rows]))
-    true = np.asarray([x["gap"] > threshold for x in rows])
-    detected = np.asarray([x["predicted_gap"] > threshold for x in rows])
+        values = [x[key] for x in rows if x.get(key) is not None]
+        return float(np.mean(values)) if values else None
+    paired = [x for x in rows if x.get("gap") is not None and x.get("predicted_gap") is not None]
+    graded = [x for x in rows if x.get("proxy_score") is not None and x.get("judge_score") is not None]
+    true = np.asarray([x["gap"] > threshold for x in paired], dtype=bool)
+    detected = np.asarray([x["predicted_gap"] > threshold for x in paired], dtype=bool)
     tp, fp = int((true & detected).sum()), int((~true & detected).sum())
     fn, tn = int((true & ~detected).sum()), int((~true & ~detected).sum())
-    gap = np.asarray([x["gap"] for x in rows])
-    pred = np.asarray([x["predicted_gap"] for x in rows])
+    gap = np.asarray([x["gap"] for x in paired], dtype=float)
+    pred = np.asarray([x["predicted_gap"] for x in paired], dtype=float)
+    def mean(values):
+        return float(np.mean(values)) if len(values) else None
     numeric_metrics = {}
     if rows and all("numeric_match" in row for row in rows):
         numeric_metrics = {"numeric_accuracy": avg("numeric_match"),
@@ -41,13 +46,16 @@ def summarize_rows(rows, threshold):
                            "numeric_unresolved": sum(int(x["numeric_unresolved"]) for x in rows),
                            "numeric_unresolved_rate": avg("numeric_unresolved"),
                            "numeric_mismatches": sum(not x["numeric_match"] and not x["numeric_unresolved"] for x in rows)}
-    return {**numeric_metrics, "n": len(rows), "accuracy": avg("correct"), "format_valid_rate": avg("format_valid"),
+    return {**numeric_metrics, "n": len(rows), "n_proxy_scored": sum(x.get("proxy_score") is not None for x in rows),
+            "n_judge_scored": sum(x.get("judge_score") is not None for x in rows),
+            "n_pair_scored": len(graded), "n_gap_scored": len(paired), "n_unscored": len(rows) - len(graded),
+            "accuracy": avg("correct"), "format_valid_rate": avg("format_valid"),
             "mean_proxy_score": avg("proxy_score"), "mean_judge_score": avg("judge_score"),
             "mean_gap": avg("gap"), "mean_predicted_gap": avg("predicted_gap"),
-            "gap_mse": float(np.mean((gap - pred)**2)), "gap_mae": float(np.mean(np.abs(gap - pred))),
-            "zero_gap_baseline_mse": float(np.mean(gap**2)),
-            "proxy_judge_pearson": safe_corr([x["proxy_score"] for x in rows], [x["judge_score"] for x in rows]),
-            "high_gap_rate": float(true.mean()), "gap_threshold": threshold,
+            "gap_mse": mean((gap - pred)**2), "gap_mae": mean(np.abs(gap - pred)),
+            "zero_gap_baseline_mse": mean(gap**2),
+            "proxy_judge_pearson": safe_corr([x["proxy_score"] for x in graded], [x["judge_score"] for x in graded]),
+            "high_gap_rate": mean(true), "gap_threshold": threshold,
             "high_gap_auroc": auroc(true, pred), "tp": tp, "fp": fp, "tn": tn, "fn": fn,
             "precision": tp / (tp + fp) if tp + fp else None,
             "recall": tp / (tp + fn) if tp + fn else None,

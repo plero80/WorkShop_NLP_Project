@@ -97,8 +97,10 @@ def test_length_capped_prose_is_not_accepted(tiny_assets, tmp_path, monkeypatch,
         return [dict(score=None, judge_output=reply, input_tokens=200,
                      output_tokens=max_new_tokens, grading_length_capped=True, embedding=None)]
     monkeypatch.setattr(scorer, '_infer', infer)
-    with pytest.raises(RuntimeError, match='No fake score'):
-        scorer.score(items()[:1], 'capped')
+    result = scorer.score(items()[:1], 'capped')
+    assert result[0]['score'] is None
+    assert result[0]['grading_status'] == 'unscored'
+    assert (tmp_path / result[0]['review_path']).exists()
     assert len(read_jsonl(tmp_path / 'invalid_judge_outputs.jsonl')) == 5
     cache.close()
 

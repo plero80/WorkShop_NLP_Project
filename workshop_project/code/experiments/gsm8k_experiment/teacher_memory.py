@@ -10,6 +10,7 @@ import numpy as np
 from .common import atomic_json, digest, read_json, read_jsonl, status, write_jsonl
 from .memory import GapMemory, Normalization
 from .models import RewardScorer
+from .grading import number, scores, paired, unavailable
 
 
 def teacher_config(config):
@@ -43,8 +44,21 @@ def load_matched_memory(output, base_norm, base_memory, config, resolved):
             raise ValueError(f"30B prepared artifact changed: {name}")
     norm = Normalization.load(folder / "normalization.json")
     memory = GapMemory.load(folder / "memory_initial.npz")
-    assert_matched(base_norm, base_memory, norm, memory)
+    assert_matched(base_norm, shared_base_memory(output, base_memory), norm, memory)
     return norm, memory
+
+
+def shared_base_memory(output, base_memory):
+    """Both memories use the same subset if a 30B memory label is unavailable."""
+    path = Path(output) / "prepared_30b" / "complete.json"
+    if not path.exists():
+        return base_memory
+    indices = read_json(path).get("shared_memory_indices")
+    if indices is None:
+        return base_memory  # compatible with earlier, fully graded preparations
+    return GapMemory(base_memory.embeddings[indices], base_memory.gaps[indices],
+                     base_memory.group_ids[indices], base_memory.k,
+                     base_memory.temperature, base_memory.encoder_identity)
 
 
 def assert_matched(base_norm, base_memory, norm, memory):
@@ -72,28 +86,46 @@ def prepare_teacher_memory(proxy, teacher, base_norm, base_memory, config, outpu
             raise ValueError(f"Missing original {name} responses; build the 4B memory first.")
         # Read proxy outputs from the same scorer/cache; its prompts and identity are unchanged.
         p = proxy.score(original, f"teacher30b/{name}/proxy_cache")
-        ps = np.asarray([x["score"] for x in p])
-        if not np.array_equal(ps, [x["proxy_score"] for x in original]):
+        ps = scores([x["score"] for x in p])
+        if not np.array_equal(ps, scores([x["proxy_score"] for x in original]), equal_nan=True):
             raise ValueError("Proxy scores changed while relabeling the matched memory.")
         emb = np.stack([x["embedding"] for x in p]).astype(np.float32)
-        if name == "memory" and not np.array_equal(emb, base_memory.embeddings):
+        base_valid = paired(ps, [x["judge_score"] for x in original])
+        if name == "memory" and not np.array_equal(emb[base_valid], base_memory.embeddings):
             raise ValueError("Proxy embedding parity failed for the shared memory responses.")
         j = teacher.score(original, f"teacher30b/{name}")
-        js = np.asarray([x["score"] for x in j])
+        js = scores([x["score"] for x in j])
         cohorts[name] = (original, ps, js, emb, p, j)
         hashes[name] = same_examples(original)
         write_jsonl(folder / f"{name}_raw.jsonl", [
             {**item, "judge4b_score": item["judge_score"],
-             "judge_score": float(js[i]), "judge_judgement": j[i]["judge_output"],
+             "judge_score": number(js[i]), "judge_judgement": j[i]["judge_output"],
+             "teacher_review_path": j[i].get("review_path"),
              "teacher_role": "judge30b", "teacher_grading_recovery": j[i].get("grading_recovery"),
              "teacher_format_recovery": j[i].get("grading_format_recovery")}
             for i, item in enumerate(original)])
     cal, mem, sel = [cohorts[x] for x in ("calibration", "memory", "selection")]
-    norm = Normalization.fit(cal[1], cal[2], config["knn"]["gap_quantile"], config["scoring"]["minimum_std"])
-    memory = GapMemory(base_memory.embeddings.copy(), norm.gap(mem[1], mem[2]),
-                       base_memory.group_ids.copy(), base_memory.k, base_memory.temperature,
+    cal_valid = paired(cal[1], cal[2]) & np.isfinite(scores([x["judge_score"] for x in cal[0]]))
+    base_valid = paired(mem[1], [x["judge_score"] for x in mem[0]])
+    shared_valid = np.isfinite(mem[2][base_valid])
+    if cal_valid.sum() < 2 or (not cal_valid.all() and cal[2][cal_valid].std() < config["scoring"]["minimum_std"]) or shared_valid.sum() < base_memory.k:
+        unavailable(output, "prepared_30b", "insufficient valid teacher calibration or memory grades",
+                    calibration_pairs=int(cal_valid.sum()), memory_pairs=int(shared_valid.sum()))
+        return None
+    # Keep proxy normalization frozen; estimate teacher statistics from valid calibration labels.
+    teacher_grades = cal[2][cal_valid]
+    if teacher_grades.std() < config["scoring"]["minimum_std"]:
+        raise ValueError("Degenerate teacher calibration.")
+    norm = Normalization(base_norm.proxy_mean, base_norm.proxy_std,
+                         float(teacher_grades.mean()), float(teacher_grades.std()), 0)
+    norm.threshold = float(np.quantile(norm.gap(cal[1][cal_valid], teacher_grades), config["knn"]["gap_quantile"]))
+    shared_base = GapMemory(base_memory.embeddings[shared_valid], base_memory.gaps[shared_valid],
+                           base_memory.group_ids[shared_valid], base_memory.k, base_memory.temperature,
+                           base_memory.encoder_identity)
+    memory = GapMemory(shared_base.embeddings.copy(), norm.gap(mem[1][base_valid][shared_valid], mem[2][base_valid][shared_valid]),
+                       shared_base.group_ids.copy(), base_memory.k, base_memory.temperature,
                        base_memory.encoder_identity)
-    assert_matched(base_norm, base_memory, norm, memory)
+    assert_matched(base_norm, shared_base, norm, memory)
     norm.save(folder / "normalization.json")
     memory.save(folder / "memory_initial.npz")
     rows = annotated(sel[0], sel[1], sel[2], sel[3], norm, memory, proxy.identity, sel[4], sel[5])
@@ -110,6 +142,8 @@ def prepare_teacher_memory(proxy, teacher, base_norm, base_memory, config, outpu
         "teacher_model": config["models"]["judge30b"], "teacher_revision": resolved["judge30b"],
         "teacher_scorer_identity": teacher.identity, "encoder_identity": proxy.identity,
         "shared_response_hashes": hashes, "n_memory": len(memory.gaps),
+        "shared_memory_indices": np.flatnonzero(shared_valid).tolist(),
+        "excluded_memory_labels": int((~shared_valid).sum()),
         "k": memory.k, "temperature": memory.temperature,
         "artifact_sha256": {name: file_sha(folder / name) for name in names},
         "changes": "teacher grades, teacher normalization, normalized gap labels"})

@@ -145,6 +145,11 @@ not scientific settings. The CLI does not alter existing engine source files.
 
 ## Notebooks
 
+GSM8K saves ungradable examples to `<output>/review/ungraded/` and continues.
+Missing grades are excluded from learning and explicitly counted in reports.
+To install this behavior in an existing runtime while preserving saved work, use
+the [GSM8K upgrade instructions](gsm8k/README.md#continue-past-ungradable-examples).
+
 The GSM8K notebook now calls the same CLI. A cell can run any recipe:
 
 ```python

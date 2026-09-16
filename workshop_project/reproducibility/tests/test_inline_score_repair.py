@@ -19,15 +19,12 @@ def failed_run(tmp_path):
     package = runtime / 'gsm8k_experiment'
     package.mkdir(parents=True)
     patch = repair.read(PROJECT / 'reproducibility/gsm8k_inline_score_patch.json')
-    for path in (PROJECT / 'code/experiments/gsm8k_experiment').glob('*.py'):
-        target = package / path.name
-        if path.name in patch['changed_files']:
-            data = subprocess.check_output(['git', '-c', 'safe.directory=' + PROJECT.parent.as_posix(),
-                'show', '5e3983a:workshop_project/code/experiments/gsm8k_experiment/' + path.name], cwd=PROJECT.parent)
-            target.write_bytes(data)
-        else:
-            shutil.copyfile(path, target)
-        assert repair.file_hash(target) == patch['before'][path.name]
+    for name in patch['before']:
+        target = package / name
+        data = subprocess.check_output(['git', '-c', 'safe.directory=' + PROJECT.parent.as_posix(),
+            'show', '5e3983a:workshop_project/code/experiments/gsm8k_experiment/' + name], cwd=PROJECT.parent)
+        target.write_bytes(data)
+        assert repair.file_hash(target) == patch['before'][name]
     for path in (PROJECT / 'code/core').glob('*.py'):
         shutil.copyfile(path, runtime / path.name)
     shutil.copyfile(PROJECT / 'configs/gsm8k/shared_sources.json', package / 'shared_sources.json')

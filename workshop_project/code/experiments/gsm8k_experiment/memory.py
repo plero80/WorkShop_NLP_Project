@@ -31,10 +31,10 @@ class Normalization:
         return cls(mp, sp, mj, sj, float(np.quantile(gaps, quantile)))
 
     def proxy_z(self, values):
-        return (np.asarray(values) - self.proxy_mean) / self.proxy_std
+        return (np.asarray(values, dtype=float) - self.proxy_mean) / self.proxy_std
 
     def judge_z(self, values):
-        return (np.asarray(values) - self.judge_mean) / self.judge_std
+        return (np.asarray(values, dtype=float) - self.judge_mean) / self.judge_std
 
     def gap(self, proxy, judge):
         return self.proxy_z(proxy) - self.judge_z(judge)

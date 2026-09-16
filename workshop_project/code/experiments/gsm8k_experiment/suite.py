@@ -22,16 +22,17 @@ def aggregate(output, seeds, arms):
         if marker['arms'] != arms:
             raise ValueError('Cannot aggregate different arm lists.')
         by_arm = {r['arm']: r for r in summary['metrics'] if r['cohort'] == 'final'}
-        if set(by_arm) != {'base', *arms}:
+        missing = {'base', *arms} - set(by_arm)
+        if missing - set(summary.get('skipped_arms', {})) or set(by_arm) - {'base', *arms}:
             raise ValueError('A seed is missing final evaluations.')
-        records.append({'seed': seed, 'metrics': by_arm})
+        records.append({'seed': seed, 'metrics': by_arm, 'skipped_arms': summary.get('skipped_arms', {})})
         if {'knn_static', 'knn_static_30b'} <= set(by_arm):
             differences.append({'seed': seed,
                 'strict_difference': by_arm['knn_static_30b']['accuracy'] - by_arm['knn_static']['accuracy'],
                 'numeric_difference': by_arm['knn_static_30b']['numeric_accuracy'] - by_arm['knn_static']['numeric_accuracy']})
     def stats(values):
-        return {'mean': statistics.mean(values), 'sample_sd': statistics.stdev(values) if len(values) > 1 else None, 'values': values}
-    summary = {arm: {key: stats([r['metrics'][arm][key] for r in records])
+        return {'mean': statistics.mean(values) if values else None, 'sample_sd': statistics.stdev(values) if len(values) > 1 else None, 'values': values, 'n_seeds': len(values)}
+    summary = {arm: {key: stats([r['metrics'][arm][key] for r in records if arm in r['metrics']])
                     for key in ('accuracy', 'numeric_accuracy', 'numeric_unresolved_rate', 'format_valid_rate', 'length_cap_rate')}
                for arm in ['base', *arms]}
     paired = {key: stats([r[key] for r in differences]) for key in ('strict_difference', 'numeric_difference')} if differences else {}
@@ -39,6 +40,8 @@ def aggregate(output, seeds, arms):
     lines = ['# GSM8K matched-seed suite', '', f'Seeds: {seeds}. Values below are mean ± sample standard deviation across training seeds, not confidence intervals.', '',
              '| Policy | Strict accuracy | Numeric matches / all | Valid box | Unresolved |', '|---|---:|---:|---:|---:|']
     def fmt(v):
+        if v['mean'] is None:
+            return 'unavailable (no graded training data)'
         return f"{v['mean']:.2%} ± {v['sample_sd']:.2%}" if v['sample_sd'] is not None else f"{v['mean']:.2%} (one seed)"
     for arm, values in summary.items():
         lines.append(f"| {LABELS.get(arm, arm)} | {fmt(values['accuracy'])} | {fmt(values['numeric_accuracy'])} | {fmt(values['format_valid_rate'])} | {fmt(values['numeric_unresolved_rate'])} |")

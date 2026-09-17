@@ -304,12 +304,12 @@ def reward_for_arm(items, arm, proxy, judge, norm, memory, config):
             row["proxy_grading_format_recovery"] = score.get("grading_format_recovery")
             row["proxy_review_path"] = score.get("review_path")
         rewards = zp
-        if arm.startswith("knn"):
+        if arm.startswith("knn") or arm == "ridge":
             pred, similarities, _ = memory.predict(np.stack([x["embedding"] for x in scores]),
                                     [x["id"] for x in items], proxy.identity)
             rewards = corrected_reward(zp, pred, config["knn"]["correction"])
             for row, gap, sim in zip(details, pred, similarities):
-                row.update(predicted_gap=float(gap), nearest_similarity=float(sim))
+                row.update(predicted_gap=float(gap), nearest_similarity=number(sim))
     penalties = config.get("completion_reward", {})
     adjusted = []
     for row, reward in zip(details, rewards):

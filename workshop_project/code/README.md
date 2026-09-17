@@ -19,6 +19,8 @@
 | `launch.py`, `setup_environment.py`, `RESUME_KNN_DISTILLATION.py` | Original setup and operational scripts |
 
 The shared core and retained experiments are exact copies arranged for reading.
+The `gsm8k_ridge` extension reuses completed GSM8K controls and adds ridge through
+the existing GSM8K PPO training loop; see the [ridge guide](../docs/gsm8k/RIDGE.md).
 The `hh_fresh` runner builds new memories and runs both refresh comparisons and
 proxy/kNN/ridge PPO using the existing trainer. Run `python hh_fresh.py run` from
 the project root; see the [fresh-run guide](../docs/hh_fresh/README.md).

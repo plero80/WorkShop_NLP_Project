@@ -1,0 +1,8 @@
+version: 1
+experiment: gsm8k_ridge
+# A complete original output directory, including cache and initial state.
+# Override with: python gsm8k.py ridge run --source /absolute/path/to/b200
+sources: [gsm8k_outputs/b200]
+output: gsm8k_outputs/ridge
+ridge_alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+cpu_threads: 8

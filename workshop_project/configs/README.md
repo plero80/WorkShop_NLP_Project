@@ -12,6 +12,9 @@
   ridge-reward continuation for three seeds, run with `hh_ridge_ppo.py`.
 - [experiments/hh-fresh.yaml](experiments/hh-fresh.yaml): full three-seed HH run
   with two refreshes and new proxy/kNN/ridge controls, run with `hh_fresh.py`.
+- [experiments/gsm8k-ridge.yaml](experiments/gsm8k-ridge.yaml): add ridge to
+  completed GSM8K controls with `python gsm8k.py ridge run`; see the
+  [guide](../docs/gsm8k/RIDGE.md) for source paths and multi-seed inputs.
 
 Exploration settings are embedded in its notebooks. Retained settings are
 unchanged. Source guards are under

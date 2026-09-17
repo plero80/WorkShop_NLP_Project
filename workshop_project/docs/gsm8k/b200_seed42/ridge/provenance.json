@@ -1,0 +1,97 @@
+{
+  "scope": "Offline comparison on archived seed-42 answers; ridge PPO has not run",
+  "source_archive": "gsm8k_outputs.zip",
+  "source_run_fingerprint": "dd521bd88f6e3451369b17cb94572ea29a108f386fcd17b61159afd45dc23c37",
+  "ridge_manifest": {
+    "fingerprint": "ace3c97262b3649c191e291a08477ef7d912201d086ff6644820f59ac9495d99",
+    "identity": {
+      "protocol": "gsm8k_ridge_extension_v1",
+      "ridge_alphas": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "cpu_threads": 8,
+      "controls": {
+        "42": {
+          "arms/knn_static/completed.json": "a5882f2147f012d043ce3b02f9164835fb03b72033de633acb59ef9b7a867e1d",
+          "arms/knn_static/training/step_000001.json": "e2acd6e96f50ceb2e2743ea4c7077275ec13b2fc24e5293a8943d5d463eb7884",
+          "arms/knn_static/training/step_000400.json": "9273072dd34a3a2c00591f079bfe735712f23dccaaaacd6017d9932a6d5d06d3",
+          "arms/proxy/completed.json": "a5882f2147f012d043ce3b02f9164835fb03b72033de633acb59ef9b7a867e1d",
+          "config.json": "91fc6990cb16ce33c61e215819c7ab5b6b8efc48b799f359b4b28c4497d200ae",
+          "data/splits.json": "9799b4ec6eb08989adf29128af70b625b71d98311434ff6ee0d707d25e3eaf6f",
+          "evaluations/final/base/step_000000/metrics.json": "a48ad57718c2cd5ed8fba9e1ba1059a6bd8a7ea23c2e544474577ef2145909e9",
+          "evaluations/final/base/step_000000/responses.jsonl": "3573a36b0730835fbbbcc23505d89134212d2225a5d012d27bedc5d4e188f9b8",
+          "evaluations/final/knn_static/step_000400/metrics.json": "5fedfd5bbdd54a6c42c282008c60a0e676ca3a79c0cd2569fa9c4a7aca2b0bcd",
+          "evaluations/final/knn_static/step_000400/responses.jsonl": "bd68007568a6e1377dae4701db8b8e52d2804b4664c24dd8381dba8294f99390",
+          "evaluations/final/proxy/step_000400/metrics.json": "cbeeaa9c5bd0ef941e40f373c21a5727d934a167687b4375c380f499ec3aa580",
+          "evaluations/final/proxy/step_000400/responses.jsonl": "86053afccf3116ad78012c8e1da6d8000b7244f382e1312518003c3198096a11",
+          "final_protocol.json": "90e4bac242b692ac54ecf0673282b7389a5d1ab4520d895f5ccfa8e2364ab8ac",
+          "initial_trainable.pt": "7bc5c28bee511782c8ea5ae0c7fdf3d22f3d31932337e2b44ae95cdae18f536c",
+          "manifest.json": "d936fbe22846e3ea1a96fca1dfff6d29ce1e42b8f4b5305742ad064f9af969c6",
+          "prepared/calibration_raw.jsonl": "3ba556f4f22199b9f4ffd61c1dc3b8b9e0d973fab15b43c7f6f3ee2c93127197",
+          "prepared/encoder_probe.json": "a823e4ec83a98de1a91deeca6028573c57ea60d3422defaaba18f7751554597b",
+          "prepared/memory_initial.npz": "8b528df8e3fc8e02452fde5a2de7f7834753db447df6658d22b3507e77790ba2",
+          "prepared/normalization.json": "06189c2135127f90778ec38e624d9162f240e4d3c6f2babf8b7a2d3ef8421107",
+          "prepared/selection_raw.jsonl": "e9781592ddc861cb8526e9a3389ec746f98e3a75ea51b75fc86c19d1425433a5",
+          "prepared_30b/complete.json": "62dde4a0a08b2fc3a306e58f78b1747d841a7837c4a63c552c2e7e2a8ac0dbe7",
+          "resolved_assets.json": "4b4f90544b8d9548fd812e83ba18c34cb9e1af4920856b1d1470a02ad4dc2e5c",
+          "reward_cache.sqlite": "6d3cee42810c90af7dfb9d21caf83f67497c0380b26be2b1fdee83bfd9d1eb00"
+        }
+      },
+      "sources": {
+        "code/experiments/gsm8k_ridge/inputs.py": "90f55b9de5ec6c09bd1957c07e9dd9838f8186f7db1d8a9afbe94fa8a2bae9e6",
+        "code/experiments/gsm8k_ridge/model.py": "bb20e4c88f933d19c03de8bda241103159dc7384b1ae3c301643d029e345fe25",
+        "code/experiments/gsm8k_ridge/reports.py": "cf976ab098c8de6f521aeea4a0592e453bc77c162c7a2b53479a75311987f956",
+        "code/experiments/gsm8k_ridge/run.py": "e30f53101b03d3ab29e1f116607ff8227d052554aeee43783103917bc9c59feb",
+        "code/experiments/gsm8k_ridge/__init__.py": "b9594867ee24a0612aafce99d8c19ce2fc74db1ca786f49b55eda6b06d46d5da",
+        "code/experiments/gsm8k_ridge/compatibility.json": "0a94c4129f261a66a55e906477ea7c18232c4891fc5a6165ef5bdaf65304ca7c",
+        "gsm8k.py": "012b1d4c97a4b8ffcf502392fdef39b3014dd0227214135bda0a310e96531bfc",
+        "code/experiments/gsm8k_experiment/run.py": "05548b8fd1212c2fa49698772f4c7c56816df2e84fc32042a80e472707e5f073",
+        "code/experiments/gsm8k_experiment/models.py": "16588f0b03f589a4ce05a9dec942ea866cd9d08e87d262e7c972ba14f41a898d",
+        "code/experiments/gsm8k_experiment/memory.py": "6b3322c52fe403d1d377cd46c3e65f96ed0e98d49d6f884def9bae7e193d68f0",
+        "code/experiments/gsm8k_experiment/ppo.py": "bf9e9ee4c22175fa41b9ec6bad68cfafaf14e6b362067895cf1c6792f680ffa9",
+        "code/experiments/gsm8k_experiment/shared.py": "e30b814e2a1dad48a2d6fcbfa79d12515a1493cd18fabd7ecda860cb76928669",
+        "code/experiments/gsm8k_experiment/grading.py": "730afe610b535b92da60915daeb0e7b96d0287bd364beeb2637efa39507771bc",
+        "code/experiments/gsm8k_experiment/validation.py": "28ce501fac32c13612878f0abe0d1f2e2f3e73a7fa046a7c86efcbc929abc50b",
+        "code/experiments/gsm8k_experiment/metrics.py": "3a2c8fafb4f0c40b20fb52c3f37d7738093d63090333aba8c3e283d0789942c7"
+      },
+      "shared_PPO": {
+        "assets.py": "8992b7ff238555a63b48afba5294cd7fa47f351865535e9823bfc9683f777580",
+        "chat_format.py": "813717e8a7cd0376509ab5d22a7ab2656b1f7f643290edfcf9cab9db097a6de1",
+        "common.py": "b7560e6c4af7c21c38c5e1a1e9b92a521d7a2024a6e695e3e93e21942f7af333",
+        "evaluation.py": "476922c09fbb5ca7da70334c4174e5d77812dd2d886e5d901cc7c8aa8dc23c8d",
+        "gap_correction.py": "9f7971677cc198824b02272fc407408f386ad9aaa8f5362be7d7700a5a82f86c",
+        "improvement.py": "0bd31841efc3508a6fb4aefc8692bf0b2c771171441792470c0f731d9ea28e85",
+        "knn_core.py": "6fd334bfb9235e922a8b5df762232f3ee0e708bf2f57c03ba34e502f7cfcd435",
+        "launch.py": "87ee26909f1a9c87cd9e9a36fa712e41fadedbcc81dcb5bae72cb85d1a1386dd",
+        "ppo_engine.py": "e31b160a3d2cc42040a23e9d594013025d9b7c945dd0c1de3a073ed0cbc43153",
+        "reporting.py": "99fe6e7632ca010afdc85a988b09a8857b0f221766e71d278fb8bf87874fa428",
+        "RESUME_KNN_DISTILLATION.py": "f1c1cdee1cd3de31d75264b5e417599bf5a181900de3f7a39f9a62d90c9b39dc",
+        "review.py": "f1bd92f72209075460e36d8f493f2291def6517aa441bcbbf23b5016d211daae",
+        "reward_bridge.py": "1f793e8b07d10d731e5538ef708a3e2982bde200e419acd0d3d44ae2176e4e15",
+        "run_study.py": "85b03415dfb29772ddec6ee033db3e1cf9c40a1a381a3765946004301e469639",
+        "setup_environment.py": "2af5f1cac00508a0730a476d10f61de12a9632e647fc60582d39a3a57f84a025"
+      },
+      "fit_versions": {
+        "numpy": "1.26.4",
+        "scipy": "1.12.0",
+        "scikit-learn": "1.4.1.post1"
+      },
+      "target": "actual 4B normalized gap",
+      "test_role": "follow-up on an already inspected benchmark",
+      "control_training_repeated": false
+    }
+  },
+  "copied_artifact_sha256": {
+    "predictor_metrics.csv": "c417cd2d7bbede9778f7d788a1f9ea0168c43cd232280a4223a1df6b029f178b",
+    "report.md": "b8ff00613411d3b9add5db891a4a531be93e228d61c621bdc9b1e56151b1f01e",
+    "saved_control_metrics.csv": "de0a55b25d4ca47a74522cc30368eaf125021d0cc62f0614deb3b1e2c10ce5f5",
+    "selection.json": "f129850312760b96a6b9b998663f12eedc9f18cff6cff1442dd71a2edb6ea62e"
+  },
+  "source_archive_sha256": "c3b05d0ca5911daf7a3d77b67d34889c274154281c3973db36644def7baecdba"
+}

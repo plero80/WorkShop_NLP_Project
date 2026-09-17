@@ -1,0 +1,20 @@
+{
+  "source_fingerprints": [
+    "c29faaa41991310a535810f453867075eb0d3c8718edf6ccc4cbdb665f1675e9",
+    "0e3cc7ff6cc13f98e54a42c411bc3441a446f510a2f55ccca1a1bd050209fe0c"
+  ],
+  "critical_sources": {
+    "models.py": "16588f0b03f589a4ce05a9dec942ea866cd9d08e87d262e7c972ba14f41a898d",
+    "answers.py": "50f317d765e18c1bf871cfe8e9358d03c685f62333e71b29e1cb008e82249281",
+    "numeric.py": "615d45cb606804c866030a776e3b4ef6e69cb41357b1a784f2049bd273e2d722",
+    "memory.py": "6b3322c52fe403d1d377cd46c3e65f96ed0e98d49d6f884def9bae7e193d68f0",
+    "metrics.py": "3a2c8fafb4f0c40b20fb52c3f37d7738093d63090333aba8c3e283d0789942c7",
+    "ppo.py": "bf9e9ee4c22175fa41b9ec6bad68cfafaf14e6b362067895cf1c6792f680ffa9",
+    "shared.py": "e30b814e2a1dad48a2d6fcbfa79d12515a1493cd18fabd7ecda860cb76928669",
+    "teacher_memory.py": "a2b246be4413646d0797ca183f2c5da457604539ff560e91d0c4699636e0a619",
+    "data.py": "80389913a80c532dfa4cc2ada9de9b7eb38548687b804cc44b6ddadd3c3d90a2",
+    "grading.py": "730afe610b535b92da60915daeb0e7b96d0287bd364beeb2637efa39507771bc",
+    "recovery.py": "c04710e4547b11801c1a16f8cd0d1cbafb594d601e5db3148dcf11f41657cf06"
+  },
+  "note": "Known saved control implementations; the extension adds only a ridge reward route to the existing training loop."
+}

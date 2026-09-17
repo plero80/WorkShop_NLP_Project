@@ -513,6 +513,21 @@ The fresh 8,000-row initial memory is a deliberate new specification; it is not
 a replay of the historical 7,990-row memory. Every cohort is separated by
 conversation opening before scoring, including the parent training pools.
 
+## Added GSM8K ridge comparison
+
+`python gsm8k.py ridge run --source PATH` reuses each completed source seed's
+static kNN memory, initial actor/value state, splits, proxy and kNN controls.
+The archived B200 seed-42 source provides 512 memory questions / 1,024 labels,
+128 validation questions / 256 answers, and 1,319 final questions. Ridge alpha
+is selected by validation MSE; no additional judge labels are used for fitting.
+Only ridge trains: 400 rollout attempts x 8 questions x 2 answers = 6,400
+training answers. Its 16 monitoring checkpoints use 128 questions each, followed
+by 1,319 final answers (3,367 new judge evaluations before retries/probes).
+Other source runs inherit their actual completed target/counts; they are not
+silently extended. A saved three-seed suite yields three matched ridge arms.
+See the [ridge guide](gsm8k/RIDGE.md) for the YAML and output tables. Offline
+predictor comparison has been run on seed 42; ridge PPO is pending.
+
 ## Scope of the saved evidence
 
 The removed experiment implementations are not additional active experiments

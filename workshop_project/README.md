@@ -57,6 +57,17 @@ It uses the saved HH-RLHF embeddings and judge scores without additional PPO.
 
 Run GSM8K from this folder using [YAML recipes and the CLI](docs/EXPERIMENT_CLI.md):
 
+To add **ridge PPO to completed GSM8K controls**, see the [ridge guide](docs/gsm8k/RIDGE.md):
+
+```bash
+python gsm8k.py ridge run --source /path/to/completed/b200 --dry-run
+python gsm8k.py ridge run --source /path/to/completed/b200
+```
+
+It fits ridge on the saved kNN memory and trains only the new arm. `ridge prepare`
+fits and compares predictors offline; no GPU training or judge calls are needed.
+The original GSM8K commands are:
+
 ```bash
 python gsm8k.py run gsm8k-b200 --dry-run
 python gsm8k.py run gsm8k-b200

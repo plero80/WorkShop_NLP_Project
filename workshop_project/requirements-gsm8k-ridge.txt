@@ -1,0 +1,8 @@
+# Matches the archived B200 controls. CUDA torch 2.8.0 is installed separately.
+-r requirements-gsm8k.txt
+transformers==5.17.0
+peft==0.20.0
+accelerate==1.15.0
+datasets==4.8.5
+huggingface_hub==1.31.0
+numpy==2.1.2

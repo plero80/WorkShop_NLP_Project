@@ -68,6 +68,10 @@ def select_layout(cli, args):
 
 def main(argv=None):
     args = list(sys.argv[1:] if argv is None else argv)
+    if args and args[0] == "ridge":
+        sys.path[:0] = [str(PROJECT / "code/experiments"), str(PROJECT / "code/core")]
+        from gsm8k_ridge.run import main as ridge_main
+        return ridge_main(args[1:], project=PROJECT)
     if args == ["setup"]:
         print("GSM8K runs directly from workshop_project/code; no runtime copy is created.")
         print(f'python -m pip install -r "{PROJECT / "requirements-gsm8k.txt"}"')

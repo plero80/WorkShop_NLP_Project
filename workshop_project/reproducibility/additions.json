@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "description": "New GSM8K integration, YAML CLI, HH-RLHF offline comparisons, matched M2 ridge PPO, and full fresh HH training with two memory refreshes; separate from immutable original file map.",
+  "description": "Added GSM8K/shared-PPO integrations and CLI, HH offline and fresh/matched ridge comparisons, and the saved-run GSM8K ridge extension; separate from immutable original file map.",
   "files": [
     {
       "original": "README.md",
       "organized": "README.md",
-      "bytes": 4615,
-      "sha256": "693c53e3fd67cb284953a8b9187afa9e7ef6d962abc36b279c042b9fdce7c75a"
+      "bytes": 5049,
+      "sha256": "cd0217a823c2de52d96049462ea2c9404e3d51d09aac08ccd6e5093020d17f7d"
     },
     {
       "original": "code/README.md",
       "organized": "code/README.md",
-      "bytes": 1868,
-      "sha256": "f20579dd0a6f21f87732bfe35719d94bd9a3da2f2fedb66d09bb789d68e03a57"
+      "bytes": 2036,
+      "sha256": "ca93b8ee5a085ccf90ab301d4a6ed60ea9b3cae03302bcfe674549b2712cb27d"
     },
     {
       "original": "experiment_cli/__init__.py",
@@ -119,8 +119,8 @@
     {
       "original": "gsm8k_experiment/run.py",
       "organized": "code/experiments/gsm8k_experiment/run.py",
-      "bytes": 33861,
-      "sha256": "61d4fae6db85715071c955fa5c479eba758c68312f316aaeff7e04da9a82c3ed"
+      "bytes": 33878,
+      "sha256": "05548b8fd1212c2fa49698772f4c7c56816df2e84fc32042a80e472707e5f073"
     },
     {
       "original": "gsm8k_experiment/shared.py",
@@ -293,8 +293,8 @@
     {
       "original": "configs/README.md",
       "organized": "configs/README.md",
-      "bytes": 1181,
-      "sha256": "743058d9ce0b9ad645ff54f06b3e1bf54b622183975f81cf9a124af020e8c8bf"
+      "bytes": 1401,
+      "sha256": "202b24905d595279c782666bf85ee8854d8701944b9d945131048ba6224b8ef5"
     },
     {
       "original": "experiment_cli/presets/gsm8k-b200.yaml",
@@ -371,8 +371,8 @@
     {
       "original": "docs/EXPERIMENT_DATA_COUNTS.md",
       "organized": "docs/EXPERIMENT_DATA_COUNTS.md",
-      "bytes": 30679,
-      "sha256": "eb7e4b6567c7c6d31b4d95cc317793e833c702bbe5077c008919e88c182747af"
+      "bytes": 31638,
+      "sha256": "7f9ef70d81ff6cb64bd5331e0e87a6ffd61ed8adc10b7af9b6f0834b9ee4f8ca"
     },
     {
       "original": "docs/README.md",
@@ -767,8 +767,8 @@
     {
       "original": "reproducibility/audit_gsm8k_rewards.py",
       "organized": "reproducibility/audit_gsm8k_rewards.py",
-      "bytes": 17480,
-      "sha256": "0ce7350399d1bc5bd6064b2ab616a385367feda7c258eab1bf14293e58cb203d"
+      "bytes": 18475,
+      "sha256": "8bb3f43bfd47b842ce7e1357afb36eb618214a59853d6811c9a5951aca163a2c"
     },
     {
       "original": "requirements-hh-offline.txt",
@@ -841,6 +841,102 @@
       "organized": "code/tests/hh_fresh/test_fresh.py",
       "bytes": 9825,
       "sha256": "7e3aac9577725244040efa8aa127222dc4356dd8c9962978f31f0073bded4215"
+    },
+    {
+      "original": "gsm8k_ridge/__init__.py",
+      "organized": "code/experiments/gsm8k_ridge/__init__.py",
+      "bytes": 84,
+      "sha256": "b9594867ee24a0612aafce99d8c19ce2fc74db1ca786f49b55eda6b06d46d5da"
+    },
+    {
+      "original": "gsm8k_ridge/compatibility.json",
+      "organized": "code/experiments/gsm8k_ridge/compatibility.json",
+      "bytes": 1296,
+      "sha256": "0a94c4129f261a66a55e906477ea7c18232c4891fc5a6165ef5bdaf65304ca7c"
+    },
+    {
+      "original": "gsm8k_ridge/inputs.py",
+      "organized": "code/experiments/gsm8k_ridge/inputs.py",
+      "bytes": 6315,
+      "sha256": "90f55b9de5ec6c09bd1957c07e9dd9838f8186f7db1d8a9afbe94fa8a2bae9e6"
+    },
+    {
+      "original": "gsm8k_ridge/model.py",
+      "organized": "code/experiments/gsm8k_ridge/model.py",
+      "bytes": 4151,
+      "sha256": "bb20e4c88f933d19c03de8bda241103159dc7384b1ae3c301643d029e345fe25"
+    },
+    {
+      "original": "gsm8k_ridge/reports.py",
+      "organized": "code/experiments/gsm8k_ridge/reports.py",
+      "bytes": 10181,
+      "sha256": "cf976ab098c8de6f521aeea4a0592e453bc77c162c7a2b53479a75311987f956"
+    },
+    {
+      "original": "gsm8k_ridge/run.py",
+      "organized": "code/experiments/gsm8k_ridge/run.py",
+      "bytes": 10370,
+      "sha256": "e30f53101b03d3ab29e1f116607ff8227d052554aeee43783103917bc9c59feb"
+    },
+    {
+      "original": "tests/gsm8k/test_ridge.py",
+      "organized": "code/tests/gsm8k/test_ridge.py",
+      "bytes": 10487,
+      "sha256": "00b854d8ebd30a3f01235fbb7eb77cc08c10611e4da46c4a50add0cfc047e072"
+    },
+    {
+      "original": "configs/experiments/gsm8k-ridge.yaml",
+      "organized": "configs/experiments/gsm8k-ridge.yaml",
+      "bytes": 317,
+      "sha256": "0e59539bcbe46109bfde6b5aee5627fa3b3caba13a033d05a194ca0e4e249ec4"
+    },
+    {
+      "original": "docs/gsm8k/RIDGE.md",
+      "organized": "docs/gsm8k/RIDGE.md",
+      "bytes": 5907,
+      "sha256": "7810ec7110ecc08c233f932585535f2717cf07174815dff54f7727cf58996dd1"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/ridge/predictor_metrics.csv",
+      "organized": "docs/gsm8k/b200_seed42/ridge/predictor_metrics.csv",
+      "bytes": 3135,
+      "sha256": "c417cd2d7bbede9778f7d788a1f9ea0168c43cd232280a4223a1df6b029f178b"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/ridge/provenance.json",
+      "organized": "docs/gsm8k/b200_seed42/ridge/provenance.json",
+      "bytes": 7353,
+      "sha256": "3d219d3eb346413552459a19f4b4ae89bf2ba1ede52d101f3bd298971de66c90"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/ridge/report.md",
+      "organized": "docs/gsm8k/b200_seed42/ridge/report.md",
+      "bytes": 3071,
+      "sha256": "b8ff00613411d3b9add5db891a4a531be93e228d61c621bdc9b1e56151b1f01e"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/ridge/saved_control_metrics.csv",
+      "organized": "docs/gsm8k/b200_seed42/ridge/saved_control_metrics.csv",
+      "bytes": 1743,
+      "sha256": "de0a55b25d4ca47a74522cc30368eaf125021d0cc62f0614deb3b1e2c10ce5f5"
+    },
+    {
+      "original": "docs/gsm8k/b200_seed42/ridge/selection.json",
+      "organized": "docs/gsm8k/b200_seed42/ridge/selection.json",
+      "bytes": 117345,
+      "sha256": "f129850312760b96a6b9b998663f12eedc9f18cff6cff1442dd71a2edb6ea62e"
+    },
+    {
+      "original": "gsm8k.py",
+      "organized": "gsm8k.py",
+      "bytes": 4187,
+      "sha256": "012b1d4c97a4b8ffcf502392fdef39b3014dd0227214135bda0a310e96531bfc"
+    },
+    {
+      "original": "requirements-gsm8k-ridge.txt",
+      "organized": "requirements-gsm8k-ridge.txt",
+      "bytes": 212,
+      "sha256": "8359fd66e7fe6c8edf9619c65c04e6265898fc5d3b1c2009b92d0d2faf2a3646"
     }
   ]
 }

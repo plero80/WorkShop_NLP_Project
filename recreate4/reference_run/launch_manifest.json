@@ -1,0 +1,135 @@
+{
+  "created_at": "2026-09-17T12:11:24.193223+00:00",
+  "highest_stage": "full",
+  "identity": {
+    "arms": [
+      "proxy",
+      "judge",
+      "knn_static"
+    ],
+    "data_seed": 42,
+    "one_visible_gpu_per_worker": true,
+    "recipe_sha256": "04bb6ab1e3f6fe0707039b452790e8a1340237925d816f8dd15422ae33734117",
+    "runtime_sha256": "cedcc5c1bf9f46e2663979b3facfe09483c3d6cbbb200007bd8c69cf9a1942a4",
+    "seeds": [
+      42
+    ],
+    "settings_by_seed": {
+      "42": {
+        "arms": [
+          "proxy",
+          "judge",
+          "knn_static"
+        ],
+        "completion_reward": {
+          "format_penalty": 0.0,
+          "incomplete_penalty": 0.0
+        },
+        "data_seed": 42,
+        "dataset": {
+          "calibration": 128,
+          "config": "main",
+          "final": 1319,
+          "id": "openai/gsm8k",
+          "memory": 512,
+          "monitor": 128,
+          "ppo": 5000,
+          "refresh": 512,
+          "responses_per_prompt": 2,
+          "selection": 128
+        },
+        "evaluation": {
+          "bootstrap_samples": 2000,
+          "numeric_protocol": "gsm8k_numeric_recheck_v1",
+          "numeric_protocol_frozen_before_run": true
+        },
+        "generation": {
+          "batch_size": 4,
+          "max_new_tokens": 768,
+          "max_prompt_tokens": 1024,
+          "temperature": 1.0
+        },
+        "knn": {
+          "correction": "signed",
+          "gap_quantile": 0.95,
+          "k_grid": [
+            32
+          ],
+          "refresh_every": 100,
+          "refresh_prompts": 64,
+          "refresh_responses": 2,
+          "temperature_grid": [
+            0.05
+          ]
+        },
+        "models": {
+          "judge": "Qwen/Qwen3-4B-Instruct-2507",
+          "judge30b": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+          "policy": "Qwen/Qwen2.5-0.5B-Instruct",
+          "proxy": "Qwen/Qwen2.5-1.5B-Instruct"
+        },
+        "ppo": {
+          "checkpoint_every": 5,
+          "clip_range": 0.2,
+          "epochs": 2,
+          "full_updates": 400,
+          "gae_lambda": 0.95,
+          "gamma": 1.0,
+          "kl_coefficient": 0.01,
+          "learning_rate": 1e-05,
+          "lora_alpha": 32,
+          "lora_r": 16,
+          "max_grad_norm": 1.0,
+          "minibatch_size": 8,
+          "monitor_every": 25,
+          "pilot_updates": 100,
+          "prompts_per_update": 8,
+          "responses_per_prompt": 2,
+          "target_update_kl": 0.05,
+          "value_clip_range": 0.2,
+          "value_coefficient": 0.5,
+          "value_learning_rate": 0.0001
+        },
+        "revisions": {
+          "dataset": "740312add88f781978c0658806c59bc2815b9866",
+          "judge": "cdbee75f17c01a7cc42f958dc650907174af0554",
+          "judge30b": "main",
+          "policy": "7ae557604adf67be50417f59c2c2f167def9a775",
+          "proxy": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+        },
+        "runtime": {
+          "attention": "sdpa",
+          "device": "cuda:0",
+          "dtype": "bfloat16",
+          "gradient_checkpointing": false,
+          "ppo_microbatch_size": 1,
+          "rollout_stats_batch_size": 1
+        },
+        "scoring": {
+          "batch_size": 1,
+          "cache": true,
+          "max_input_tokens": 4096,
+          "max_new_tokens": 160,
+          "minimum_std": 0.05,
+          "mode": "rationale_then_score",
+          "retry_max_new_tokens": 320
+        },
+        "seed": 42,
+        "teacher30b": {
+          "batch_size": 4,
+          "evaluate_final": false
+        }
+      }
+    },
+    "version": 1,
+    "workers": 1
+  },
+  "initial_gpu_assignment": {
+    "42": "0"
+  },
+  "io_policy": {
+    "helper_sha256": "fedb469a84f54cc684cd3ddde743ce1de8e0a2a24ce8ac522b744851407aed80",
+    "name": "windows_atomic_replace_retry_v1"
+  },
+  "last_started_at": "2026-09-17T15:59:33.780958+00:00"
+}

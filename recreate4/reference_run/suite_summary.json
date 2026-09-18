@@ -1,0 +1,356 @@
+{
+  "seeds": [
+    42
+  ],
+  "arms": {
+    "base": {
+      "accuracy": {
+        "mean": 0.2880970432145565,
+        "sample_sd": null,
+        "values": [
+          0.2880970432145565
+        ],
+        "n_seeds": 1
+      },
+      "numeric_accuracy": {
+        "mean": 0.2918877937831691,
+        "sample_sd": null,
+        "values": [
+          0.2918877937831691
+        ],
+        "n_seeds": 1
+      },
+      "numeric_unresolved_rate": {
+        "mean": 0.022744503411675512,
+        "sample_sd": null,
+        "values": [
+          0.022744503411675512
+        ],
+        "n_seeds": 1
+      },
+      "format_valid_rate": {
+        "mean": 0.9605761940864291,
+        "sample_sd": null,
+        "values": [
+          0.9605761940864291
+        ],
+        "n_seeds": 1
+      },
+      "length_cap_rate": {
+        "mean": 0.013646702047005308,
+        "sample_sd": null,
+        "values": [
+          0.013646702047005308
+        ],
+        "n_seeds": 1
+      }
+    },
+    "proxy": {
+      "accuracy": {
+        "mean": 0.34420015163002277,
+        "sample_sd": null,
+        "values": [
+          0.34420015163002277
+        ],
+        "n_seeds": 1
+      },
+      "numeric_accuracy": {
+        "mean": 0.34420015163002277,
+        "sample_sd": null,
+        "values": [
+          0.34420015163002277
+        ],
+        "n_seeds": 1
+      },
+      "numeric_unresolved_rate": {
+        "mean": 0.02122820318423048,
+        "sample_sd": null,
+        "values": [
+          0.02122820318423048
+        ],
+        "n_seeds": 1
+      },
+      "format_valid_rate": {
+        "mean": 0.9772554965883244,
+        "sample_sd": null,
+        "values": [
+          0.9772554965883244
+        ],
+        "n_seeds": 1
+      },
+      "length_cap_rate": {
+        "mean": 0.01288855193328279,
+        "sample_sd": null,
+        "values": [
+          0.01288855193328279
+        ],
+        "n_seeds": 1
+      }
+    },
+    "judge": {
+      "accuracy": {
+        "mean": 0.47687642153146326,
+        "sample_sd": null,
+        "values": [
+          0.47687642153146326
+        ],
+        "n_seeds": 1
+      },
+      "numeric_accuracy": {
+        "mean": 0.4791508718726308,
+        "sample_sd": null,
+        "values": [
+          0.4791508718726308
+        ],
+        "n_seeds": 1
+      },
+      "numeric_unresolved_rate": {
+        "mean": 0.026535253980288095,
+        "sample_sd": null,
+        "values": [
+          0.026535253980288095
+        ],
+        "n_seeds": 1
+      },
+      "format_valid_rate": {
+        "mean": 0.9673995451099318,
+        "sample_sd": null,
+        "values": [
+          0.9673995451099318
+        ],
+        "n_seeds": 1
+      },
+      "length_cap_rate": {
+        "mean": 0.02122820318423048,
+        "sample_sd": null,
+        "values": [
+          0.02122820318423048
+        ],
+        "n_seeds": 1
+      }
+    },
+    "knn_static": {
+      "accuracy": {
+        "mean": 0.40106141015921154,
+        "sample_sd": null,
+        "values": [
+          0.40106141015921154
+        ],
+        "n_seeds": 1
+      },
+      "numeric_accuracy": {
+        "mean": 0.41698256254738436,
+        "sample_sd": null,
+        "values": [
+          0.41698256254738436
+        ],
+        "n_seeds": 1
+      },
+      "numeric_unresolved_rate": {
+        "mean": 0.034874905231235785,
+        "sample_sd": null,
+        "values": [
+          0.034874905231235785
+        ],
+        "n_seeds": 1
+      },
+      "format_valid_rate": {
+        "mean": 0.9264594389689158,
+        "sample_sd": null,
+        "values": [
+          0.9264594389689158
+        ],
+        "n_seeds": 1
+      },
+      "length_cap_rate": {
+        "mean": 0.018953752843062926,
+        "sample_sd": null,
+        "values": [
+          0.018953752843062926
+        ],
+        "n_seeds": 1
+      }
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "metrics": {
+        "base": {
+          "numeric_accuracy": 0.2918877937831691,
+          "numeric_matches": 385,
+          "numeric_unresolved": 30,
+          "numeric_unresolved_rate": 0.022744503411675512,
+          "numeric_mismatches": 904,
+          "n": 1319,
+          "n_proxy_scored": 1319,
+          "n_judge_scored": 1319,
+          "n_pair_scored": 1319,
+          "n_gap_scored": 1319,
+          "n_unscored": 0,
+          "accuracy": 0.2880970432145565,
+          "format_valid_rate": 0.9605761940864291,
+          "mean_proxy_score": 4.392721758908264,
+          "mean_judge_score": 2.874147081122062,
+          "mean_gap": 0.06544597446095234,
+          "mean_predicted_gap": 0.20118910163059164,
+          "gap_mse": 1.0131205720464525,
+          "gap_mae": 0.7849317904483036,
+          "zero_gap_baseline_mse": 1.1971245561975734,
+          "proxy_judge_pearson": 0.31275533841269915,
+          "high_gap_rate": 0.052312357846853674,
+          "gap_threshold": 1.2444646060672266,
+          "high_gap_auroc": 0.6760231884057971,
+          "tp": 0,
+          "fp": 0,
+          "tn": 1250,
+          "fn": 69,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "mean_response_tokens": 104.5322213798332,
+          "length_cap_rate": 0.013646702047005308,
+          "arm": "base",
+          "update": 0,
+          "cohort": "final",
+          "decoding": "greedy",
+          "memory_examples": 1023,
+          "numeric_protocol": "gsm8k_numeric_recheck_v1",
+          "diagnostic_teacher": "judge",
+          "diagnostic_memory_teacher": "judge"
+        },
+        "proxy": {
+          "numeric_accuracy": 0.34420015163002277,
+          "numeric_matches": 454,
+          "numeric_unresolved": 28,
+          "numeric_unresolved_rate": 0.02122820318423048,
+          "numeric_mismatches": 837,
+          "n": 1319,
+          "n_proxy_scored": 1319,
+          "n_judge_scored": 1319,
+          "n_pair_scored": 1319,
+          "n_gap_scored": 1319,
+          "n_unscored": 0,
+          "accuracy": 0.34420015163002277,
+          "format_valid_rate": 0.9772554965883244,
+          "mean_proxy_score": 4.474601971190296,
+          "mean_judge_score": 3.0500379075056863,
+          "mean_gap": 0.023429158671529778,
+          "mean_predicted_gap": 0.15355868440564832,
+          "gap_mse": 0.8708013865576884,
+          "gap_mae": 0.7375656069539436,
+          "zero_gap_baseline_mse": 1.0786477296108892,
+          "proxy_judge_pearson": 0.3113705504154846,
+          "high_gap_rate": 0.04169825625473844,
+          "gap_threshold": 1.2444646060672266,
+          "high_gap_auroc": 0.7232307249712313,
+          "tp": 0,
+          "fp": 0,
+          "tn": 1264,
+          "fn": 55,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "mean_response_tokens": 119.30553449583017,
+          "length_cap_rate": 0.01288855193328279,
+          "arm": "proxy",
+          "update": 400,
+          "cohort": "final",
+          "decoding": "greedy",
+          "memory_examples": 1023,
+          "numeric_protocol": "gsm8k_numeric_recheck_v1",
+          "diagnostic_teacher": "judge",
+          "diagnostic_memory_teacher": "judge"
+        },
+        "judge": {
+          "numeric_accuracy": 0.4791508718726308,
+          "numeric_matches": 632,
+          "numeric_unresolved": 35,
+          "numeric_unresolved_rate": 0.026535253980288095,
+          "numeric_mismatches": 652,
+          "n": 1319,
+          "n_proxy_scored": 1319,
+          "n_judge_scored": 1319,
+          "n_pair_scored": 1319,
+          "n_gap_scored": 1319,
+          "n_unscored": 0,
+          "accuracy": 0.47687642153146326,
+          "format_valid_rate": 0.9673995451099318,
+          "mean_proxy_score": 4.496588324488249,
+          "mean_judge_score": 3.5739196360879455,
+          "mean_gap": -0.3139775959706238,
+          "mean_predicted_gap": -0.045249090173406704,
+          "gap_mse": 0.8933370589331666,
+          "gap_mae": 0.7537029691497116,
+          "zero_gap_baseline_mse": 1.069358144245047,
+          "proxy_judge_pearson": 0.2669894062154429,
+          "high_gap_rate": 0.0075815011372251705,
+          "gap_threshold": 1.2444646060672266,
+          "high_gap_auroc": 0.6439266615737204,
+          "tp": 0,
+          "fp": 0,
+          "tn": 1309,
+          "fn": 10,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "mean_response_tokens": 252.00454890068232,
+          "length_cap_rate": 0.02122820318423048,
+          "arm": "judge",
+          "update": 400,
+          "cohort": "final",
+          "decoding": "greedy",
+          "memory_examples": 1023,
+          "numeric_protocol": "gsm8k_numeric_recheck_v1",
+          "diagnostic_teacher": "judge",
+          "diagnostic_memory_teacher": "judge"
+        },
+        "knn_static": {
+          "numeric_accuracy": 0.41698256254738436,
+          "numeric_matches": 550,
+          "numeric_unresolved": 46,
+          "numeric_unresolved_rate": 0.034874905231235785,
+          "numeric_mismatches": 723,
+          "n": 1319,
+          "n_proxy_scored": 1319,
+          "n_judge_scored": 1319,
+          "n_pair_scored": 1319,
+          "n_gap_scored": 1319,
+          "n_unscored": 0,
+          "accuracy": 0.40106141015921154,
+          "format_valid_rate": 0.9264594389689158,
+          "mean_proxy_score": 4.531463229719485,
+          "mean_judge_score": 3.357846853677028,
+          "mean_gap": -0.13277922624684785,
+          "mean_predicted_gap": 0.02072992919604601,
+          "gap_mse": 0.8276313807160719,
+          "gap_mae": 0.7116724462785373,
+          "zero_gap_baseline_mse": 1.0189915208957598,
+          "proxy_judge_pearson": 0.29756895310723847,
+          "high_gap_rate": 0.021986353297952996,
+          "gap_threshold": 1.2444646060672266,
+          "high_gap_auroc": 0.7275060144346431,
+          "tp": 0,
+          "fp": 0,
+          "tn": 1290,
+          "fn": 29,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "mean_response_tokens": 184.5049279757392,
+          "length_cap_rate": 0.018953752843062926,
+          "arm": "knn_static",
+          "update": 400,
+          "cohort": "final",
+          "decoding": "greedy",
+          "memory_examples": 1023,
+          "numeric_protocol": "gsm8k_numeric_recheck_v1",
+          "diagnostic_teacher": "judge",
+          "diagnostic_memory_teacher": "judge"
+        }
+      },
+      "skipped_arms": {}
+    }
+  ],
+  "paired_teacher_differences": {}
+}

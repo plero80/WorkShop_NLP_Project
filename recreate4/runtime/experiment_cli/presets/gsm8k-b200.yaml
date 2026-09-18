@@ -1,0 +1,20 @@
+# Starting configuration for one Runpod B200; GPU throughput is not benchmarked.
+# Use a Blackwell-compatible PyTorch/CUDA build (see EXPERIMENT_CLI.md).
+version: 1
+experiment: gsm8k
+stage: pilot
+output: gsm8k_outputs/b200
+settings:
+  runtime:
+    device: cuda:0
+    dtype: bfloat16
+    attention: sdpa
+    gradient_checkpointing: false
+    ppo_microbatch_size: 8
+    rollout_stats_batch_size: 16
+  generation:
+    batch_size: 128
+  scoring:
+    batch_size: 64
+  teacher30b:
+    batch_size: 4

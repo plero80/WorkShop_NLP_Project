@@ -1,0 +1,98 @@
+{
+  "monitor/judge_minus_proxy": {
+    "metric": "correct",
+    "accuracy_difference": 0.140625,
+    "ci95": [
+      0.046875,
+      0.234375
+    ],
+    "n": 128,
+    "left_only_correct": 29,
+    "right_only_correct": 11,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "monitor/judge_minus_proxy/numeric": {
+    "metric": "numeric_match",
+    "accuracy_difference": 0.1328125,
+    "ci95": [
+      0.0390625,
+      0.2265625
+    ],
+    "n": 128,
+    "left_only_correct": 28,
+    "right_only_correct": 11,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "monitor/knn_static_minus_proxy": {
+    "metric": "correct",
+    "accuracy_difference": 0.046875,
+    "ci95": [
+      -0.0390625,
+      0.140625
+    ],
+    "n": 128,
+    "left_only_correct": 19,
+    "right_only_correct": 13,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "monitor/knn_static_minus_proxy/numeric": {
+    "metric": "numeric_match",
+    "accuracy_difference": 0.0625,
+    "ci95": [
+      -0.0234375,
+      0.14863281249999893
+    ],
+    "n": 128,
+    "left_only_correct": 20,
+    "right_only_correct": 12,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "final/judge_minus_proxy": {
+    "metric": "correct",
+    "accuracy_difference": 0.1326762699014405,
+    "ci95": [
+      0.10462471569370735,
+      0.15921152388172857
+    ],
+    "n": 1319,
+    "left_only_correct": 277,
+    "right_only_correct": 102,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "final/judge_minus_proxy/numeric": {
+    "metric": "numeric_match",
+    "accuracy_difference": 0.13495072024260804,
+    "ci95": [
+      0.1068991660348749,
+      0.16148597422289612
+    ],
+    "n": 1319,
+    "left_only_correct": 277,
+    "right_only_correct": 99,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "final/knn_static_minus_proxy": {
+    "metric": "correct",
+    "accuracy_difference": 0.05686125852918878,
+    "ci95": [
+      0.03184230477634572,
+      0.08263836239575435
+    ],
+    "n": 1319,
+    "left_only_correct": 194,
+    "right_only_correct": 119,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  },
+  "final/knn_static_minus_proxy/numeric": {
+    "metric": "numeric_match",
+    "accuracy_difference": 0.07278241091736164,
+    "ci95": [
+      0.047763457164518575,
+      0.09782031842304766
+    ],
+    "n": 1319,
+    "left_only_correct": 200,
+    "right_only_correct": 104,
+    "uncertainty_scope": "paired bootstrap over questions; does not measure training-seed variability"
+  }
+}

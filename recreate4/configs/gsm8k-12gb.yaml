@@ -1,0 +1,29 @@
+# Keep the actor on CUDA; the external profile worker parks inactive graders on CPU.
+version: 1
+experiment: gsm8k
+stage: full
+output: gsm8k_outputs/recreate3
+settings:
+  seed: 42
+  data_seed: 42
+  arms: [proxy, judge, knn_static]
+  runtime:
+    device: cuda:0
+    dtype: bfloat16
+    attention: sdpa
+    gradient_checkpointing: false
+    ppo_microbatch_size: 1
+    rollout_stats_batch_size: 1
+  generation:
+    batch_size: 1
+  scoring:
+    batch_size: 1
+  ppo:
+    pilot_updates: 100
+    full_updates: 400
+    prompts_per_update: 8
+    responses_per_prompt: 2
+    minibatch_size: 8
+    epochs: 2
+  teacher30b:
+    evaluate_final: false

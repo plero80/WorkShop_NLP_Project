@@ -1,0 +1,24 @@
+{
+  "runtime_and_recipe_match_completed_run": true,
+  "entire_seed42_launch_identity_matches_completed_run": true,
+  "windows_io_policy_matches_completed_run": true,
+  "seed42_and_seed43_dry_runs": "passed",
+  "cuda_preflight": "passed on RTX 5090",
+  "powershell_helper_checks": "passed",
+  "existing_targeted_tests": {
+    "passed": 58,
+    "skipped": 1,
+    "subtests_passed": 54,
+    "note": "Package, launcher, atomic I/O and Windows relocation tests. Relocation tests used an isolated writable temporary directory."
+  },
+  "dependency_lock": "Offline pip dry-run and pip check passed against completed-run environment",
+  "fresh_environment_install": "not run",
+  "training": "not started during packaging",
+  "linux_runner_checks": {
+    "passed": 25,
+    "subtests_passed": 2,
+    "coverage": "Existing shell runner, parallel scheduling wrapper, and VRAM wrapper tests",
+    "platform": "Git Bash on Windows with executable tool stubs",
+    "linux_gpu_training": "not run"
+  }
+}

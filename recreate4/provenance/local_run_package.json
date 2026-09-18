@@ -1,0 +1,28 @@
+{
+  "source_run": "local-seed42-v2",
+  "source_package": "recreate3",
+  "recorded_python": "3.12.14 | packaged by conda-forge | (main, Sep  2 2026, 23:18:20) [MSC v.1944 64 bit (AMD64)]",
+  "profile_gb": 24,
+  "seed": 42,
+  "data_seed": 42,
+  "runtime_sha256": "cedcc5c1bf9f46e2663979b3facfe09483c3d6cbbb200007bd8c69cf9a1942a4",
+  "recipe_sha256": "04bb6ab1e3f6fe0707039b452790e8a1340237925d816f8dd15422ae33734117",
+  "changed_original_files": [
+    "README.md",
+    "windows/README.md",
+    "windows/Setup.ps1"
+  ],
+  "changes": {
+    "README.md": "Compact rerun/new-seed recipe",
+    "windows/README.md": "Link to compact recipe",
+    "windows/Setup.ps1": "Portable default Python command, require Python 3.12, install recorded full dependency lock"
+  },
+  "training_code_and_all_recipes": "Byte-identical to source package and recorded runtime/24GB recipe identities",
+  "bundled_reference": "Read-only identity/configuration and result summaries, not resume checkpoints",
+  "excluded": [
+    "virtual environment",
+    "model weights/cache",
+    "training checkpoints",
+    "active run state"
+  ]
+}

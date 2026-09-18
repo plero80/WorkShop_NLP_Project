@@ -1,0 +1,17 @@
+{
+  "stage": "full",
+  "started_at": "2026-09-17T15:59:33.782458+00:00",
+  "state": "complete",
+  "suite_report": "C:\\WD\\NLP\\RewardHacking\\paper\\everything\\windows\\work\\state\\local-seed42-v2\\suite_report.md",
+  "updated_at": "2026-09-18T11:50:37.198905+00:00",
+  "workers": [
+    {
+      "gpu_token": "0",
+      "log": "C:\\WD\\NLP\\RewardHacking\\paper\\everything\\windows\\work\\logs\\local-seed42-v2\\seed_42.log",
+      "output": "C:\\WD\\NLP\\RewardHacking\\paper\\everything\\windows\\work\\runs\\local-seed42-v2\\seed_42",
+      "pid": 31232,
+      "returncode": 0,
+      "seed": 42
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+windows/.venv/
+windows/work/
+__pycache__/
+.pytest_cache/

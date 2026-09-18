@@ -1,0 +1,136 @@
+{
+  "fingerprint": "6ef8c53f3cc0fdddea47dd5304ad84b81529b94a16c4e70e6de74dd0705b7f6c",
+  "identity": {
+    "config": {
+      "arms": [
+        "proxy",
+        "judge",
+        "knn_static"
+      ],
+      "completion_reward": {
+        "format_penalty": 0.0,
+        "incomplete_penalty": 0.0
+      },
+      "data_seed": 42,
+      "dataset": {
+        "calibration": 128,
+        "config": "main",
+        "final": 1319,
+        "id": "openai/gsm8k",
+        "memory": 512,
+        "monitor": 128,
+        "ppo": 5000,
+        "refresh": 512,
+        "responses_per_prompt": 2,
+        "selection": 128
+      },
+      "evaluation": {
+        "bootstrap_samples": 2000,
+        "numeric_protocol": "gsm8k_numeric_recheck_v1",
+        "numeric_protocol_frozen_before_run": true
+      },
+      "generation": {
+        "batch_size": 4,
+        "max_new_tokens": 768,
+        "max_prompt_tokens": 1024,
+        "temperature": 1.0
+      },
+      "knn": {
+        "correction": "signed",
+        "gap_quantile": 0.95,
+        "k_grid": [
+          32
+        ],
+        "refresh_every": 100,
+        "refresh_prompts": 64,
+        "refresh_responses": 2,
+        "temperature_grid": [
+          0.05
+        ]
+      },
+      "models": {
+        "judge": "Qwen/Qwen3-4B-Instruct-2507",
+        "judge30b": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+        "policy": "Qwen/Qwen2.5-0.5B-Instruct",
+        "proxy": "Qwen/Qwen2.5-1.5B-Instruct"
+      },
+      "ppo": {
+        "checkpoint_every": 5,
+        "clip_range": 0.2,
+        "epochs": 2,
+        "full_updates": 400,
+        "gae_lambda": 0.95,
+        "gamma": 1.0,
+        "kl_coefficient": 0.01,
+        "learning_rate": 1e-05,
+        "lora_alpha": 32,
+        "lora_r": 16,
+        "max_grad_norm": 1.0,
+        "minibatch_size": 8,
+        "monitor_every": 25,
+        "pilot_updates": 100,
+        "prompts_per_update": 8,
+        "responses_per_prompt": 2,
+        "target_update_kl": 0.05,
+        "value_clip_range": 0.2,
+        "value_coefficient": 0.5,
+        "value_learning_rate": 0.0001
+      },
+      "revisions": {
+        "dataset": "740312add88f781978c0658806c59bc2815b9866",
+        "judge": "cdbee75f17c01a7cc42f958dc650907174af0554",
+        "judge30b": "main",
+        "policy": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "proxy": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+      },
+      "runtime": {
+        "attention": "sdpa",
+        "device": "cuda:0",
+        "dtype": "bfloat16",
+        "gradient_checkpointing": false,
+        "ppo_microbatch_size": 1,
+        "rollout_stats_batch_size": 1
+      },
+      "scoring": {
+        "batch_size": 1,
+        "cache": true,
+        "max_input_tokens": 4096,
+        "max_new_tokens": 160,
+        "minimum_std": 0.05,
+        "mode": "rationale_then_score",
+        "retry_max_new_tokens": 320
+      },
+      "seed": 42,
+      "teacher30b": {
+        "batch_size": 4,
+        "evaluate_final": false
+      }
+    },
+    "resolved": {
+      "judge": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "policy": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "proxy": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "dataset": "740312add88f781978c0658806c59bc2815b9866"
+    },
+    "split_fingerprint": "f639dc427eb518f22e7a6266eda0aea6f9dc1c9e54836c71c8cab1239513f046",
+    "source": "4dc41222c4e532ded6c0d7ed1239f71bf305233b670cd16483e64f8a980cec48",
+    "versions": {
+      "transformers": "5.17.0",
+      "peft": "0.20.0",
+      "accelerate": "1.15.0",
+      "datasets": "4.8.5",
+      "huggingface-hub": "1.31.0",
+      "numpy": "2.1.2"
+    },
+    "torch_version": "2.8.0"
+  },
+  "runtime_at_creation": {
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "free_gib": 30.12109375,
+    "total_gib": 31.84234619140625,
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8"
+  },
+  "created_at": 1789647090.1892211,
+  "protocol": "GSM8K generative judges with project shared PPO engine v1; adapted protocol, not ZIP checkpoint compatible"
+}

@@ -1,0 +1,14 @@
+# Paths are relative to the restored project, including when used from a notebook.
+version: 1
+experiment: gsm8k
+stage: pilot
+output: gsm8k_outputs/main
+
+# Omitted settings inherit the integrated GSM8K defaults.
+settings:
+  seed: 42
+  arms: [proxy, judge, knn_static, knn_static_30b]
+  ppo:
+    pilot_updates: 100
+    full_updates: 400
+    learning_rate: 1.0e-5

@@ -1,0 +1,9 @@
+# Critical versions recorded in the source B200 experiment manifest.
+# Install CUDA PyTorch separately with runners/setup.sh.
+-r runtime/experiment_cli/requirements.txt
+transformers==5.17.0
+peft==0.20.0
+accelerate==1.15.0
+datasets==4.8.5
+huggingface_hub==1.31.0
+numpy==2.1.2

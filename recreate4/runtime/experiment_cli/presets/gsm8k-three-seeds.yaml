@@ -1,0 +1,10 @@
+version: 1
+experiment: gsm8k
+stage: full
+output: gsm8k_outputs/seeds
+seeds: [42, 43, 44]
+settings:
+  data_seed: 42
+  ppo:
+    pilot_updates: 100
+    full_updates: 400

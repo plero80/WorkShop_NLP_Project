@@ -1,0 +1,44 @@
+{
+  "modified_upstream_files": [
+    {
+      "file": "runtime/ppo_engine.py",
+      "original_sha256": "e31b160a3d2cc42040a23e9d594013025d9b7c945dd0c1de3a073ed0cbc43153",
+      "recreate3_sha256": "bbfdd27bc24a5dc7885ab21090bbb2302e0be6ddbb1801b4959d1fde33afa5f1"
+    },
+    {
+      "file": "runtime/gsm8k_experiment/assets.py",
+      "original_sha256": "c75bf4139d2c38f630edf86cd4bd560cb27b0c5d2413a0841199b276fecdf583",
+      "recreate3_sha256": "93c74b5dc277834154156ce4b5f1cae4f13e567aaf937583a78686c39c6677b3"
+    },
+    {
+      "file": "runtime/gsm8k_experiment/ppo.py",
+      "original_sha256": "bf9e9ee4c22175fa41b9ec6bad68cfafaf14e6b362067895cf1c6792f680ffa9",
+      "recreate3_sha256": "e79dc8efe96127ecfe8b33613411d54638ec0d86ed04aa762e528a9cf04b168c"
+    },
+    {
+      "file": "runtime/gsm8k_experiment/run.py",
+      "original_sha256": "09a853b5ac41b92c4491e704eed8f737729afb26ee5d72e5ac0bb1c464fbe554",
+      "recreate3_sha256": "5f6e519a0ae4972224c027a12e12957005d1355e1ec05bae861c36d6c53c84be"
+    },
+    {
+      "file": "runtime/gsm8k_experiment/shared_sources.json",
+      "original_sha256": "3c86f1f79cdfeb80dec8c19ae7b2ecac794eb70c06d5ddecb9ca670563c49db8",
+      "recreate3_sha256": "adf5e61e3fe5fe5d0e7228fbc4f456626d6725269e1458074623fbbe091e7fb4"
+    },
+    {
+      "file": "runtime/gsm8k_experiment/status.py",
+      "original_sha256": "45f871de435279b96f3814919648fd4d6c66912fca9c2206f19f8e82649edaf7",
+      "recreate3_sha256": "ccc5f8379c8718ce4b8ebe5e2690d8130b05b33bd29786cbc6b03b7a30be1b5d"
+    },
+    {
+      "file": "runtime/gsm8k_experiment/suite.py",
+      "original_sha256": "6b7282836d005d831ecedbe7599a344240f0c8aec9c3e0652deebc8fa42531e4",
+      "recreate3_sha256": "5865d90b3536d4387bac914891d7bd4f493294ada637ac2fe1e35235993fa992"
+    }
+  ],
+  "added_runtime_files": [
+    "runtime/gsm8k_experiment/archive.py",
+    "runtime/gsm8k_experiment/timing.py"
+  ],
+  "purpose": "Reuse original GSM8K CLI and PPO; add independent per-GPU launchers for cluster and native Windows, early timing, optional-asset resolution, verified snapshots, Windows process/status portability, and multi-seed report wording. Smoke likelihood checks preserve the configured forward batch and padding shapes; PPO update semantics and check tolerances remain unchanged. External helpers now support one shared preparation, three isolated arm-training jobs, verified checkpoint merging, and original single-GPU finalization without further runtime edits. External memory profiles now select 12/24/48 GB execution batches; the 12 GB profile keeps the actor on GPU and parks inactive frozen graders on CPU. The scientific runtime and legacy 24 GB recipe remain byte-identical. Windows workers now retry temporary atomic-replacement access conflicts through an external I/O adapter, with unchanged scientific runtime and legacy checkpoint identity. Windows scripts and package verification support the Windows folder beside recreate3 and use delete-sharing status readers."
+}
